@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "titulo": "Poste apagado na região",
+        "descricao": "Poste sem iluminação próximo à área residencial.",
+        "categoria": "Iluminação",
+        "regiao": "Gama",
+        "status": "Pendente",
+        "apoios": 24,
+        "imagem": "assets/images/poste.jpg"
+    },
+    {
+        "id": 2,
+        "titulo": "Buraco na via principal",
+        "descricao": "Buraco dificultando a passagem de veículos.",
+        "categoria": "Asfalto",
+        "regiao": "Taguatinga",
+        "status": "Em análise",
+        "apoios": 51,
+        "imagem": "assets/images/asfalto.jpg"
+    },
+    {
+        "id": 3,
+        "titulo": "Calçada sem acessibilidade",
+        "descricao": "Falta de acesso adequado para cadeirantes.",
+        "categoria": "Acessibilidade",
+        "regiao": "Ceilândia",
+        "status": "Resolvido",
+        "apoios": 73,
+        "imagem": "assets/images/calcada.jpg"
+    }
+]

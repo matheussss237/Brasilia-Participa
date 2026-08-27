@@ -1,0 +1,154 @@
+/* =========================================================
+   STYLE.CSS
+   Identidade visual principal do Brasília Participa
+   ========================================================= */
+
+/* -------------------------
+   VARIÁVEIS
+------------------------- */
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #06b6d4;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+
+    --background: #f5f7fb;
+    --surface: #ffffff;
+    --surface-2: #f8fafc;
+
+    --text: #172033;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+
+    --shadow-sm: 0 4px 15px rgba(15, 23, 42, 0.06);
+    --shadow: 0 10px 35px rgba(15, 23, 42, 0.09);
+
+    --radius-sm: 8px;
+    --radius: 14px;
+    --radius-lg: 22px;
+
+    --transition: 0.3s ease;
+}
+
+/* -------------------------
+   MODO ESCURO
+------------------------- */
+
+body.dark-mode {
+    --background: #0b1120;
+    --surface: #111827;
+    --surface-2: #172033;
+
+    --text: #f1f5f9;
+    --text-light: #94a3b8;
+    --border: #263247;
+
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.25);
+    --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* -------------------------
+   BODY
+------------------------- */
+
+body {
+    background: var(--background);
+    color: var(--text);
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+/* -------------------------
+   CONTAINER
+------------------------- */
+
+.container {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+}
+
+/* -------------------------
+   TÍTULOS
+------------------------- */
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+/* -------------------------
+   ANIMAÇÕES
+------------------------- */
+
+.fade-in {
+    animation: fadeIn 0.7s ease forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.7s ease forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* -------------------------
+   SCROLLBAR
+------------------------- */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}

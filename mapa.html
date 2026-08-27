@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mapa | Brasília Participa</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+
+            Brasília Participa
+
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="demandas.html">
+                Demandas
+            </a>
+
+            <a
+                href="mapa.html"
+                class="active"
+            >
+                Mapa
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="section">
+
+    <div class="container">
+
+        <div class="page-title">
+            Mapa de demandas
+        </div>
+
+        <p class="page-subtitle">
+            Visualize onde estão concentradas as
+            principais demandas da população.
+        </p>
+
+
+        <div class="map-container">
+
+            <div class="map-grid"></div>
+
+
+            <!-- PIN 1 -->
+
+            <div
+                class="map-pin"
+                style="top: 25%; left: 30%;"
+                title="Buraco na via - Gama"
+            >
+
+                <i class="fa-solid fa-road"></i>
+
+            </div>
+
+
+            <!-- PIN 2 -->
+
+            <div
+                class="map-pin"
+                style="top: 45%; left: 55%;"
+                title="Iluminação - Taguatinga"
+            >
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+            </div>
+
+
+            <!-- PIN 3 -->
+
+            <div
+                class="map-pin"
+                style="top: 65%; left: 70%;"
+                title="Coleta de lixo - Ceilândia"
+            >
+
+                <i class="fa-solid fa-trash"></i>
+
+            </div>
+
+
+            <!-- PIN 4 -->
+
+            <div
+                class="map-pin"
+                style="top: 35%; left: 75%;"
+                title="Área verde - Samambaia"
+            >
+
+                <i class="fa-solid fa-tree"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="currentYear"></span>
+            Brasília Participa
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

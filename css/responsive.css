@@ -1,0 +1,82 @@
+/* =========================================================
+   RESPONSIVE.CSS
+   Adaptação para celular/tablet
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .nav {
+        display: none;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .demands-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .header-content {
+        min-height: 65px;
+    }
+
+    .header-actions .btn {
+        display: none;
+    }
+
+    .hero {
+        padding: 55px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .demands-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card.full {
+        grid-column: auto;
+    }
+
+    .profile-card {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .profile-avatar {
+        margin: auto;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-full {
+        grid-column: auto;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+}

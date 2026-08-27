@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | Brasília Participa</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+
+            Brasília Participa
+
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="demandas.html">
+                Demandas
+            </a>
+
+            <a href="mapa.html">
+                Mapa
+            </a>
+
+            <a
+                href="dashboard.html"
+                class="active"
+            >
+                Dashboard
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+            >
+
+                <i class="fa-solid fa-moon"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="section">
+
+    <div class="container">
+
+        <div class="page-title">
+            Dashboard
+        </div>
+
+        <p class="page-subtitle">
+            Acompanhe os principais indicadores de
+            participação cidadã.
+        </p>
+
+
+        <div class="stats-grid">
+
+            <div class="card stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-list"></i>
+                </div>
+
+                <div
+                    class="stat-number"
+                    data-counter="1284"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total de demandas
+                </div>
+
+            </div>
+
+
+            <div class="card stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <div
+                    class="stat-number"
+                    data-counter="846"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Resolvidas
+                </div>
+
+            </div>
+
+
+            <div class="card stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div
+                    class="stat-number"
+                    data-counter="312"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Em andamento
+                </div>
+
+            </div>
+
+
+            <div class="card stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div
+                    class="stat-number"
+                    data-counter="5210"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Usuários
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <br><br>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="card dashboard-card">
+
+                <h3>
+                    Situação das demandas
+                </h3>
+
+                <div class="chart-placeholder">
+
+                    <div>
+
+                        <i
+                            class="fa-solid fa-chart-pie"
+                            style="font-size: 40px;"
+                        ></i>
+
+                        <p>
+                            Gráfico será conectado
+                            ao backend.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card dashboard-card">
+
+                <h3>
+                    Demandas por região
+                </h3>
+
+                <div class="chart-placeholder">
+
+                    <div>
+
+                        <i
+                            class="fa-solid fa-chart-column"
+                            style="font-size: 40px;"
+                        ></i>
+
+                        <p>
+                            Dados estatísticos
+                            por região.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card dashboard-card full">
+
+                <h3>
+                    Participação da população
+                </h3>
+
+                <div class="chart-placeholder">
+
+                    <div>
+
+                        <i
+                            class="fa-solid fa-chart-line"
+                            style="font-size: 40px;"
+                        ></i>
+
+                        <p>
+                            Evolução da participação
+                            ao longo do tempo.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="currentYear"></span>
+            Brasília Participa
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

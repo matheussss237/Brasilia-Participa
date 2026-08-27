@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Brasília Participa</title>
+
+    <!-- Fonte -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+
+            <span>
+                Brasília Participa
+            </span>
+
+        </a>
+
+        <nav class="nav">
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                Início
+            </a>
+
+            <a href="demandas.html">
+                Demandas
+            </a>
+
+            <a href="mapa.html">
+                Mapa
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+                title="Alterar tema"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <a
+                href="login.html"
+                class="btn btn-primary"
+            >
+                Entrar
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <div class="slide-up">
+
+                <h1>
+
+                    Sua cidade.
+
+                    <span class="gradient-text">
+                        Sua voz.
+                    </span>
+
+                </h1>
+
+                <p>
+                    O Brasília Participa aproxima os cidadãos
+                    do poder público, permitindo registrar,
+                    acompanhar e participar da solução dos
+                    problemas da nossa cidade.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="nova-demanda.html"
+                        class="btn btn-primary"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+
+                        Registrar demanda
+                    </a>
+
+                    <a
+                        href="demandas.html"
+                        class="btn btn-secondary"
+                    >
+                        Ver demandas
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card scale-in">
+
+                <div class="hero-card-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <h2>
+                    Participação cidadã
+                </h2>
+
+                <p>
+                    Ajude a identificar problemas,
+                    acompanhe solicitações e contribua
+                    para melhorar Brasília.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ESTATÍSTICAS
+    ========================== -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <h2>
+                    Brasília em números
+                </h2>
+
+                <p>
+                    A participação da população ajuda
+                    a transformar a cidade.
+                </p>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="card stat-card slide-up">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        data-counter="1284"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Demandas registradas
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card slide-up">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        data-counter="846"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Demandas resolvidas
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card slide-up">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        data-counter="5210"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Cidadãos participantes
+                    </div>
+
+                </div>
+
+
+                <div class="card stat-card slide-up">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        data-counter="35"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Regiões atendidas
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DEMANDAS RECENTES
+    ========================== -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <h2>
+                    Demandas recentes
+                </h2>
+
+                <p>
+                    Veja alguns dos problemas registrados
+                    pela população.
+                </p>
+
+            </div>
+
+
+            <div class="demands-grid">
+
+                <article class="card demand-card slide-up">
+
+                    <div class="demand-header">
+
+                        <i class="fa-solid fa-road"></i>
+
+                        <span class="badge badge-warning">
+                            Em análise
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Buraco na via
+                    </h3>
+
+                    <p>
+                        Solicitação de reparo em via
+                        localizada no Gama.
+                    </p>
+
+                    <div class="demand-footer">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Gama
+                        </span>
+
+                        <span>
+                            Há 2 dias
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card demand-card slide-up">
+
+                    <div class="demand-header">
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                        <span class="badge badge-success">
+                            Resolvida
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Iluminação pública
+                    </h3>
+
+                    <p>
+                        Poste sem iluminação em área
+                        residencial.
+                    </p>
+
+                    <div class="demand-footer">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Taguatinga
+                        </span>
+
+                        <span>
+                            Há 4 dias
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card demand-card slide-up">
+
+                    <div class="demand-header">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        <span class="badge badge-info">
+                            Recebida
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Coleta de lixo
+                    </h3>
+
+                    <p>
+                        Solicitação de reforço na coleta
+                        de resíduos.
+                    </p>
+
+                    <div class="demand-footer">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Ceilândia
+                        </span>
+
+                        <span>
+                            Há 1 dia
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="currentYear"></span>
+            Brasília Participa
+        </p>
+
+        <p>
+            Participação cidadã para uma cidade melhor.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

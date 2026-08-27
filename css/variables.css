@@ -1,0 +1,138 @@
+/* =========================================================
+   VARIABLES.CSS
+   ---------------------------------------------------------
+   Todas as principais configurações visuais ficam aqui.
+   
+   Isso facilita MUITO alterar o tema posteriormente.
+========================================================= */
+
+
+/* =========================================================
+   TEMA CLARO
+========================================================= */
+
+:root {
+
+    /* Cor principal do sistema */
+
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+
+    /* Cores de fundo */
+
+    --background: #f5f7fb;
+    --surface: #ffffff;
+    --surface-hover: #f8fafc;
+
+
+    /* Textos */
+
+    --text: #111827;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+
+
+    /* Bordas */
+
+    --border: #e5e7eb;
+
+
+    /* Estados */
+
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --danger: #dc2626;
+    --info: #0891b2;
+    --purple: #7c3aed;
+
+
+    /* Sidebar */
+
+    --sidebar-background: #ffffff;
+
+
+    /* Sombras */
+
+    --shadow-sm:
+        0 2px 8px rgba(15, 23, 42, 0.04);
+
+    --shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06);
+
+    --shadow-lg:
+        0 20px 50px rgba(15, 23, 42, 0.12);
+
+
+    /* Bordas arredondadas */
+
+    --radius-sm: 8px;
+    --radius: 14px;
+    --radius-lg: 20px;
+
+
+    /* Sidebar */
+
+    --sidebar-width: 250px;
+
+
+    /* Transições */
+
+    --transition: 0.25s ease;
+
+}
+
+
+/* =========================================================
+   TEMA ESCURO
+========================================================= */
+
+body.dark {
+
+    --background: #0f172a;
+
+    --surface: #1e293b;
+
+    --surface-hover: #263449;
+
+
+    --text: #f8fafc;
+
+    --text-secondary: #94a3b8;
+
+    --text-muted: #64748b;
+
+
+    --border: #334155;
+
+
+    --sidebar-background: #111827;
+
+
+    --shadow-sm:
+        0 2px 8px rgba(0, 0, 0, 0.15);
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, 0.20);
+
+    --shadow-lg:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   CORES DOS STATUS
+========================================================= */
+
+.status-pendente {
+    --status-color: var(--warning);
+}
+
+.status-andamento {
+    --status-color: var(--purple);
+}
+
+.status-concluida {
+    --status-color: var(--success);
+}

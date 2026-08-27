@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Demandas | Brasília Participa</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+
+            Brasília Participa
+
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a
+                href="demandas.html"
+                class="active"
+            >
+                Demandas
+            </a>
+
+            <a href="mapa.html">
+                Mapa
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <a
+                href="nova-demanda.html"
+                class="btn btn-primary"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Nova demanda
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="section">
+
+    <div class="container">
+
+        <div class="page-title">
+            Demandas da população
+        </div>
+
+        <p class="page-subtitle">
+            Consulte, filtre e acompanhe os problemas
+            registrados pelos cidadãos.
+        </p>
+
+
+        <!-- FILTROS -->
+
+        <div class="filters">
+
+            <input
+                type="text"
+                id="searchDemand"
+                class="form-control filter-input"
+                placeholder="Pesquisar demanda..."
+            >
+
+            <select
+                id="statusFilter"
+                class="form-control"
+            >
+
+                <option value="all">
+                    Todos os status
+                </option>
+
+                <option value="recebida">
+                    Recebidas
+                </option>
+
+                <option value="analise">
+                    Em análise
+                </option>
+
+                <option value="resolvida">
+                    Resolvidas
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- DEMANDAS -->
+
+        <div class="demands-grid">
+
+
+            <article
+                class="card demand-card slide-up"
+                data-status="analise"
+            >
+
+                <div class="demand-header">
+
+                    <i class="fa-solid fa-road"></i>
+
+                    <span class="badge badge-warning">
+                        Em análise
+                    </span>
+
+                </div>
+
+                <h3>
+                    Buraco na via
+                </h3>
+
+                <p>
+                    Buraco de grande proporção causando
+                    risco aos motoristas.
+                </p>
+
+                <div class="demand-footer">
+
+                    <span>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Gama
+                    </span>
+
+                    <button
+                        class="icon-btn vote-button"
+                        title="Apoiar demanda"
+                    >
+
+                        <i class="fa-solid fa-thumbs-up"></i>
+
+                        <span class="vote-count">
+                            24
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="card demand-card slide-up"
+                data-status="resolvida"
+            >
+
+                <div class="demand-header">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    <span class="badge badge-success">
+                        Resolvida
+                    </span>
+
+                </div>
+
+                <h3>
+                    Poste sem iluminação
+                </h3>
+
+                <p>
+                    Problema de iluminação pública
+                    em área residencial.
+                </p>
+
+                <div class="demand-footer">
+
+                    <span>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Taguatinga
+                    </span>
+
+                    <button
+                        class="icon-btn vote-button"
+                    >
+
+                        <i class="fa-solid fa-thumbs-up"></i>
+
+                        <span class="vote-count">
+                            38
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="card demand-card slide-up"
+                data-status="recebida"
+            >
+
+                <div class="demand-header">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    <span class="badge badge-info">
+                        Recebida
+                    </span>
+
+                </div>
+
+                <h3>
+                    Coleta de lixo
+                </h3>
+
+                <p>
+                    Solicitação de coleta de resíduos
+                    em área pública.
+                </p>
+
+                <div class="demand-footer">
+
+                    <span>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Ceilândia
+                    </span>
+
+                    <button
+                        class="icon-btn vote-button"
+                    >
+
+                        <i class="fa-solid fa-thumbs-up"></i>
+
+                        <span class="vote-count">
+                            17
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="card demand-card slide-up"
+                data-status="analise"
+            >
+
+                <div class="demand-header">
+
+                    <i class="fa-solid fa-tree"></i>
+
+                    <span class="badge badge-warning">
+                        Em análise
+                    </span>
+
+                </div>
+
+                <h3>
+                    Área verde abandonada
+                </h3>
+
+                <p>
+                    Solicitação de limpeza e manutenção
+                    de área pública.
+                </p>
+
+                <div class="demand-footer">
+
+                    <span>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Samambaia
+                    </span>
+
+                    <button
+                        class="icon-btn vote-button"
+                    >
+
+                        <i class="fa-solid fa-thumbs-up"></i>
+
+                        <span class="vote-count">
+                            31
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="currentYear"></span>
+            Brasília Participa
+        </p>
+
+        <p>
+            Sua voz transforma Brasília.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+<script src="js/demandas.js"></script>
+
+</body>
+
+</html>
