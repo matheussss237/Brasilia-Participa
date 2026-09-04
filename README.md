@@ -1,442 +1,324 @@
-# Brasília Participa
+# 🇧🇷 Brasília Participa
 
-## Identificação Acadêmica
+<p align="center">
+  <img src="./logo-uniceplac.png" width="120" alt="Logo UNICEPLAC">
+</p>
 
-| Informação                | Detalhes                   |
-| ------------------------- | -------------------------- |
-| **Instituição de Ensino** | UNICEPLAC                  |
-| **Curso**                 | Engenharia de Software     |
-| **Disciplina**            | A ser definido pela equipe |
-| **Orientador**            | Profº Hudson Neves         |
+<h1 align="center">Brasília Participa</h1>
 
----
-
-## Descrição
-
-O **Brasília Participa** é uma plataforma web desenvolvida com o objetivo de aproximar a população dos problemas urbanos do Distrito Federal.
-
-O sistema permite que os cidadãos registrem, consultem e acompanhem demandas relacionadas à infraestrutura e aos serviços públicos de suas regiões.
-
-A proposta é centralizar essas informações em uma plataforma simples, moderna e intuitiva, facilitando a identificação dos principais problemas apontados pela população.
+<p align="center">
+  <strong>Uma plataforma digital para aproximar o cidadão da gestão pública do Distrito Federal.</strong>
+</p>
 
 ---
 
-## Objetivos
+## 📚 Identificação Acadêmica
 
-### Objetivo Geral
+<table>
+  <tr>
+    <td width="70%">
 
-Desenvolver uma plataforma digital que facilite a participação da população na identificação, registro e acompanhamento de demandas relacionadas à infraestrutura e aos serviços públicos do Distrito Federal.
+### Projeto Integrador — Engenharia de Software
 
-### Objetivos Específicos
+**Instituição:** UNICEPLAC
+**Curso:** Engenharia de Software
+**Disciplina:** Projeto Integrador
+**Área:** Desenvolvimento de Sistemas
+**Projeto:** Brasília Participa
 
-* Facilitar o registro de problemas encontrados pela população.
-* Permitir a consulta de demandas cadastradas.
-* Organizar as demandas por região e categoria.
-* Permitir que usuários apoiem demandas existentes.
-* Apresentar visualmente a distribuição das demandas.
-* Disponibilizar informações estatísticas por meio de um dashboard.
-* Incentivar a participação cidadã.
-* Desenvolver uma interface moderna, intuitiva e responsiva.
+```
+</td>
+<td width="30%" align="center">
+```
 
----
+<img src="./logo-uniceplac.png" width="140" alt="Logo UNICEPLAC">
 
-## Problema que o Sistema Resolve
+```
+</td>
+```
 
-Diversos problemas relacionados à infraestrutura urbana são identificados diariamente pela população, como problemas de iluminação, pavimentação e infraestrutura.
-
-Entretanto, muitas vezes não existe uma forma simples e centralizada para registrar essas ocorrências, acompanhar seu andamento e visualizar quais problemas possuem maior concentração em determinadas regiões.
-
-O **Brasília Participa** busca solucionar esse problema oferecendo uma plataforma onde os cidadãos podem registrar e acompanhar essas demandas de forma organizada.
-
----
-
-## Público-Alvo
-
-O sistema é destinado principalmente a:
-
-* Moradores do Distrito Federal;
-* Cidadãos que desejam registrar problemas urbanos;
-* Usuários interessados em acompanhar demandas de sua região;
-* Pessoas interessadas em participar ativamente da identificação de problemas públicos.
+  </tr>
+</table>
 
 ---
 
-## Funcionalidades
+## 📌 Sobre o Projeto
 
-### 🔐 Autenticação
+O **Brasília Participa** é uma plataforma desenvolvida com o objetivo de facilitar a comunicação entre a população e o poder público do Distrito Federal.
 
-* Login de usuários.
-* Cadastro de novos usuários.
-* Formulário de cadastro.
-* Validação de informações.
-* Navegação entre login e cadastro.
+A proposta é permitir que os cidadãos possam **registrar demandas, reclamações e problemas encontrados em suas regiões**, contribuindo para a identificação das principais necessidades de cada localidade.
 
-### 🏠 Página Inicial
+A plataforma busca transformar a participação da população em dados organizados, facilitando a visualização das demandas e possibilitando uma gestão pública mais eficiente e próxima dos cidadãos.
 
-* Apresentação do Brasília Participa.
-* Acesso às principais funcionalidades.
-* Exibição de estatísticas.
-* Apresentação de demandas recentes.
-* Navegação para as demais áreas do sistema.
+---
 
-### 📋 Demandas
+## 🎯 Objetivo
 
-* Visualização das demandas cadastradas.
-* Pesquisa de demandas.
-* Filtros por situação.
-* Identificação da região da demanda.
-* Visualização da quantidade de apoios.
-* Classificação por status.
+O principal objetivo do projeto é desenvolver uma solução tecnológica capaz de:
 
-### ➕ Nova Demanda
+* Facilitar o registro de demandas da população;
+* Permitir a identificação da região onde o problema está localizado;
+* Organizar as demandas por categorias;
+* Exibir as ocorrências em um mapa interativo;
+* Apresentar dados e estatísticas através de um dashboard;
+* Aumentar a participação da população;
+* Aproximar cidadão e administração pública;
+* Auxiliar na identificação das regiões que possuem maior quantidade de problemas.
 
-Permite ao usuário registrar uma nova demanda relacionada a um problema encontrado em sua região.
+---
 
-### 🗺️ Mapa
+## 💡 Problema
 
-* Visualização geográfica das demandas.
-* Identificação das regiões com ocorrências.
-* Representação visual dos problemas cadastrados.
+Muitas vezes, problemas relacionados à infraestrutura urbana são identificados pela população, mas existe dificuldade em **registrar, organizar e visualizar essas informações de maneira centralizada**.
+
+Entre os problemas que podem ser registrados estão:
+
+* 💡 Iluminação pública;
+* 🛣️ Asfalto e pavimentação;
+* 🏗️ Infraestrutura;
+* 🚮 Limpeza urbana;
+* 🌳 Áreas verdes;
+* 🚦 Sinalização;
+* 🚧 Vias e calçadas;
+* 🏘️ Problemas relacionados à região.
+
+O Brasília Participa busca centralizar essas informações em uma única plataforma.
+
+---
+
+## 🚀 Funcionalidades
+
+### 👤 Cadastro e Login
+
+O usuário poderá criar sua conta e realizar autenticação na plataforma.
+
+### 📢 Registro de Demandas
+
+O cidadão poderá registrar uma nova demanda informando:
+
+* Categoria do problema;
+* Descrição;
+* Localização;
+* Região administrativa;
+* Data;
+* Outras informações relevantes.
+
+### 🗺️ Mapa Interativo
+
+As demandas poderão ser visualizadas através de um mapa, permitindo identificar **onde os problemas estão concentrados no Distrito Federal**.
 
 ### 📊 Dashboard
 
-* Apresentação de estatísticas.
-* Indicadores relacionados às demandas.
-* Visualização geral dos dados do sistema.
+O sistema contará com um painel para apresentar informações como:
 
-### 👤 Perfil
+* Quantidade total de demandas;
+* Demandas por categoria;
+* Demandas por região;
+* Regiões com maior número de ocorrências;
+* Situação das demandas;
+* Indicadores gerais da plataforma.
 
-* Área destinada às informações do usuário.
-* Acesso às funcionalidades relacionadas ao perfil.
+### 📰 Demandas Recentes
 
-### 🌙 Tema
+A página inicial apresentará as demandas registradas recentemente, permitindo que o usuário acompanhe os principais problemas identificados pela população.
 
-* Modo claro.
-* Modo escuro.
-* Alternância entre os temas.
+### 🌓 Tema Claro e Escuro
 
-### ✨ Interface
-
-* Design responsivo.
-* Animações.
-* Elementos interativos.
-* Interface moderna e intuitiva.
+A plataforma contará com suporte a **Dark Mode e Light Mode**, permitindo que o usuário escolha sua preferência visual.
 
 ---
 
-## Tecnologias Utilizadas
+## 🖥️ Estrutura da Plataforma
 
-| Tecnologia   | Utilização                                    |
-| ------------ | --------------------------------------------- |
-| HTML5        | Estrutura das páginas                         |
-| CSS3         | Estilização e responsividade                  |
-| JavaScript   | Interatividade e lógica da aplicação          |
-| JSON         | Armazenamento dos dados utilizados atualmente |
-| Font Awesome | Ícones da interface                           |
-| Google Fonts | Tipografia                                    |
-
----
-
-## Arquitetura da Solução
-
-A versão atual do projeto utiliza uma arquitetura baseada em aplicação web no lado do cliente.
+O sistema será organizado em diferentes páginas:
 
 ```text
-                    USUÁRIO
-                       │
-                       ▼
-              ┌─────────────────┐
-              │  Interface Web  │
-              └────────┬────────┘
-                       │
-             ┌─────────┴─────────┐
-             ▼                   ▼
-          HTML5              CSS3
-             │                   │
-             └─────────┬─────────┘
-                       ▼
-                  JavaScript
-                       │
-                       ▼
-                 Dados locais
-                 JSON / JS
+Brasília Participa
+│
+├── 🔐 Login / Cadastro
+│
+├── 🏠 Página Inicial
+│
+├── 📢 Demandas
+│
+├── 🗺️ Mapa
+│
+├── 📊 Dashboard
+│
+└── 👤 Perfil do Usuário
 ```
-
-A estrutura separa a apresentação da aplicação, seus estilos e suas funcionalidades JavaScript.
 
 ---
 
-## Modelagem do Banco de Dados
+## 🛠️ Tecnologias Utilizadas
+
+### Front-end
+
+* HTML5
+* CSS3
+* JavaScript
+
+### Back-end
+
+* Java
+* Spring Boot
+* Spring Security
+* API REST
 
 ### Banco de Dados
 
-**A ser definido pela equipe.**
+* MongoDB
 
-Na versão atual, os dados utilizados pela interface estão armazenados localmente em arquivos JavaScript e JSON.
+### Ferramentas
 
-A implementação de um banco de dados será realizada em uma etapa posterior do projeto.
-
----
-
-## Pré-requisitos
-
-Para executar a versão atual do projeto são necessários:
-
-* Computador;
-* Navegador web atualizado;
-* Visual Studio Code ou outro editor de código;
-* Git, caso o projeto seja clonado pelo repositório.
+* Visual Studio Code
+* IntelliJ IDEA
+* Git
+* GitHub
+* Postman
 
 ---
 
-## Instalação
+## 🏗️ Arquitetura
 
-### 1. Clonar o repositório
-
-```bash
-git clone https://github.com/matheussss237/Brasilia-Participa.git
-```
-
-### 2. Entrar na pasta do projeto
-
-```bash
-cd Brasilia-Participa
-```
-
-### 3. Abrir no Visual Studio Code
-
-```bash
-code .
-```
-
-Caso o comando `code` não esteja disponível, basta abrir a pasta manualmente pelo Visual Studio Code.
-
----
-
-## Como Executar
-
-A aplicação pode ser executada através do arquivo:
+O projeto será desenvolvido utilizando uma arquitetura separando o **Front-end** do **Back-end**.
 
 ```text
-index.html
+┌─────────────────────────────┐
+│          USUÁRIO            │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│         FRONT-END           │
+│      HTML / CSS / JS        │
+└──────────────┬──────────────┘
+               │
+               │ API REST
+               ▼
+┌─────────────────────────────┐
+│          BACK-END           │
+│      Java + Spring Boot     │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│          MONGODB            │
+│       Banco de Dados        │
+└─────────────────────────────┘
 ```
-
-Também é recomendado utilizar uma extensão como **Live Server** no Visual Studio Code para executar o projeto em um servidor local durante o desenvolvimento.
-
-Após iniciar a aplicação, o usuário poderá navegar pelas páginas disponíveis:
-
-* Página inicial;
-* Login;
-* Cadastro;
-* Demandas;
-* Nova demanda;
-* Mapa;
-* Dashboard;
-* Perfil.
 
 ---
 
-## Estrutura do Projeto
+## 📂 Organização do Front-end
+
+A estrutura planejada para o projeto é:
 
 ```text
-Brasilia-Participa/
+frontend/
+│
+├── index.html
+├── demandas.html
+├── mapa.html
+├── dashboard.html
 │
 ├── css/
-│   ├── components.css
-│   ├── home.css
-│   ├── layout.css
-│   ├── pages.css
-│   ├── reset.css
-│   ├── responsive.css
 │   ├── style.css
-│   └── variables.css
-│
-├── data/
-│   ├── dados.js
-│   └── demandas.json
+│   ├── home.css
+│   ├── demandas.css
+│   ├── mapa.css
+│   └── dashboard.css
 │
 ├── js/
-│   ├── app.js
-│   ├── dashboard.js
-│   ├── demandas.js
-│   ├── home.js
 │   ├── main.js
-│   └── theme.js
+│   ├── demandas.js
+│   └── dashboard.js
 │
-├── cadastro.html
-├── dashboard.html
-├── demandas.html
-├── index.html
-├── login.html
-├── mapa.html
-├── nova-demanda.html
-├── perfl.html
-└── README.md
-```
-
-### Diretórios
-
-#### `css/`
-
-Contém os arquivos responsáveis pela aparência e organização visual da aplicação.
-
-#### `js/`
-
-Contém os arquivos JavaScript responsáveis pelas funcionalidades e interações do sistema.
-
-#### `data/`
-
-Contém os dados utilizados atualmente pela aplicação.
-
-#### Arquivos HTML
-
-Cada arquivo HTML representa uma página ou funcionalidade do sistema.
-
----
-
-## Exemplos de Uso
-
-### Registrar uma demanda
-
-O usuário pode acessar a área de **Nova Demanda** e informar um problema identificado em sua região.
-
-Exemplos:
-
-* Problemas de iluminação;
-* Problemas de asfalto;
-* Problemas de infraestrutura;
-* Outros problemas urbanos.
-
-### Consultar demandas
-
-O usuário pode acessar a página **Demandas** para visualizar os problemas registrados e utilizar os filtros disponíveis.
-
-### Apoiar uma demanda
-
-O usuário pode demonstrar apoio às demandas cadastradas, permitindo identificar problemas que possuem maior interesse da população.
-
-### Visualizar no mapa
-
-A área **Mapa** permite visualizar a distribuição das demandas pelas diferentes regiões.
-
-### Consultar estatísticas
-
-A área **Dashboard** apresenta informações e indicadores relacionados às demandas cadastradas no sistema.
-
----
-
-## API
-
-A versão atual do projeto não possui uma API implementada.
-
-**API:** A ser definida pela equipe.
-
-Uma API poderá ser implementada futuramente para realizar a comunicação entre o front-end e um back-end.
-
----
-
-## Capturas de Tela
-
-As imagens abaixo devem ser adicionadas ao README para demonstrar as principais telas da aplicação.
-
-### Página Inicial
-
-```markdown
-![Página Inicial](./screenshots/home.png)
-```
-
-> Adicione uma captura de tela da página inicial na pasta `screenshots`.
-
-### Login
-
-```markdown
-![Login](./screenshots/login.png)
-```
-
-### Cadastro
-
-```markdown
-![Cadastro](./screenshots/cadastro.png)
-```
-
-### Demandas
-
-```markdown
-![Demandas](./screenshots/demandas.png)
-```
-
-### Mapa
-
-```markdown
-![Mapa](./screenshots/mapa.png)
-```
-
-### Dashboard
-
-```markdown
-![Dashboard](./screenshots/dashboard.png)
+└── assets/
+    └── imagens/
 ```
 
 ---
 
-## Equipe do Projeto
+## 🔐 Segurança
 
-### Integrantes
+O sistema contará com mecanismos de autenticação e autorização para proteger os dados dos usuários e controlar o acesso às funcionalidades da plataforma.
 
-**A ser definido pela equipe.**
+Entre os recursos previstos estão:
 
-| Integrante                 | Responsabilidade           |
-| -------------------------- | -------------------------- |
-| A ser definido pela equipe | A ser definido pela equipe |
-| A ser definido pela equipe | A ser definido pela equipe |
-| A ser definido pela equipe | A ser definido pela equipe |
+* Autenticação de usuários;
+* Controle de acesso;
+* Spring Security;
+* JWT;
+* Validação de dados;
+* Proteção das APIs.
 
 ---
 
-## Melhorias Futuras
+## 🌎 Impacto Social
 
-Entre as melhorias planejadas para o projeto estão:
+O Brasília Participa busca utilizar a tecnologia como ferramenta de **participação cidadã**.
 
-* Implementação de banco de dados;
-* Desenvolvimento de API;
-* Integração entre front-end e back-end;
-* Implementação de autenticação real;
-* Persistência das demandas;
-* Integração com mapas e geolocalização;
-* Sistema de notificações;
-* Gerenciamento completo das demandas;
-* Diferentes níveis de acesso para usuários;
-* Aprimoramento do dashboard;
-* Melhorias de segurança;
+Ao permitir que a população registre problemas e visualize as demandas existentes, a plataforma pode contribuir para:
+
+* Maior transparência;
+* Participação popular;
+* Organização das informações;
+* Identificação de problemas recorrentes;
+* Melhor visualização das necessidades das regiões;
+* Aproximação entre população e poder público.
+
+---
+
+## 📈 Possíveis Evoluções
+
+Futuramente, o projeto poderá receber novas funcionalidades, como:
+
+* Sistema de votação nas demandas;
+* Comentários dos usuários;
+* Notificações;
+* Acompanhamento do status da solicitação;
 * Integração com serviços públicos;
-* Aplicação das demandas em dados reais.
+* Aplicativo mobile;
+* Sistema de avaliação;
+* Inteligência Artificial para classificação das demandas;
+* Relatórios avançados;
+* Geolocalização automática.
 
 ---
 
-## Status do Projeto
+## 👨‍💻 Desenvolvimento
 
-**🚧 Em Desenvolvimento**
+O projeto foi desenvolvido como parte das atividades acadêmicas do curso de **Engenharia de Software**, buscando aplicar na prática conceitos de desenvolvimento web, engenharia de software, banco de dados, APIs e segurança.
 
-O **Brasília Participa** encontra-se em desenvolvimento.
-
-A interface principal e as funcionalidades de apresentação e interação estão sendo desenvolvidas, enquanto futuras etapas poderão incluir a implementação de back-end, banco de dados, API e persistência real das informações.
+A proposta também busca demonstrar como diferentes tecnologias podem ser integradas para criar uma solução voltada para um problema real da sociedade.
 
 ---
 
-## Licença
+## 📸 Projeto
 
-**A ser definida pela equipe.**
+<p align="center">
+  <img src="./logo-uniceplac.png" width="180" alt="UNICEPLAC">
+</p>
 
 ---
 
-## Projeto Acadêmico
+# 🇧🇷 Sua voz transforma Brasília
 
-Este projeto foi desenvolvido como parte das atividades acadêmicas do curso de **Engenharia de Software da UNICEPLAC**, sob orientação do **Profº Hudson Neves**.
+<p align="center">
+  <strong>Participe. Registre. Acompanhe. Transforme.</strong>
+</p>
+
+<p align="center">
+  O Brasília Participa acredita que a tecnologia pode aproximar as pessoas das decisões que impactam suas comunidades.
+</p>
+
+<p align="center">
+  <img src="./logo-uniceplac.png" width="120" alt="Logo UNICEPLAC">
+</p>
 
 ---
 
 <p align="center">
-  <strong>Brasília Participa</strong>
-  <br>
-  Sua voz transforma Brasília. 🇧🇷
+  Desenvolvido para fins acadêmicos — Engenharia de Software | UNICEPLAC
 </p>
