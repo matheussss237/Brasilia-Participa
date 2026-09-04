@@ -1,4 +1,5 @@
-![Uploading logo-uniceplac.png…]()
+![Uploading logo-uniceplac.<img width="366" height="120" alt="logo-uniceplac" src="https://github.com/user-attachments/assets/3699cb1a-04eb-4d4d-873e-35b885096334" />
+png…]()
 # 🇧🇷 Brasília Participa
 
 <p align="center">
