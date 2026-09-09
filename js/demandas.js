@@ -1,3 +1,4 @@
+```javascript
 /* =========================================================
    DEMANDAS.JS
    Funcionalidades da página de demandas
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cards =
         document.querySelectorAll(".demand-card");
+
 
     /* ==========================================
        FILTRO DE DEMANDAS
@@ -55,9 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
 
                 card.style.display = "none";
+
             }
+
         });
+
     }
+
 
     if (searchInput) {
 
@@ -65,7 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
             "input",
             filterDemands
         );
+
     }
+
 
     if (statusFilter) {
 
@@ -73,7 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
             "change",
             filterDemands
         );
+
     }
+
 
     /* ==========================================
        FORMULÁRIO DE NOVA DEMANDA
@@ -81,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const demandForm =
         document.getElementById("demandForm");
+
 
     if (demandForm) {
 
@@ -95,34 +106,81 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
                 demandForm.reset();
+
             }
         );
+
     }
 
+
     /* ==========================================
-       BOTÕES DE VOTAÇÃO
+       APOIAR DEMANDA
     ========================================== */
 
     const voteButtons =
         document.querySelectorAll(".vote-button");
 
+
     voteButtons.forEach(button => {
+
+        const card =
+            button.closest(".demand-card");
+
+        if (!card) return;
+
+
+        const demandId =
+            card.dataset.demandId;
+
+        if (!demandId) return;
+
+
+        const count =
+            button.querySelector(".vote-count");
+
+        if (!count) return;
+
+
+        /*
+         * Recupera os apoios salvos.
+         */
+
+        let savedVotes =
+            JSON.parse(
+                localStorage.getItem(
+                    "brasiliaParticipaVotes"
+                )
+            ) || {};
+
+
+        /*
+         * Verifica se o usuário
+         * já apoiou esta demanda.
+         */
+
+        if (savedVotes[demandId]) {
+
+            button.classList.add("voted");
+
+            button.title =
+                "Remover apoio";
+
+        }
+
 
         button.addEventListener(
             "click",
             () => {
 
-                const count =
-                    button.querySelector(
-                        ".vote-count"
-                    );
-
-                if (!count) return;
-
                 let votes =
                     parseInt(
                         count.textContent
                     );
+
+
+                /*
+                 * Remove apoio
+                 */
 
                 if (
                     button.classList.contains(
@@ -136,19 +194,58 @@ document.addEventListener("DOMContentLoaded", () => {
                         "voted"
                     );
 
-                } else {
+                    button.title =
+                        "Apoiar demanda";
+
+                    delete savedVotes[demandId];
+
+                }
+
+
+                /*
+                 * Adiciona apoio
+                 */
+
+                else {
 
                     votes++;
 
                     button.classList.add(
                         "voted"
                     );
+
+                    button.title =
+                        "Remover apoio";
+
+                    savedVotes[demandId] =
+                        true;
+
                 }
+
+
+                /*
+                 * Atualiza o número
+                 */
 
                 count.textContent =
                     votes;
+
+
+                /*
+                 * Salva no navegador
+                 */
+
+                localStorage.setItem(
+                    "brasiliaParticipaVotes",
+                    JSON.stringify(
+                        savedVotes
+                    )
+                );
+
             }
         );
+
     });
 
 });
+```
