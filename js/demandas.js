@@ -138,7 +138,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (container) {
 
-        renderizar(obterDemandas());
+        const termoDaUrl = new URLSearchParams(window.location.search).get("q");
+
+        if (termoDaUrl && searchInput) {
+            searchInput.value = termoDaUrl;
+        }
+
+        aplicarFiltros();
 
         if (searchInput) searchInput.addEventListener("input", aplicarFiltros);
         if (statusFilter) statusFilter.addEventListener("change", aplicarFiltros);
