@@ -1,0 +1,199 @@
+/* =========================================================
+   STYLE.CSS
+   Identidade visual principal do Brasília Participa
+   ========================================================= */
+
+/* -------------------------
+   VARIÁVEIS
+------------------------- */
+
+:root {
+    /* Azul institucional (linha gov.br) */
+    --primary: #1351b4;
+    --primary-dark: #0b2c6b;
+    --secondary: #2670e8;
+
+    /* Amarelo institucional, usado só como detalhe/realce */
+    --accent: #ffcd07;
+
+    --success: #168821;
+    --warning: #ad7000;
+    --danger: #e52207;
+
+    --background: #f8f9fb;
+    --surface: #ffffff;
+    --surface-2: #eef1f6;
+
+    --text: #1d1d1d;
+    --text-light: #5d5d5d;
+    --border: #dde3ec;
+
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+    --shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+
+    --radius-sm: 4px;
+    --radius: 6px;
+    --radius-lg: 8px;
+
+    --transition: 0.2s ease;
+}
+
+
+.hero {
+    position: relative;
+    background: url("../imagens/bsb.jpg") center/cover no-repeat;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(11, 44, 107, 0.88),
+        rgba(11, 44, 107, 0.72)
+    );
+    z-index: 1;
+}
+
+.hero-overlay::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: var(--accent);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1,
+.hero p {
+    color: white;
+}
+
+
+
+/* -------------------------
+   MODO ESCURO
+------------------------- */
+
+body.dark-mode {
+    --background: #040914;
+    --surface: #111827;
+    --surface-2: #172033;
+
+    --text: #f1f5f9;
+    --text-light: #94a3b8;
+    --border: #263247;
+
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.25);
+    --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* -------------------------
+   BODY
+------------------------- */
+
+body {
+    background: var(--background);
+    color: var(--text);
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+/* -------------------------
+   CONTAINER
+------------------------- */
+
+.container {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+}
+
+/* -------------------------
+   TÍTULOS
+------------------------- */
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+/* -------------------------
+   ANIMAÇÕES
+------------------------- */
+
+.fade-in {
+    animation: fadeIn 0.7s ease forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.7s ease forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* -------------------------
+   SCROLLBAR
+------------------------- */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}

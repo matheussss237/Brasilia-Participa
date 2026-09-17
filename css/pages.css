@@ -1,0 +1,568 @@
+/* =========================================================
+   PAGES.CSS
+   Estilos específicos das páginas
+   ========================================================= */
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    padding: 80px 0 60px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+
+    line-height: 1.08;
+
+    font-weight: 800;
+
+    margin-bottom: 20px;
+}
+
+.gradient-text {
+    color: white;
+}
+
+.hero p {
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+
+    max-width: 600px;
+
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+/* =========================
+   HERO CARD
+========================= */
+
+.hero-card {
+    padding: 35px;
+
+    border-radius: var(--radius);
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.hero-card-icon {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: var(--radius-sm);
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    background: var(--primary);
+
+    margin-bottom: 20px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    padding: 70px 0;
+}
+
+.section-header {
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: 0 auto 45px;
+}
+
+.section-header h2 {
+    font-size: 2.1rem;
+
+    margin-bottom: 12px;
+}
+
+.section-header p {
+    color: var(--text-light);
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.stat-card {
+    padding: 25px;
+}
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: var(--radius-sm);
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(19, 81, 180, 0.1);
+
+    color: var(--primary);
+
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 2rem;
+
+    font-weight: 900;
+
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: var(--text-light);
+}
+
+/* =========================
+   DEMANDAS
+========================= */
+
+.demands-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.demand-card {
+    padding: 22px;
+
+    position: relative;
+}
+
+.demand-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.demand-card h3 {
+    margin-bottom: 10px;
+}
+
+.demand-card p {
+    color: var(--text-light);
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.demand-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: var(--text-light);
+
+    font-size: 0.85rem;
+}
+
+.vote-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    width: auto;
+    height: auto;
+
+    padding: 8px 12px;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.dashboard-card {
+    padding: 25px;
+}
+
+.dashboard-card.full {
+    grid-column: 1 / -1;
+}
+
+.chart-placeholder {
+    min-height: 280px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--text-light);
+
+    border: 2px dashed var(--border);
+
+    border-radius: var(--radius);
+
+    margin-top: 20px;
+}
+
+/* =========================
+   MAPA (Leaflet)
+========================= */
+
+.map-page-layout {
+    display: grid;
+
+    grid-template-columns: 1fr 320px;
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+.map-wrap {
+    position: relative;
+}
+
+/* Pino customizado (L.divIcon) usado no mapa e no seletor
+   de local do formulário de nova demanda. */
+.leaflet-pin {
+    width: 34px;
+    height: 34px;
+
+    border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) 2px;
+
+    display: grid;
+    place-items: center;
+
+    color: white;
+
+    border: 2px solid var(--surface);
+
+    box-shadow: var(--shadow);
+
+    transform: rotate(0deg);
+
+    transition: transform 0.15s ease;
+}
+
+.leaflet-pin i {
+    font-size: 0.85rem;
+}
+
+.leaflet-pin-active {
+    transform: scale(1.15);
+    z-index: 1000 !important;
+}
+
+.leaflet-pin-select {
+    background: var(--danger);
+}
+
+/* Popup/tooltip do Leaflet com a cara do sistema */
+.leaflet-tooltip {
+    background: var(--text) !important;
+    color: white !important;
+
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 0.78rem !important;
+    font-weight: 600;
+
+    padding: 6px 10px !important;
+
+    box-shadow: var(--shadow) !important;
+}
+
+.leaflet-tooltip-top::before {
+    border-top-color: var(--text) !important;
+}
+
+/* Legenda sobre o mapa */
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+
+    margin-top: 12px;
+
+    padding: 10px 14px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    font-size: 0.78rem;
+
+    color: var(--text-light);
+}
+
+.map-legend strong {
+    color: var(--text);
+}
+
+.map-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.map-legend-item i {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 3px;
+
+    display: inline-block;
+}
+
+/* Modo escuro: inverte os tiles do OpenStreetMap para não
+   ficarem brancos e ofuscantes em cima do resto do site escuro. */
+.dark-mode .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9) saturate(0.8);
+}
+
+.dark-mode .leaflet-pin {
+    border-color: var(--surface);
+}
+
+.map-detail-card {
+    padding: 22px;
+
+    min-height: 250px;
+}
+
+.map-detail-empty {
+    color: var(--text-light);
+
+    text-align: center;
+
+    padding: 30px 10px;
+}
+
+.map-detail-card .demand-photo {
+    margin: -22px -22px 16px;
+}
+
+/* =========================
+   SELETOR DE LOCAL (nova demanda)
+========================= */
+
+#pickerMap {
+    border: 1px solid var(--border);
+}
+
+/* =========================
+   PERFIL
+========================= */
+
+.profile-card {
+    padding: 35px;
+
+    display: grid;
+
+    grid-template-columns: 150px 1fr;
+
+    gap: 35px;
+
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+
+    border-radius: var(--radius);
+
+    display: grid;
+    place-items: center;
+
+    color: white;
+
+    font-size: 2.6rem;
+    font-weight: 900;
+
+    background: var(--primary);
+}
+
+.profile-info h2 {
+    margin-bottom: 8px;
+}
+
+.profile-info p {
+    color: var(--text-light);
+
+    margin-bottom: 20px;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.auth-page {
+    min-height: calc(100vh - 76px);
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 50px 0;
+}
+
+.auth-card {
+    width: min(460px, 92%);
+
+    padding: 35px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.auth-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.auth-header h1 {
+    margin-bottom: 8px;
+}
+
+.auth-header p {
+    color: var(--text-light);
+}
+
+.auth-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.auth-footer {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: var(--text-light);
+}
+
+.auth-footer a {
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+/* =========================
+   NOVA DEMANDA
+========================= */
+
+.form-card {
+    padding: 30px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.form-full {
+    grid-column: 1 / -1;
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.filters {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+.filter-input {
+    flex: 1;
+
+    min-width: 220px;
+}

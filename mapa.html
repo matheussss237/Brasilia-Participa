@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mapa | Brasília Participa</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS do Leaflet (Mapa Grátis) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<div class="gov-topbar">
+    <div class="container gov-topbar-content">
+        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
+        <span>Portal de Participação Cidadã</span>
+    </div>
+</div>
+
+<header class="header">
+    <div class="container header-content">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+            Brasília Participa
+        </a>
+
+        <nav class="nav">
+            <a href="index.html">Início</a>
+            <a href="demandas.html">Demandas</a>
+            <a href="mapa.html" class="active">Mapa</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="themeButton">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container">
+        <div class="page-title">
+            Mapa de demandas
+        </div>
+
+        <p class="page-subtitle">
+            Visualize onde estão concentradas as principais demandas da população.
+        </p>
+
+        <div class="map-page-layout">
+
+            <div class="map-wrap">
+
+                <div id="leafletMap" style="width: 100%; height: 500px; border-radius: 12px; z-index: 1;"></div>
+
+                <div class="map-legend">
+                    <strong><span id="mapPinCount">0</span> demandas no mapa</strong>
+                    <span class="map-legend-item"><i style="background:#168821"></i> Resolvida</span>
+                    <span class="map-legend-item"><i style="background:#ad7000"></i> Em análise</span>
+                    <span class="map-legend-item"><i style="background:#e52207"></i> Pendente</span>
+                    <span class="map-legend-item"><i style="background:#1351b4"></i> Recebida</span>
+                </div>
+
+            </div>
+
+            <div class="card map-detail-card" id="mapDetailCard">
+                <div class="map-detail-empty">
+                    <i class="fa-solid fa-map-location-dot" style="font-size: 28px; margin-bottom: 10px; display:block;"></i>
+                    Clique em um marcador no mapa para ver os detalhes da demanda.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <p>
+            © <span id="currentYear"></span> Brasília Participa
+        </p>
+    </div>
+</footer>
+
+<!-- JS do Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/store.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/main.js"></script>
+<script src="js/mapa.js"></script>
+
+</body>
+</html>

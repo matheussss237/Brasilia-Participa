@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nova Demanda | Brasília Participa</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS do Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<div class="gov-topbar">
+    <div class="container gov-topbar-content">
+        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
+        <span>Portal de Participação Cidadã</span>
+    </div>
+</div>
+
+<header class="header">
+    <div class="container header-content">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+            Brasília Participa
+        </a>
+
+        <nav class="nav">
+            <a href="index.html">Início</a>
+            <a href="demandas.html">Demandas</a>
+            <a href="mapa.html">Mapa</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="themeButton">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="section">
+    <div class="container">
+        <div class="page-title">
+            Registrar um problema
+        </div>
+
+        <p class="page-subtitle">
+            Encontrou algum problema na sua região? Preencha os dados abaixo para registrar a solicitação.
+        </p>
+
+        <div class="card form-card">
+            <form id="demandForm" data-custom-submit="true">
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="title">Título da demanda</label>
+                        <input id="title" class="form-control" type="text" placeholder="Ex: Buraco na avenida" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Categoria</label>
+                        <select id="category" class="form-control" required>
+                            <option value="">Selecione</option>
+                            <option>Infraestrutura</option>
+                            <option>Iluminação</option>
+                            <option>Limpeza</option>
+                            <option>Segurança</option>
+                            <option>Transporte</option>
+                            <option>Meio ambiente</option>
+                            <option>Educação</option>
+                            <option>Saúde</option>
+                            <option>Acessibilidade</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="region">Região administrativa</label>
+                        <select id="region" class="form-control" required>
+                            <option value="">Selecione</option>
+                            <option>Plano Piloto</option>
+                            <option>Gama</option>
+                            <option>Taguatinga</option>
+                            <option>Brazlândia</option>
+                            <option>Sobradinho</option>
+                            <option>Sobradinho II</option>
+                            <option>Planaltina</option>
+                            <option>Paranoá</option>
+                            <option>Núcleo Bandeirante</option>
+                            <option>Ceilândia</option>
+                            <option>Guará</option>
+                            <option>Cruzeiro</option>
+                            <option>Samambaia</option>
+                            <option>Santa Maria</option>
+                            <option>São Sebastião</option>
+                            <option>Recanto das Emas</option>
+                            <option>Lago Sul</option>
+                            <option>Lago Norte</option>
+                            <option>Riacho Fundo</option>
+                            <option>Riacho Fundo II</option>
+                            <option>Candangolândia</option>
+                            <option>Águas Claras</option>
+                            <option>Sudoeste/Octogonal</option>
+                            <option>Varjão</option>
+                            <option>Park Way</option>
+                            <option>SCIA/Estrutural</option>
+                            <option>Jardim Botânico</option>
+                            <option>Itapoã</option>
+                            <option>SIA</option>
+                            <option>Vicente Pires</option>
+                            <option>Fercal</option>
+                            <option>Sol Nascente/Pôr do Sol</option>
+                            <option>Arniqueira</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Localização (Endereço)</label>
+                        <input id="location" class="form-control" type="text" placeholder="Rua, avenida ou referência" required>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <label for="description">Descrição</label>
+                        <textarea id="description" class="form-control" rows="5" placeholder="Descreva detalhadamente o problema..." required></textarea>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <label for="photo">Foto da situação</label>
+                        <div class="photo-actions">
+                            <label for="photo" class="btn btn-secondary">
+                                <i class="fa-solid fa-camera"></i>
+                                Tirar foto / anexar
+                            </label>
+                        </div>
+                        <input id="photo" type="file" accept="image/*" capture="environment" style="display:none;">
+
+                        <div class="photo-preview" id="photoPreview">
+                            <img id="photoPreviewImg" src="" alt="Pré-visualização da foto enviada">
+                            <button type="button" id="photoRemove" title="Remover foto">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- MAPA INTERATIVO (Leaflet) -->
+                    <div class="form-group form-full">
+                        <label>Local no mapa</label>
+                        <p id="pickerMapHint" style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 10px;">
+                            Selecione a Região Administrativa acima para centralizar o mapa, depois clique no ponto exato do problema.
+                        </p>
+
+                        <div id="pickerMap" style="width: 100%; height: 350px; border-radius: 8px; z-index: 1;"></div>
+                    </div>
+
+                    <div class="form-full">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Enviar demanda
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <p>
+            © <span id="currentYear"></span> Brasília Participa
+        </p>
+    </div>
+</footer>
+
+<!-- JS do Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/store.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/main.js"></script>
+<script src="js/demandas.js"></script>
+<script src="js/nova-demanda.js"></script>
+
+</body>
+</html>
