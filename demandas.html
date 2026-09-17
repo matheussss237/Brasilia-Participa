@@ -81,14 +81,22 @@
 
         </nav>
 
-        <div class="header-actions">
-
-            <button
-                class="icon-btn"
-                id="themeButton"
+        <form
+            class="header-search"
+            role="search"
+            action="demandas.html"
+            method="get"
+        >
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                name="q"
+                placeholder="Pesquisar demandas..."
+                aria-label="Pesquisar demandas"
             >
-                <i class="fa-solid fa-moon"></i>
-            </button>
+        </form>
+
+        <div class="header-actions">
 
             <a
                 href="nova-demanda.html"
@@ -97,6 +105,13 @@
                 <i class="fa-solid fa-plus"></i>
                 Nova demanda
             </a>
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
 
         </div>
 

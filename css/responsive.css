@@ -96,3 +96,10 @@
         height: 260px !important;
     }
 }
+
+@media (max-width: 480px) {
+
+    .header-search {
+        display: none;
+    }
+}
