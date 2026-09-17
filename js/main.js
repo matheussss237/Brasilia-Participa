@@ -126,15 +126,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ==========================================
        DEMANDAS RECENTES (HOME)
+       Sem termo de busca: mostra as 6 mais recentes.
+       Com termo: filtra em todas as demandas, para a
+       busca do cabeçalho poder mostrar o resultado
+       direto nesta mesma seção.
     ========================================== */
 
     const recentContainer = document.getElementById("recentDemandsContainer");
 
-    if (recentContainer && typeof obterDemandas === "function") {
+    function renderizarDemandasRecentes(termo) {
 
-        const recentes = obterDemandas().slice(0, 6);
+        if (!recentContainer || typeof obterDemandas !== "function") return;
 
-        recentContainer.innerHTML = recentes.map(demanda => `
+        const termoLimpo = (termo || "").toLowerCase().trim();
+
+        const todas = obterDemandas();
+
+        const lista = termoLimpo
+            ? todas.filter(demanda =>
+                demanda.titulo.toLowerCase().includes(termoLimpo) ||
+                demanda.descricao.toLowerCase().includes(termoLimpo) ||
+                demanda.regiao.toLowerCase().includes(termoLimpo)
+              )
+            : todas.slice(0, 6);
+
+        if (lista.length === 0) {
+
+            recentContainer.innerHTML = `
+                <div class="empty-state">
+                    <h3>Nenhuma demanda encontrada.</h3>
+                    <p>Tente outro termo de busca ou <a href="demandas.html">veja todas as demandas</a>.</p>
+                </div>
+            `;
+
+            return;
+        }
+
+        recentContainer.innerHTML = lista.map(demanda => `
             <article class="card demand-card slide-up">
                 ${demanda.foto ? `<div class="demand-photo"><img src="${demanda.foto}" alt="Foto: ${demanda.titulo}" loading="lazy" onerror="this.closest('.demand-photo').style.display='none'"></div>` : ""}
                 <div class="demand-header">
@@ -149,6 +177,47 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </article>
         `).join("");
+    }
+
+    renderizarDemandasRecentes();
+
+    /* ==========================================
+       BUSCA DO CABEÇALHO
+       Sempre que a página atual já tem uma lista de
+       demandas (home ou demandas.html), filtra ali
+       mesmo em vez de navegar. Nas outras páginas,
+       cai no comportamento padrão do formulário
+       (segue para demandas.html?q=...).
+    ========================================== */
+
+    const headerSearchForm = document.querySelector(".header-search");
+
+    if (headerSearchForm) {
+
+        const headerSearchInput = headerSearchForm.querySelector("input[name='q']");
+        const demandsSearchInput = document.getElementById("searchDemand");
+
+        if (demandsSearchInput) {
+
+            headerSearchForm.addEventListener("submit", event => {
+
+                event.preventDefault();
+
+                demandsSearchInput.value = headerSearchInput.value;
+                demandsSearchInput.dispatchEvent(new Event("input"));
+                demandsSearchInput.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+
+        } else if (recentContainer) {
+
+            headerSearchForm.addEventListener("submit", event => {
+
+                event.preventDefault();
+
+                renderizarDemandasRecentes(headerSearchInput.value);
+                recentContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        }
     }
 
     /* ==========================================
