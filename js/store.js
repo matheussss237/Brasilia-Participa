@@ -34,6 +34,44 @@ const ICONE_POR_CATEGORIA = {
     "Acessibilidade": "fa-wheelchair"
 };
 
+/* Cor de destaque de cada categoria — usada no "selo" colorido
+   que aparece nos cards sem foto, para dar uma pista visual
+   mesmo sem o cidadão precisar ler o texto todo. */
+const COR_POR_CATEGORIA = {
+    "Infraestrutura": "#8a5a2b",
+    "Iluminação": "#b58900",
+    "Limpeza": "#2f7d4f",
+    "Segurança": "#1351b4",
+    "Transporte": "#6b46c1",
+    "Meio ambiente": "#15803d",
+    "Educação": "#b45309",
+    "Saúde": "#dc2626",
+    "Acessibilidade": "#0891b2"
+};
+
+/* Ícones mais específicos do que a categoria, escolhidos por
+   palavras-chave do título/descrição da demanda. Assim, dentro
+   de "Segurança", uma demanda sobre câmera ganha um ícone de
+   câmera, e uma sobre policiamento ganha um ícone de proteção —
+   em vez das duas caírem no mesmo escudo genérico. Quando nada
+   bate, cai no ícone padrão da categoria (iconeDaCategoria). */
+const ICONES_ESPECIFICOS = [
+    { termos: /camera/, icone: "fa-video" },
+    { termos: /policia/, icone: "fa-shield-halved" },
+    { termos: /buraco|cratera|asfalto/, icone: "fa-road-circle-exclamation" },
+    { termos: /poste|iluminac|lampada|escur/, icone: "fa-lightbulb" },
+    { termos: /reciclave|reciclagem|seletiva/, icone: "fa-recycle" },
+    { termos: /lixo|entulho|coleta/, icone: "fa-trash" },
+    { termos: /esgoto|vazamento|tubulac|alagamento/, icone: "fa-droplet" },
+    { termos: /arvore|praca|parquinho|brinquedo|mato alto/, icone: "fa-tree" },
+    { termos: /escola|professor/, icone: "fa-school" },
+    { termos: /saude|medico|plantao|ubs/, icone: "fa-briefcase-medical" },
+    { termos: /semaforo|sinalizac|faixa de pedestre/, icone: "fa-traffic-light" },
+    { termos: /onibus/, icone: "fa-bus" },
+    { termos: /ciclovia|ciclista|bicicleta/, icone: "fa-bicycle" },
+    { termos: /calcada|rampa|cadeirante|acessibilidade/, icone: "fa-wheelchair" }
+];
+
 /* Coordenadas (latitude/longitude) aproximadas do centro de
    cada Região Administrativa do DF — usadas como localização
    padrão quando o cidadão não marca um ponto exato no mapa.
@@ -454,6 +492,41 @@ function atualizarApoios(id, delta) {
 
 function iconeDaCategoria(categoria) {
     return ICONE_POR_CATEGORIA[categoria] || "fa-circle-exclamation";
+}
+
+function corDaCategoria(categoria) {
+    return COR_POR_CATEGORIA[categoria] || "#5d5d5d";
+}
+
+/* Ícone específico da demanda (por palavra-chave), caindo para o
+   ícone genérico da categoria quando nenhuma palavra-chave bate. */
+function iconeDaDemanda(demanda) {
+
+    const texto = `${demanda.titulo || ""} ${demanda.descricao || ""}`
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .toLowerCase();
+
+    const encontrado = ICONES_ESPECIFICOS.find(item => item.termos.test(texto));
+
+    return encontrado ? encontrado.icone : iconeDaCategoria(demanda.categoria);
+}
+
+/* HTML da capa do card: foto real quando existe, ou um "placeholder"
+   visual colorido com o ícone da demanda quando não existe — assim
+   nenhum card fica em branco, o que ajuda bastante quem só bate o
+   olho na demanda sem ler o texto todo. */
+function fotoDemandaHtml(demanda) {
+
+    if (demanda.foto) {
+        return `<div class="demand-photo"><img src="${demanda.foto}" alt="Foto: ${demanda.titulo}" loading="lazy" onerror="this.closest('.demand-photo').style.display='none'"></div>`;
+    }
+
+    return `
+        <div class="demand-photo demand-photo-placeholder" style="--cor-categoria: ${corDaCategoria(demanda.categoria)};" aria-hidden="true">
+            <i class="fa-solid ${iconeDaDemanda(demanda)}"></i>
+        </div>
+    `;
 }
 
 /* Classe visual (badge) de acordo com o status. */

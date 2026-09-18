@@ -23,14 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
         card.dataset.status = demanda.status;
         card.dataset.demandId = demanda.id;
 
-        const fotoHtml = demanda.foto
-            ? `<div class="demand-photo"><img src="${demanda.foto}" alt="Foto enviada: ${demanda.titulo}" loading="lazy" onerror="this.closest('.demand-photo').style.display='none'"></div>`
-            : "";
-
         card.innerHTML = `
-            ${fotoHtml}
+            ${fotoDemandaHtml(demanda)}
             <div class="demand-header">
-                <i class="fa-solid ${iconeDaCategoria(demanda.categoria)}"></i>
+                <i class="fa-solid ${iconeDaDemanda(demanda)}"></i>
                 <span class="badge ${classeDoStatus(demanda.status)}">${demanda.status}</span>
             </div>
 

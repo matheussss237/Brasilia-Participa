@@ -136,9 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         recentContainer.innerHTML = recentes.map(demanda => `
             <article class="card demand-card slide-up">
-                ${demanda.foto ? `<div class="demand-photo"><img src="${demanda.foto}" alt="Foto: ${demanda.titulo}" loading="lazy" onerror="this.closest('.demand-photo').style.display='none'"></div>` : ""}
+                ${fotoDemandaHtml(demanda)}
                 <div class="demand-header">
-                    <i class="fa-solid ${iconeDaCategoria(demanda.categoria)}"></i>
+                    <i class="fa-solid ${iconeDaDemanda(demanda)}"></i>
                     <span class="badge ${classeDoStatus(demanda.status)}">${demanda.status}</span>
                 </div>
                 <h3>${demanda.titulo}</h3>
