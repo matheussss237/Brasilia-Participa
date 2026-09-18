@@ -441,6 +441,23 @@
     object-fit: cover;
 }
 
+.demand-photo-placeholder {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--surface-2);
+    background: color-mix(in srgb, var(--cor-categoria, var(--text-light)) 16%, var(--surface-2));
+}
+
+.demand-photo-placeholder i {
+    font-size: 2.6rem;
+
+    color: var(--cor-categoria, var(--text-light));
+    opacity: 0.9;
+}
+
 /* =========================
    ESTADO VAZIO
 ========================= */

@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             className: "",
             html: `
                 <div class="leaflet-pin" style="background:${corDoStatus(demanda.status)}">
-                    <i class="fa-solid ${iconeDaCategoria(demanda.categoria)}"></i>
+                    <i class="fa-solid ${iconeDaDemanda(demanda)}"></i>
                 </div>
             `,
             iconSize: [34, 34],
@@ -74,14 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!detailCard) return;
 
-        const fotoHtml = demanda.foto
-            ? `<div class="demand-photo"><img src="${demanda.foto}" alt="Foto: ${demanda.titulo}" loading="lazy" onerror="this.closest('.demand-photo').style.display='none'"></div>`
-            : "";
-
         detailCard.innerHTML = `
-            ${fotoHtml}
+            ${fotoDemandaHtml(demanda)}
             <div class="demand-header">
-                <i class="fa-solid ${iconeDaCategoria(demanda.categoria)}"></i>
+                <i class="fa-solid ${iconeDaDemanda(demanda)}"></i>
                 <span class="badge ${classeDoStatus(demanda.status)}">${demanda.status}</span>
             </div>
 
