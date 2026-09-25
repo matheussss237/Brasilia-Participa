@@ -161,6 +161,10 @@ O projeto ainda não possui uma API própria. Os dados são manipulados localmen
 | Matheus Henrique Madeira Amorim |
 | Oto Pereira Bonfim |
 
+## Backlog e Cronograma
+
+O backlog do produto (50 itens, BL01–BL50), o cronograma de sprints (0 a 12), os marcos, o escopo funcional, os cenários de teste e os entregáveis estão em [`docs/BACKLOG.md`](docs/BACKLOG.md). A planilha original está em [`docs/backlog_cronograma.xlsx`](docs/backlog_cronograma.xlsx).
+
 ## Melhorias Futuras
 
 - Implementação de back-end em Java/Spring com API REST
