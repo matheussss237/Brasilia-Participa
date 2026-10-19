@@ -163,7 +163,7 @@ O projeto ainda não possui uma API própria. Os dados são manipulados localmen
 
 ## Backlog e Cronograma
 
-O backlog do produto (50 itens, BL01–BL50), o cronograma de sprints (0 a 12), os marcos, o escopo funcional, os cenários de teste e os entregáveis estão em [`docs/BACKLOG.md`](docs/BACKLOG.md). A planilha original está em [`docs/backlog_cronograma.xlsx`](docs/backlog_cronograma.xlsx).
+O backlog do produto (55 itens, BL01–BL55, com o status atual de cada um), o cronograma de sprints (0 a 12), os marcos, o escopo funcional, os cenários de teste e os entregáveis estão em [`docs/BACKLOG.md`](docs/BACKLOG.md). A planilha editável está em [`docs/backlog_brasilia_participa.xlsx`](docs/backlog_brasilia_participa.xlsx) e segue o formato do [modelo da disciplina](docs/modelo_backlog_cronograma.xlsx).
 
 ## Melhorias Futuras
 
