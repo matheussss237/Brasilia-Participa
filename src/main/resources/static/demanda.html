@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Demanda | Brasília Participa</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
+
+
+    <link
+        rel="stylesheet"
+        href="vendor/fontawesome/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="gov-topbar">
+    <div class="container gov-topbar-content">
+        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
+        <span>Portal de Participação Cidadã</span>
+    </div>
+</div>
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+
+            Brasília Participa
+
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="demandas.html">
+                Demandas
+            </a>
+
+            <a href="mapa.html">
+                Mapa
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+        <form
+            class="header-search"
+            role="search"
+            action="demandas.html"
+            method="get"
+        >
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                name="q"
+                placeholder="Pesquisar demandas..."
+                aria-label="Pesquisar demandas"
+            >
+        </form>
+
+        <div class="header-actions">
+
+            <a
+                href="nova-demanda.html"
+                class="btn btn-primary"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Nova demanda
+            </a>
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="section">
+
+    <div class="container">
+
+        <a href="demandas.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Voltar para demandas
+        </a>
+
+        <!-- Preenchido por js/demanda.js com os dados da API -->
+        <div id="detalheDemanda" aria-live="polite">
+            <div class="card detail-loading">
+                <i class="fa-solid fa-spinner fa-spin"></i> Carregando demanda...
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="currentYear"></span>
+            Brasília Participa
+        </p>
+
+        <p>
+            Sua voz transforma Brasília.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/main.js"></script>
+<script src="js/demanda.js"></script>
+
+</body>
+
+</html>

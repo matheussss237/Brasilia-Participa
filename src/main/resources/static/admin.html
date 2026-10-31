@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Gestão | Brasília Participa</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
+
+
+    <link
+        rel="stylesheet"
+        href="vendor/fontawesome/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="gov-topbar">
+    <div class="container gov-topbar-content">
+        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
+        <span>Portal de Participação Cidadã</span>
+    </div>
+</div>
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+
+            Brasília Participa
+
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="demandas.html">
+                Demandas
+            </a>
+
+            <a href="mapa.html">
+                Mapa
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+        <form
+            class="header-search"
+            role="search"
+            action="demandas.html"
+            method="get"
+        >
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                name="q"
+                placeholder="Pesquisar demandas..."
+                aria-label="Pesquisar demandas"
+            >
+        </form>
+
+        <div class="header-actions">
+
+            <a
+                href="nova-demanda.html"
+                class="btn btn-primary"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Nova demanda
+            </a>
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="section">
+
+    <div class="container">
+
+        <div class="page-title">
+            Gestão de demandas
+        </div>
+
+        <p class="page-subtitle">
+            Área do administrador: priorize, atualize o status e responda os cidadãos.
+        </p>
+
+        <div class="card login-required" id="adminBloqueado" hidden>
+            <i class="fa-solid fa-user-shield"></i>
+            <h2>Área restrita</h2>
+            <p>Esta página é só para administradores. Entre com uma conta de administrador para continuar.</p>
+            <div class="hero-buttons">
+                <a href="login.html?voltar=admin.html" class="btn btn-primary">Entrar como administrador</a>
+            </div>
+        </div>
+
+        <div id="adminConteudo" hidden>
+
+            <div class="admin-summary" id="adminResumo">
+                <button type="button" class="card admin-summary-item" data-filtro-status="RECEBIDA">
+                    <span class="admin-summary-number" data-resumo="RECEBIDA">0</span>
+                    <span>Aguardando triagem</span>
+                </button>
+                <button type="button" class="card admin-summary-item" data-filtro-status="EM_ANALISE">
+                    <span class="admin-summary-number" data-resumo="EM_ANALISE">0</span>
+                    <span>Em análise</span>
+                </button>
+                <button type="button" class="card admin-summary-item" data-filtro-status="PENDENTE">
+                    <span class="admin-summary-number" data-resumo="PENDENTE">0</span>
+                    <span>Pendentes</span>
+                </button>
+                <button type="button" class="card admin-summary-item" data-filtro-status="RESOLVIDA">
+                    <span class="admin-summary-number" data-resumo="RESOLVIDA">0</span>
+                    <span>Resolvidas</span>
+                </button>
+            </div>
+
+            <div class="filters" role="search">
+                <input type="search" id="adminBusca" class="form-control filter-input" placeholder="Buscar demanda..." aria-label="Buscar demanda">
+                <select id="adminStatus" class="form-control" aria-label="Filtrar por status">
+                    <option value="">Todos os status</option>
+                </select>
+                <select id="adminRegiao" class="form-control" aria-label="Filtrar por região">
+                    <option value="">Todas as regiões</option>
+                </select>
+                <select id="adminOrdenar" class="form-control" aria-label="Ordenar">
+                    <option value="apoios">Mais apoiadas primeiro</option>
+                    <option value="antigas">Mais antigas primeiro</option>
+                    <option value="recentes">Mais recentes primeiro</option>
+                </select>
+            </div>
+
+            <div class="card table-card">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Demanda</th>
+                            <th scope="col">Região</th>
+                            <th scope="col">Apoios</th>
+                            <th scope="col">Aberta</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTabela">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="load-more">
+                <button type="button" id="adminMais" class="btn btn-secondary" hidden>Carregar mais</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="currentYear"></span>
+            Brasília Participa
+        </p>
+
+        <p>
+            Sua voz transforma Brasília.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+
+</html>

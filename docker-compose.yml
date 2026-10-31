@@ -1,0 +1,14 @@
+# Sobe um MongoDB local com um comando: docker compose up -d
+# (só é necessário se você não quiser instalar o MongoDB no Windows/Linux)
+services:
+  mongodb:
+    image: mongo:7
+    container_name: brasilia-participa-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-dados:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo-dados:

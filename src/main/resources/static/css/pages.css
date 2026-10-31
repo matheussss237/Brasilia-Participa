@@ -1,0 +1,1426 @@
+/* =========================================================
+   PAGES.CSS
+   Estilos específicos das páginas
+   ========================================================= */
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    padding: 80px 0 60px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+
+    line-height: 1.08;
+
+    font-weight: 800;
+
+    margin-bottom: 20px;
+}
+
+.gradient-text {
+    color: white;
+}
+
+.hero p {
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+
+    max-width: 600px;
+
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+/* =========================
+   HERO CARD
+========================= */
+
+.hero-card {
+    padding: 35px;
+
+    border-radius: var(--radius);
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.hero-card-icon {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: var(--radius-sm);
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    background: var(--primary);
+
+    margin-bottom: 20px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    padding: 70px 0;
+}
+
+.section-header {
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: 0 auto 45px;
+}
+
+.section-header h2 {
+    font-size: 2.1rem;
+
+    margin-bottom: 12px;
+}
+
+.section-header p {
+    color: var(--text-light);
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.stat-card {
+    padding: 25px;
+}
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: var(--radius-sm);
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(19, 81, 180, 0.1);
+
+    color: var(--primary);
+
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 2rem;
+
+    font-weight: 900;
+
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: var(--text-light);
+}
+
+/* =========================
+   DEMANDAS
+========================= */
+
+.demands-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.demand-card {
+    padding: 22px;
+
+    position: relative;
+}
+
+.demand-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.demand-card h3 {
+    margin-bottom: 10px;
+}
+
+.demand-card p {
+    color: var(--text-light);
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.demand-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: var(--text-light);
+
+    font-size: 0.85rem;
+}
+
+.vote-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    width: auto;
+    height: auto;
+
+    padding: 8px 12px;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.dashboard-card {
+    padding: 25px;
+}
+
+.dashboard-card.full {
+    grid-column: 1 / -1;
+}
+
+.chart-placeholder {
+    min-height: 280px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--text-light);
+
+    border: 2px dashed var(--border);
+
+    border-radius: var(--radius);
+
+    margin-top: 20px;
+}
+
+/* =========================
+   MAPA (Leaflet)
+========================= */
+
+.map-page-layout {
+    display: grid;
+
+    grid-template-columns: 1fr 320px;
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+.map-wrap {
+    position: relative;
+}
+
+/* Pino customizado (L.divIcon) usado no mapa e no seletor
+   de local do formulário de nova demanda. */
+.leaflet-pin {
+    width: 34px;
+    height: 34px;
+
+    border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) 2px;
+
+    display: grid;
+    place-items: center;
+
+    color: white;
+
+    border: 2px solid var(--surface);
+
+    box-shadow: var(--shadow);
+
+    transform: rotate(0deg);
+
+    transition: transform 0.15s ease;
+}
+
+.leaflet-pin i {
+    font-size: 0.85rem;
+}
+
+.leaflet-pin-active {
+    transform: scale(1.15);
+    z-index: 1000 !important;
+}
+
+.leaflet-pin-select {
+    background: var(--danger);
+}
+
+/* Popup/tooltip do Leaflet com a cara do sistema */
+.leaflet-tooltip {
+    background: var(--text) !important;
+    color: white !important;
+
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 0.78rem !important;
+    font-weight: 600;
+
+    padding: 6px 10px !important;
+
+    box-shadow: var(--shadow) !important;
+}
+
+.leaflet-tooltip-top::before {
+    border-top-color: var(--text) !important;
+}
+
+/* Legenda sobre o mapa */
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+
+    margin-top: 12px;
+
+    padding: 10px 14px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    font-size: 0.78rem;
+
+    color: var(--text-light);
+}
+
+.map-legend strong {
+    color: var(--text);
+}
+
+.map-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.map-legend-item i {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 3px;
+
+    display: inline-block;
+}
+
+/* Modo escuro: inverte os tiles do OpenStreetMap para não
+   ficarem brancos e ofuscantes em cima do resto do site escuro. */
+.dark-mode .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9) saturate(0.8);
+}
+
+.dark-mode .leaflet-pin {
+    border-color: var(--surface);
+}
+
+.map-detail-card {
+    padding: 22px;
+
+    min-height: 250px;
+}
+
+.map-detail-empty {
+    color: var(--text-light);
+
+    text-align: center;
+
+    padding: 30px 10px;
+}
+
+.map-detail-card .demand-photo {
+    margin: -22px -22px 16px;
+}
+
+/* =========================
+   SELETOR DE LOCAL (nova demanda)
+========================= */
+
+#pickerMap {
+    border: 1px solid var(--border);
+}
+
+/* =========================
+   PERFIL
+========================= */
+
+.profile-card {
+    padding: 35px;
+
+    display: grid;
+
+    grid-template-columns: 150px 1fr;
+
+    gap: 35px;
+
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+
+    border-radius: var(--radius);
+
+    display: grid;
+    place-items: center;
+
+    color: white;
+
+    font-size: 2.6rem;
+    font-weight: 900;
+
+    background: var(--primary);
+}
+
+.profile-info h2 {
+    margin-bottom: 8px;
+}
+
+.profile-info p {
+    color: var(--text-light);
+
+    margin-bottom: 20px;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.auth-page {
+    min-height: calc(100vh - 76px);
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 50px 0;
+}
+
+.auth-card {
+    width: min(460px, 92%);
+
+    padding: 35px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.auth-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.auth-header h1 {
+    margin-bottom: 8px;
+}
+
+.auth-header p {
+    color: var(--text-light);
+}
+
+.auth-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.auth-footer {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: var(--text-light);
+}
+
+.auth-footer a {
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+/* =========================
+   NOVA DEMANDA
+========================= */
+
+.form-card {
+    padding: 30px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.form-full {
+    grid-column: 1 / -1;
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.filters {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+.filter-input {
+    flex: 1;
+
+    min-width: 220px;
+}
+
+/* =========================================================
+   NOVAS TELAS (versão com back-end Spring + MongoDB)
+========================================================= */
+
+/* ---------- Cabeçalho: usuário logado ---------- */
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 12px 0 6px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 700;
+}
+
+.user-chip:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 0.72rem;
+}
+
+.mobile-menu-button {
+    display: none;
+}
+
+/* ---------- Cards de demanda clicáveis ---------- */
+
+.demand-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.demand-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.demand-card .vote-button {
+    position: relative;
+    z-index: 2;
+}
+
+.demand-card h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.demand-card p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.demand-footer-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.demand-meta {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.demand-photo-erro {
+    display: none;
+}
+
+.vote-button.voted {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* ---------- Carregamento (skeleton) ---------- */
+
+.skeleton {
+    border-radius: var(--radius-sm);
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
+    background-size: 200% 100%;
+    animation: skeleton 1.2s ease-in-out infinite;
+}
+
+.skeleton-img {
+    height: 140px;
+    margin: -22px -22px 16px;
+    border-radius: 0;
+}
+
+.skeleton-line {
+    height: 14px;
+    margin-bottom: 10px;
+}
+
+.skeleton-line.curta {
+    width: 60%;
+}
+
+@keyframes skeleton {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton { animation: none; }
+}
+
+/* ---------- Lista: barra de ferramentas e "carregar mais" ---------- */
+
+.list-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: -12px 0 24px;
+}
+
+.list-count {
+    color: var(--text-light);
+    font-weight: 600;
+    margin-right: auto;
+}
+
+.link-button {
+    border: none;
+    background: none;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 6px 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.link-button:hover {
+    text-decoration: underline;
+}
+
+.load-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* ---------- Formulários: erros e dicas ---------- */
+
+.form-control.is-invalid {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 18%, transparent);
+}
+
+.field-error {
+    color: var(--danger);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.field-hint {
+    color: var(--text-light);
+    font-size: 0.82rem;
+}
+
+.btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-danger-outline {
+    color: var(--danger);
+    background: transparent;
+    border: 1px solid var(--danger);
+}
+
+.btn-danger-outline:hover {
+    color: #fff;
+    background: var(--danger);
+}
+
+/* ---------- Bloqueio de login ---------- */
+
+.login-required {
+    max-width: 560px;
+    margin: 0 auto 30px;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.login-required > i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 14px;
+}
+
+.login-required h2 {
+    margin-bottom: 8px;
+}
+
+.login-required p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.login-required .hero-buttons {
+    justify-content: center;
+}
+
+.demo-accounts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 12px;
+    margin-top: 18px;
+    padding: 12px;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    color: var(--text-light);
+    font-size: 0.88rem;
+}
+
+/* ---------- Nova demanda: localização e duplicadas ---------- */
+
+.picker-toolbar {
+    margin-bottom: 10px;
+}
+
+.nearby-panel {
+    padding: 18px;
+    border: 1px solid color-mix(in srgb, var(--accent) 60%, var(--border));
+    border-left: 5px solid var(--accent);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+}
+
+.nearby-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.nearby-header > i {
+    color: #b58900;
+    font-size: 1.3rem;
+    margin-top: 2px;
+}
+
+.nearby-header p {
+    color: var(--text-light);
+    margin-top: 4px;
+}
+
+.nearby-list {
+    display: grid;
+    gap: 10px;
+}
+
+.nearby-list li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.nearby-list a {
+    font-weight: 700;
+    color: var(--text);
+    flex: 1 1 220px;
+}
+
+.nearby-list a:hover {
+    color: var(--primary);
+}
+
+.nearby-meta {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ---------- Mapa: legenda que filtra ---------- */
+
+button.map-legend-item {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+}
+
+button.map-legend-item:hover {
+    border-color: var(--primary);
+}
+
+button.map-legend-item.off {
+    opacity: 0.45;
+    text-decoration: line-through;
+}
+
+.legend-hint {
+    color: var(--text-light);
+    width: 100%;
+}
+
+.detail-address {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.map-detail-card .btn-block {
+    margin-top: 16px;
+}
+
+/* ---------- Detalhe da demanda ---------- */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.detail-loading {
+    padding: 40px;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+
+.detail-main {
+    overflow: hidden;
+}
+
+.detail-main .demand-photo {
+    margin: 0;
+    height: 320px;
+}
+
+.detail-body {
+    padding: 26px;
+}
+
+.detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--cor-categoria, var(--text));
+    background: color-mix(in srgb, var(--cor-categoria, var(--text-light)) 14%, var(--surface));
+}
+
+.detail-title {
+    font-size: 1.8rem;
+    line-height: 1.25;
+    margin-bottom: 14px;
+}
+
+.detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+}
+
+.detail-meta i {
+    color: var(--primary);
+    margin-right: 4px;
+}
+
+.detail-description {
+    line-height: 1.75;
+    margin-bottom: 22px;
+    white-space: pre-line;
+}
+
+.detail-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.vote-button-lg {
+    gap: 8px;
+    font-size: 1rem;
+}
+
+.detail-support-text {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-right: auto;
+}
+
+.mini-map {
+    height: 240px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    z-index: 1;
+}
+
+.detail-side {
+    display: grid;
+    gap: 25px;
+}
+
+.side-card {
+    padding: 22px;
+}
+
+.side-card h2,
+.comments-card h2 {
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.side-card h2 i,
+.comments-card h2 i {
+    color: var(--primary);
+}
+
+.admin-card {
+    border-top: 4px solid var(--accent);
+}
+
+.admin-card form {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+/* Linha do tempo */
+.timeline {
+    position: relative;
+    display: grid;
+    gap: 20px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+}
+
+.timeline-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: var(--cor-status);
+    border: 3px solid var(--surface);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.timeline-item p {
+    color: var(--text);
+    margin: 2px 0;
+    line-height: 1.5;
+}
+
+.timeline-item small {
+    color: var(--text-light);
+}
+
+.timeline-item:first-child strong {
+    color: var(--cor-status);
+}
+
+/* Comentários */
+.comments-card {
+    padding: 26px;
+    margin-top: 25px;
+}
+
+.comments-list {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.comments-empty,
+.comments-login {
+    color: var(--text-light);
+}
+
+.comments-login a {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.comment {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 14px;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+}
+
+.comment-oficial {
+    background: color-mix(in srgb, var(--primary) 9%, var(--surface));
+    border-left: 4px solid var(--primary);
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 800;
+}
+
+.comment-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin-bottom: 4px;
+}
+
+.comment-head small {
+    color: var(--text-light);
+}
+
+.comment p {
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.comment-form {
+    display: grid;
+    gap: 12px;
+}
+
+.comment-form .btn {
+    justify-self: start;
+}
+
+/* ---------- Dashboard ---------- */
+
+.stats-grid-secondary {
+    margin-top: 25px;
+}
+
+.dashboard-grid {
+    margin-top: 30px;
+}
+
+.dashboard-card h3 {
+    margin-bottom: 16px;
+}
+
+.chart-box {
+    position: relative;
+    height: 280px;
+}
+
+.chart-box-wide {
+    height: 260px;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.ranking-table,
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ranking-table th,
+.ranking-table td,
+.admin-table th,
+.admin-table td {
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.ranking-table th,
+.admin-table th {
+    color: var(--text-light);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ranking-table a {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.mini-progress {
+    width: 120px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.mini-progress span {
+    display: block;
+    height: 100%;
+    background: var(--success);
+}
+
+.table-empty {
+    text-align: center !important;
+    color: var(--text-light);
+    padding: 30px !important;
+}
+
+/* ---------- Admin ---------- */
+
+.admin-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.admin-summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 18px;
+    cursor: pointer;
+    font: inherit;
+    color: var(--text-light);
+    text-align: left;
+}
+
+.admin-summary-item:hover,
+.admin-summary-item.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.admin-summary-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text);
+}
+
+.table-card {
+    padding: 6px 16px;
+    overflow-x: auto;
+}
+
+.admin-titulo {
+    display: block;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.admin-titulo:hover {
+    color: var(--primary);
+}
+
+.admin-table small {
+    color: var(--text-light);
+}
+
+.status-select {
+    min-width: 150px;
+    padding: 8px 10px;
+    border-left: 5px solid var(--cor-status, var(--border));
+}
+
+/* ---------- Perfil: conquistas ---------- */
+
+.profile-since {
+    color: var(--text-light);
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.profile-stats {
+    margin-top: 25px;
+}
+
+.section-subtitle {
+    font-size: 1.35rem;
+    margin: 40px 0 18px;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.badge-card {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 14px;
+    padding: 18px;
+    opacity: 0.6;
+}
+
+.badge-card.conquistada {
+    opacity: 1;
+    border-color: color-mix(in srgb, var(--accent) 70%, var(--border));
+}
+
+.badge-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.3rem;
+    color: var(--text-light);
+    background: var(--surface-2);
+}
+
+.badge-card.conquistada .badge-icon {
+    color: #5c4300;
+    background: var(--accent);
+}
+
+.badge-card p {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin: 2px 0 8px;
+}
+
+.badge-card small {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+.badge-progress {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.badge-progress span {
+    display: block;
+    height: 100%;
+    background: var(--primary);
+}
+
+.badge-card.conquistada .badge-progress span {
+    background: var(--success);
+}
+
+.nav a {
+    white-space: nowrap;
+}
+
+/* Com o usuário logado o cabeçalho fica cheio: em telas médias mostramos só o avatar */
+@media (max-width: 1440px) {
+    .user-name {
+        display: none;
+    }
+
+    .user-chip {
+        padding: 0 6px;
+    }
+}
+
+/* Filtros lado a lado (quebram linha quando não cabem) */
+.filters .form-control {
+    flex: 1 1 170px;
+    width: auto;
+}
+
+.filters .filter-input {
+    flex: 2 1 280px;
+}

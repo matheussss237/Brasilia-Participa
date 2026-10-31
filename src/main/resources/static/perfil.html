@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Meu Perfil | Brasília Participa</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="vendor/fontawesome/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="gov-topbar">
+    <div class="container gov-topbar-content">
+        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
+        <span>Portal de Participação Cidadã</span>
+    </div>
+</div>
+
+<header class="header">
+
+    <div class="container header-content">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">
+                <i class="fa-solid fa-city"></i>
+            </span>
+
+            Brasília Participa
+
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Início
+            </a>
+
+            <a href="demandas.html">
+                Demandas
+            </a>
+
+            <a href="mapa.html">
+                Mapa
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+        <form
+            class="header-search"
+            role="search"
+            action="demandas.html"
+            method="get"
+        >
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                name="q"
+                placeholder="Pesquisar demandas..."
+                aria-label="Pesquisar demandas"
+            >
+        </form>
+
+        <div class="header-actions">
+
+            <button
+                class="icon-btn"
+                id="themeButton"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="section">
+
+    <div class="container">
+
+        <div class="page-title">
+            Meu perfil
+        </div>
+
+        <p class="page-subtitle">
+            Acompanhe sua participação e as demandas que você registrou.
+        </p>
+
+        <div class="card login-required" id="perfilBloqueado" hidden>
+            <i class="fa-solid fa-user"></i>
+            <h2>Entre para ver seu perfil</h2>
+            <div class="hero-buttons">
+                <a href="login.html?voltar=perfil.html" class="btn btn-primary">Entrar</a>
+                <a href="cadastro.html?voltar=perfil.html" class="btn btn-secondary">Criar conta</a>
+            </div>
+        </div>
+
+        <div id="perfilConteudo" hidden>
+
+            <div class="card profile-card">
+                <div class="profile-avatar" id="perfilIniciais"></div>
+                <div class="profile-info">
+                    <h2 id="perfilNome"></h2>
+                    <p id="perfilEmail"></p>
+                    <span class="badge badge-success" id="perfilTipo"></span>
+                    <p class="profile-since" id="perfilDesde"></p>
+                </div>
+            </div>
+
+            <div class="stats-grid profile-stats">
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-flag"></i></div>
+                    <div class="stat-number" data-perfil="demandasCriadas">0</div>
+                    <div class="stat-label">Demandas registradas</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-check"></i></div>
+                    <div class="stat-number" data-perfil="demandasResolvidas">0</div>
+                    <div class="stat-label">Resolvidas</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-thumbs-up"></i></div>
+                    <div class="stat-number" data-perfil="apoiosDados">0</div>
+                    <div class="stat-label">Apoios dados</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-comments"></i></div>
+                    <div class="stat-number" data-perfil="comentarios">0</div>
+                    <div class="stat-label">Comentários</div>
+                </div>
+            </div>
+
+            <h2 class="section-subtitle">Conquistas</h2>
+            <div class="badges-grid" id="perfilConquistas"></div>
+
+            <h2 class="section-subtitle">Minhas demandas</h2>
+            <div class="demands-grid" id="minhasDemandas"></div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <p>
+            © <span id="currentYear"></span>
+            Brasília Participa
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/main.js"></script>
+<script src="js/perfil.js"></script>
+
+</body>
+
+</html>
