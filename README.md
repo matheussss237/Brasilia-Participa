@@ -133,7 +133,7 @@ Testes automatizados das regras de negócio e da camada de dados (filtros, estat
 npm test
 ```
 
-Os cenários T01–T09 de [`docs/BACKLOG.md`](docs/BACKLOG.md) estão indicados nos nomes dos testes.
+Os cenários T01–T03 e T05–T09 de [`docs/BACKLOG.md`](docs/BACKLOG.md) estão indicados nos nomes dos testes. O T04 (clique no pino do mapa) ainda não tem teste automatizado (item BL56 do backlog).
 
 ## Estrutura do Projeto
 
