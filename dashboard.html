@@ -1,331 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Dashboard | Brasília Participa</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- Favicon -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Indicadores de participação cidadã e andamento das demandas urbanas do Distrito Federal.">
+    <title>Dashboard · Brasília Participa</title>
     <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
-
-
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
+    <script src="js/ui/tema-inicial.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
 </head>
+<body data-pagina="dashboard">
 
-<body>
-
-<div class="gov-topbar">
-    <div class="container gov-topbar-content">
-        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
-        <span>Portal de Participação Cidadã</span>
-    </div>
-</div>
-
-<header class="header">
-
-    <div class="container header-content">
-
-        <a href="index.html" class="logo">
-
-            <span class="logo-icon">
-                <i class="fa-solid fa-city"></i>
-            </span>
-
-            Brasília Participa
-
-        </a>
-
-        <nav class="nav">
-
-            <a href="index.html">
-                Início
-            </a>
-
-            <a href="demandas.html">
-                Demandas
-            </a>
-
-            <a href="mapa.html">
-                Mapa
-            </a>
-
-            <a
-                href="dashboard.html"
-                class="active"
-            >
-                Dashboard
-            </a>
-
-        </nav>
-
-        <form
-            class="header-search"
-            role="search"
-            action="demandas.html"
-            method="get"
-        >
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-                type="text"
-                name="q"
-                placeholder="Pesquisar demandas..."
-                aria-label="Pesquisar demandas"
-            >
-        </form>
-
-        <div class="header-actions">
-
-            <button
-                class="icon-btn"
-                id="themeButton"
-            >
-
-                <i class="fa-solid fa-moon"></i>
-
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<main class="section">
-
+<main id="conteudo" class="secao">
     <div class="container">
 
-        <div class="page-title">
-            Dashboard
+        <header class="titulo-pagina">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Indicadores de participação e andamento das demandas, calculados a partir dos dados registrados.</p>
+            </div>
+            <div class="campo campo--inline">
+                <label for="filtroRegiaoDash">Região</label>
+                <select id="filtroRegiaoDash" class="controle controle--sm">
+                    <option value="">Todo o DF</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="grade-kpi" id="kpis">
+            <div class="kpi"><span class="kpi__icone" aria-hidden="true"><i class="fa-solid fa-list-check"></i></span><span class="kpi__valor" data-kpi="total">—</span><span class="kpi__rotulo">Total de demandas</span></div>
+            <div class="kpi"><span class="kpi__icone kpi__icone--sucesso" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span><span class="kpi__valor" data-kpi="resolvidas">—</span><span class="kpi__rotulo">Resolvidas</span><span class="kpi__extra" data-kpi-extra="taxa"></span></div>
+            <div class="kpi"><span class="kpi__icone kpi__icone--alerta" aria-hidden="true"><i class="fa-solid fa-hourglass-half"></i></span><span class="kpi__valor" data-kpi="emAndamento">—</span><span class="kpi__rotulo">Em andamento</span><span class="kpi__extra">em análise ou pendentes</span></div>
+            <div class="kpi"><span class="kpi__icone" aria-hidden="true"><i class="fa-solid fa-thumbs-up"></i></span><span class="kpi__valor" data-kpi="apoios">—</span><span class="kpi__rotulo">Apoios recebidos</span></div>
         </div>
 
-        <p class="page-subtitle">
-            Acompanhe os principais indicadores de
-            participação cidadã.
-        </p>
+        <div class="grade-dashboard">
 
+            <section class="card grafico grafico--largo" aria-labelledby="gStatus">
+                <header class="grafico__cabecalho">
+                    <h2 id="gStatus">Situação das demandas</h2>
+                    <p>Distribuição por etapa do atendimento.</p>
+                </header>
+                <div id="graficoStatus"></div>
+            </section>
 
-        <div class="stats-grid">
+            <section class="card grafico" aria-labelledby="gCategoria">
+                <header class="grafico__cabecalho">
+                    <h2 id="gCategoria">Demandas por categoria</h2>
+                    <p>Quantidade de demandas registradas.</p>
+                </header>
+                <div id="graficoCategorias"></div>
+            </section>
 
-            <div class="card stat-card">
+            <section class="card grafico" aria-labelledby="gRanking">
+                <header class="grafico__cabecalho">
+                    <h2 id="gRanking">Regiões mais ativas</h2>
+                    <p>Ranking por número de demandas registradas.</p>
+                </header>
+                <div id="rankingRegioes"></div>
+            </section>
 
-                <div class="stat-icon">
-                    <i class="fa-solid fa-list"></i>
-                </div>
+            <section class="card grafico" aria-labelledby="gMes">
+                <header class="grafico__cabecalho">
+                    <h2 id="gMes">Participação ao longo do tempo</h2>
+                    <p>Demandas registradas por mês, últimos 6 meses.</p>
+                </header>
+                <div id="graficoMeses"></div>
+            </section>
 
-                <div
-                    class="stat-number"
-                    data-counter="1284"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Total de demandas
-                </div>
-
-            </div>
-
-
-            <div class="card stat-card">
-
-                <div class="stat-icon">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-
-                <div
-                    class="stat-number"
-                    data-counter="846"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Resolvidas
-                </div>
-
-            </div>
-
-
-            <div class="card stat-card">
-
-                <div class="stat-icon">
-                    <i class="fa-solid fa-clock"></i>
-                </div>
-
-                <div
-                    class="stat-number"
-                    data-counter="312"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Em andamento
-                </div>
-
-            </div>
-
-
-            <div class="card stat-card">
-
-                <div class="stat-icon">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-
-                <div
-                    class="stat-number"
-                    data-counter="5210"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Usuários
-                </div>
-
-            </div>
+            <section class="card grafico" aria-labelledby="gTop">
+                <header class="grafico__cabecalho">
+                    <h2 id="gTop">Mais apoiadas</h2>
+                    <p>As causas com mais apoio da população.</p>
+                </header>
+                <ol class="lista-top" id="maisApoiadas"></ol>
+            </section>
 
         </div>
-
-
-        <br><br>
-
-
-        <div class="dashboard-grid">
-
-
-            <div class="card dashboard-card">
-
-                <h3>
-                    Situação das demandas
-                </h3>
-
-                <div class="chart-placeholder">
-
-                    <div>
-
-                        <i
-                            class="fa-solid fa-chart-pie"
-                            style="font-size: 40px;"
-                        ></i>
-
-                        <p>
-                            Gráfico será conectado
-                            ao backend.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="card dashboard-card">
-
-                <h3>
-                    Demandas por região
-                </h3>
-
-                <div class="chart-placeholder">
-
-                    <div>
-
-                        <i
-                            class="fa-solid fa-chart-column"
-                            style="font-size: 40px;"
-                        ></i>
-
-                        <p>
-                            Dados estatísticos
-                            por região.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="card dashboard-card full">
-
-                <h3>
-                    Participação da população
-                </h3>
-
-                <div class="chart-placeholder">
-
-                    <div>
-
-                        <i
-                            class="fa-solid fa-chart-line"
-                            style="font-size: 40px;"
-                        ></i>
-
-                        <p>
-                            Evolução da participação
-                            ao longo do tempo.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
     </div>
-
 </main>
 
+<div class="dica-grafico" id="dicaGrafico" role="tooltip" hidden></div>
 
-<footer class="footer">
-
-    <div class="container footer-content">
-
-        <p>
-            © <span id="currentYear"></span>
-            Brasília Participa
-        </p>
-
-    </div>
-
-</footer>
-
-
-<script src="js/store.js"></script>
-<script src="js/toast.js"></script>
-<script src="js/main.js"></script>
-<script src="js/dashboard.js"></script>
-
+<script src="js/data/categorias.js"></script>
+<script src="js/data/regioes.js"></script>
+<script src="js/data/demandas-seed.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/storage.js"></script>
+<script src="js/core/dominio.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/ui/layout.js"></script>
+<script src="js/ui/componentes.js"></script>
+<script src="js/pages/dashboard.js"></script>
 </body>
-
 </html>

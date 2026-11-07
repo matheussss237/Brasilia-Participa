@@ -1,0 +1,381 @@
+/* =========================================================
+   LAYOUT — barra gov, cabeçalho, menu, rodapé, seções.
+========================================================= */
+
+.pular-link {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 1000;
+    padding: 10px 16px;
+    background: var(--destaque);
+    color: var(--destaque-texto);
+    font-weight: 700;
+    border-radius: var(--raio-sm);
+    text-decoration: none;
+}
+
+.pular-link:focus {
+    top: 12px;
+}
+
+/* ---------------- Barra do governo ---------------- */
+
+.gov-barra {
+    background: #071d41;
+    color: #dbe4f3;
+    font-size: 0.78rem;
+}
+
+.gov-barra__conteudo {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 6px;
+}
+
+.gov-barra__conteudo i {
+    color: var(--destaque);
+    margin-right: 4px;
+}
+
+@media (max-width: 639px) {
+    .gov-barra__extra {
+        display: none;
+    }
+}
+
+/* ---------------- Cabeçalho ---------------- */
+
+.cabecalho {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: color-mix(in srgb, var(--superficie) 92%, transparent);
+    backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--borda);
+}
+
+.cabecalho__conteudo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: var(--altura-cabecalho);
+}
+
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--texto);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.marca__icone {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--raio);
+    background: linear-gradient(135deg, #1351b4, #0c326f);
+    color: #fff;
+    box-shadow: inset 0 -3px 0 var(--destaque);
+}
+
+.marca__nome {
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.marca__nome strong {
+    font-weight: 800;
+    color: var(--primaria);
+}
+
+.menu-btn {
+    margin-left: auto;
+}
+
+.menu {
+    display: none;
+}
+
+.nav {
+    display: flex;
+    gap: 4px;
+}
+
+.nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--raio-sm);
+    color: var(--texto-2);
+    font-weight: 600;
+    font-size: 0.93rem;
+    text-decoration: none;
+    transition: background var(--transicao), color var(--transicao);
+}
+
+.nav__link i {
+    font-size: 0.9em;
+    opacity: 0.75;
+}
+
+.nav__link:hover {
+    background: var(--superficie-2);
+    color: var(--texto);
+}
+
+.nav__link[aria-current="page"] {
+    color: var(--primaria);
+    background: var(--primaria-suave);
+}
+
+.busca-rapida {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+    max-width: 280px;
+}
+
+.busca-rapida i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--texto-3);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.busca-rapida input {
+    width: 100%;
+    height: 38px;
+    padding: 0 12px 0 34px;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio-pilula);
+    background: var(--superficie-2);
+    font-size: 0.9rem;
+    transition: border-color var(--transicao), background var(--transicao);
+}
+
+.busca-rapida input:focus {
+    outline: none;
+    border-color: var(--primaria);
+    background: var(--superficie);
+    box-shadow: 0 0 0 3px var(--primaria-suave);
+}
+
+.cabecalho__acoes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.conta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px 4px 4px;
+    border-radius: var(--raio-pilula);
+    border: 1px solid var(--borda);
+    color: var(--texto);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.conta:hover,
+.conta[aria-current="page"] {
+    border-color: var(--primaria);
+}
+
+/* Desktop: menu em linha */
+@media (min-width: 1024px) {
+    .cabecalho .menu-btn {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex: 1;
+    }
+
+    .nav {
+        margin-right: auto;
+    }
+}
+
+/* Entre 1024 e 1199px não há espaço para a busca no cabeçalho
+   (ela continua disponível na página de demandas). */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .busca-rapida {
+        display: none;
+    }
+}
+
+/* Mobile/tablet: menu suspenso */
+@media (max-width: 1023px) {
+    .menu--aberto {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        padding: 16px;
+        background: var(--superficie);
+        border-bottom: 1px solid var(--borda);
+        box-shadow: var(--sombra-2);
+        max-height: calc(100vh - var(--altura-cabecalho));
+        overflow-y: auto;
+    }
+
+    .nav {
+        flex-direction: column;
+    }
+
+    .nav__link {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .busca-rapida {
+        max-width: none;
+    }
+
+    .busca-rapida input {
+        height: 44px;
+    }
+
+    .cabecalho__acoes {
+        flex-wrap: wrap;
+    }
+}
+
+/* ---------------- Seções ---------------- */
+
+.secao {
+    padding-block: 40px;
+}
+
+@media (min-width: 768px) {
+    .secao {
+        padding-block: 56px;
+    }
+}
+
+.secao--compacta {
+    padding-block: 32px 0;
+}
+
+.secao--faixa {
+    background: var(--superficie);
+    border-block: 1px solid var(--borda);
+}
+
+.secao__cabecalho {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 28px;
+}
+
+.secao__cabecalho p {
+    margin-top: 6px;
+    color: var(--texto-2);
+}
+
+.secao__cabecalho--esquerda {
+    text-align: left;
+    margin-inline: 0;
+    max-width: none;
+    margin-bottom: 20px;
+}
+
+.secao__cabecalho--linha {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    text-align: left;
+    max-width: none;
+}
+
+.titulo-pagina {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.titulo-pagina > div:first-child {
+    max-width: 720px;
+}
+
+.titulo-pagina p {
+    margin-top: 8px;
+    color: var(--texto-2);
+}
+
+/* ---------------- Rodapé ---------------- */
+
+.rodape {
+    margin-top: auto;
+    background: #071d41;
+    color: #c8d3e6;
+    font-size: 0.9rem;
+}
+
+.rodape__conteudo {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-block: 32px 24px;
+}
+
+.rodape__conteudo p {
+    margin-top: 10px;
+}
+
+.marca--rodape,
+.marca--rodape .marca__nome strong {
+    color: #fff;
+}
+
+.rodape__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    align-items: flex-start;
+}
+
+.rodape__links a {
+    color: #e6ecf6;
+    text-decoration: none;
+}
+
+.rodape__links a:hover {
+    text-decoration: underline;
+}
+
+.rodape__base {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding-block: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.8rem;
+    color: #9fb0cc;
+}

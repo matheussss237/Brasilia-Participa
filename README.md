@@ -21,7 +21,7 @@ Portal de participação cidadã para registro e acompanhamento de demandas urba
 
 **Brasília Participa** é um portal web de participação cidadã que permite aos moradores do Distrito Federal registrar problemas urbanos (infraestrutura, iluminação, limpeza, segurança, transporte, meio ambiente, educação, saúde e acessibilidade), acompanhar o andamento das solicitações em um mapa interativo e visualizar indicadores de participação em um dashboard.
 
-Atualmente o projeto é um **front-end estático**, com os dados das demandas persistidos no `localStorage` do navegador (arquivo `js/store.js`), já preparado para futura integração com um back-end via API REST.
+Atualmente o projeto é um **front-end estático**, com os dados persistidos no `localStorage` do navegador e uma camada de dados única (`js/core/api.js`) já preparada para a integração com um back-end via API REST.
 
 ## Objetivos
 
@@ -39,111 +39,141 @@ Cidadãos e moradores do Distrito Federal (Brasília) que desejam relatar proble
 
 ## Funcionalidades
 
-- Cadastro e login de usuários (`cadastro.html` / `login.html`)
-- Registro de nova demanda com título, categoria, região administrativa, localização, descrição, foto e seleção do ponto exato em mapa interativo (`nova-demanda.html`)
-- Listagem de demandas com busca por texto e filtro por status (`demandas.html`)
-- Mapa interativo com marcadores coloridos por status (Recebida, Em análise, Pendente, Resolvida) (`mapa.html`)
-- Dashboard com indicadores estatísticos de participação (`dashboard.html`)
-- Página de perfil do usuário (`perfil.html`)
-- Alternância entre tema claro e escuro
-- Página inicial com estatísticas gerais e demandas recentes (`index.html`)
+- **Página inicial** (`index.html`): chamada para registrar demanda, indicadores gerais, "como funciona", demandas recentes e atalhos por categoria.
+- **Demandas** (`demandas.html`): busca (sem diferenciar acentos), filtros por status, categoria e região administrativa, ordenação (recentes, mais apoiadas, antigas), paginação e filtros refletidos na URL (links compartilháveis).
+- **Detalhes da demanda**: janela com foto, local, data, andamento (Recebida → Em análise → Resolvida) e botão de apoio.
+- **Apoio ("Apoiaria esta causa")**: cada pessoa apoia uma vez; o apoio pode ser retirado. Apoios dados antes do login passam para a conta.
+- **Mapa** (`mapa.html`): pinos coloridos por status com ícone do tipo de problema, filtros por status e categoria e painel de detalhes. `mapa.html?id=<id>` abre já focado em uma demanda.
+- **Nova demanda** (`nova-demanda.html`): assistente em 3 etapas (problema → local → foto e revisão), validação por etapa, seleção do ponto exato no mapa (pino arrastável) e foto comprimida automaticamente antes de salvar.
+- **Dashboard** (`dashboard.html`): indicadores, situação das demandas, demandas por categoria, ranking das regiões mais ativas, evolução mensal e mais apoiadas — tudo calculado dos dados, com filtro por região e tabela de dados para cada gráfico.
+- **Perfil** (`perfil.html`): dados do usuário, suas demandas, causas apoiadas e **conquistas** (gamificação): Primeiro relato, Colaborador Bronze, Colaborador Prata, Guardião do Bairro e Voz da Cidade.
+- **Cadastro e login simulados** (`cadastro.html` / `login.html`): contas salvas no navegador, com senha guardada como hash.
+- **Tema claro/escuro** (segue o sistema por padrão), layout responsivo e cuidados de acessibilidade (navegação por teclado, foco visível, rótulos, link "pular para o conteúdo", respeito a "reduzir movimento").
 
 ## Tecnologias Utilizadas
 
-- HTML5
-- CSS3
-- JavaScript (vanilla, sem frameworks)
-- `localStorage` do navegador para persistência local dos dados
+- HTML5, CSS3 e JavaScript puro (sem frameworks e sem etapa de build)
+- [Leaflet](https://leafletjs.com/) 1.9.4 + OpenStreetMap (mapas)
+- Font Awesome 6.5.2 (ícones) e fonte Inter (Google Fonts)
+- `localStorage` do navegador para persistência local
+- `node:test` (Node.js 18+) para os testes automatizados
 
 ## Arquitetura da Solução
 
-O projeto é atualmente um **front-end estático multi-página** (sem back-end próprio). O módulo `js/store.js` centraliza o acesso aos dados das demandas e é utilizado por `index.html`, `demandas.html`, `mapa.html` e `nova-demanda.html`.
+Front-end estático multipágina, organizado em camadas. Os scripts são carregados em ordem e se registram no objeto global `BP`:
 
-Conforme comentário presente no código-fonte (`js/store.js`), a arquitetura foi planejada para que, quando um back-end em **Java/Spring** for implementado, as funções de acesso a dados sejam substituídas por chamadas `fetch()` a uma API REST, sem necessidade de alterar o restante do front-end.
+| Camada | Arquivos | Responsabilidade |
+|---|---|---|
+| Dados (mocks) | `js/data/*.js` | Categorias, regiões administrativas e demandas de exemplo |
+| Núcleo | `js/core/util.js` | Funções puras: escape de HTML, datas, formatação |
+| | `js/core/storage.js` | Acesso seguro ao `localStorage` (com fallback em memória) |
+| | `js/core/dominio.js` | Regras de negócio puras: status, filtros, estatísticas, ranking, conquistas, validação |
+| | `js/core/api.js` | **Camada única de dados** (assíncrona) — ponto de troca para a API REST |
+| Interface | `js/ui/layout.js` | Cabeçalho, rodapé, menu mobile e tema (gerados uma única vez para todas as páginas) |
+| | `js/ui/componentes.js` | Card, badges, botão de apoio, modal de detalhes, notificações, contadores |
+| | `js/ui/mapa-base.js` | Configuração comum do Leaflet |
+| Páginas | `js/pages/*.js` | Lógica específica de cada tela |
 
-## Modelagem do Banco de Dados
+Todo texto digitado pelo usuário é escapado antes de ir para o HTML (`BP.util.escapar`), evitando injeção de código.
 
-Atualmente não há banco de dados: os dados das demandas são armazenados no `localStorage` do navegador (chave `bp_demandas`). A modelagem de um banco de dados para o futuro back-end está **a ser definida pela equipe**.
+### Integração futura com o back-end
+
+Todas as funções de `js/core/api.js` já retornam `Promise`. Para conectar uma API REST (ex.: Java/Spring), basta trocar o corpo delas por `fetch()` — as páginas não mudam:
+
+| Função | Rota prevista |
+|---|---|
+| `BP.api.demandas.listar()` | `GET /api/v1/demands` |
+| `BP.api.demandas.obter(id)` | `GET /api/v1/demands/{id}` |
+| `BP.api.demandas.criar(dados)` | `POST /api/v1/demands` (`multipart/form-data`) |
+| `BP.api.demandas.alternarApoio(id)` | `PATCH /api/v1/demands/{id}/vote` |
+| `BP.api.auth.entrar()` / `cadastrar()` / `sair()` | `POST /api/v1/auth/login` · `/register` · `/logout` |
+
+## Modelagem dos Dados
+
+Ainda não há banco de dados. Os dados ficam no `localStorage` com o prefixo `bp:v2:` (`demandas`, `usuarios`, `sessao`, `apoios`, `tema`).
+
+**Demanda:** `id`, `titulo`, `descricao`, `categoria` (id), `regiao` (id), `localizacao`, `status` (`recebida` · `em-analise` · `pendente` · `resolvida`), `apoios`, `data` (AAAA-MM-DD), `foto` (URL ou imagem em base64), `lat`, `lng`, `pontoExato`, `autorId`.
+
+**Usuário:** `id`, `nome`, `email`, `senhaHash`, `sal`, `criadoEm`.
+
+Quando as demandas de exemplo mudam (`BP.dados.versaoSeed`), elas são atualizadas no navegador **sem apagar** as demandas criadas pelos usuários.
 
 ## Pré-requisitos
 
-- Navegador web moderno com suporte a JavaScript e `localStorage`
-- Conexão com a internet (para carregar fontes, ícones e o mapa via CDN)
+- Navegador moderno (Chrome, Edge, Firefox ou Safari atualizados)
+- Conexão com a internet para carregar mapa, ícones e fonte via CDN
+- Opcional: Python 3 (servidor local) e Node.js 18+ (testes)
 
 ## Instalação
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/matheussss237/teste.git
-   ```
-2. Acesse a pasta do projeto:
-   ```bash
-   cd teste
-   ```
+```bash
+git clone https://github.com/matheussss237/Brasilia-Participa.git
+cd Brasilia-Participa
+```
+
+Não há dependências para instalar.
 
 ## Como Executar
 
-Por ser um projeto front-end estático, não é necessário instalar dependências. Basta:
+Abra o `index.html` no navegador **ou** sirva a pasta com um servidor local:
 
-- Abrir o arquivo `index.html` diretamente no navegador; **ou**
-- Servir a pasta do projeto com um servidor HTTP local, por exemplo:
-  ```bash
-  python -m http.server 8000
-  ```
-  e acessar `http://localhost:8000` no navegador.
+```bash
+python3 -m http.server 8000
+```
+
+e acesse `http://localhost:8000`. (Também funciona com `npm start`.)
+
+Para recomeçar com os dados de exemplo, limpe os dados do site no navegador (ou apague as chaves `bp:v2:*` do `localStorage`).
+
+## Testes
+
+Testes automatizados das regras de negócio e da camada de dados (filtros, estatísticas, ranking, conquistas, validação, apoio, cadastro/login, escape de HTML):
+
+```bash
+npm test
+```
+
+Os cenários T01–T09 de [`docs/BACKLOG.md`](docs/BACKLOG.md) estão indicados nos nomes dos testes.
 
 ## Estrutura do Projeto
 
 ```
-teste/
-├── index.html          # Página inicial
-├── login.html           # Login
-├── cadastro.html         # Cadastro de usuário
-├── demandas.html         # Listagem de demandas
-├── nova-demanda.html      # Registro de nova demanda
-├── mapa.html              # Mapa interativo de demandas
-├── dashboard.html         # Indicadores de participação
-├── perfil.html            # Perfil do usuário
+Brasilia-Participa/
+├── index.html            # Página inicial
+├── demandas.html         # Lista, busca e filtros
+├── mapa.html             # Mapa interativo
+├── nova-demanda.html     # Assistente de nova demanda (3 etapas)
+├── dashboard.html        # Indicadores e gráficos
+├── perfil.html           # Perfil, conquistas e minhas demandas
+├── login.html            # Entrar
+├── cadastro.html         # Criar conta
 ├── css/
-│   ├── reset.css
-│   ├── style.css
-│   ├── components.css
-│   ├── pages.css
-│   └── responsive.css
+│   ├── base.css          # Tokens de design (claro/escuro), reset, tipografia
+│   ├── layout.css        # Cabeçalho, menu, rodapé, seções
+│   ├── componentes.css   # Botões, formulários, cards, modal, toasts...
+│   └── paginas.css       # Estilos específicos de cada página
 ├── js/
-│   ├── store.js           # Fonte única de dados (localStorage)
-│   ├── toast.js            # Notificações
-│   ├── main.js              # Lógica geral / navegação
-│   ├── demandas.js           # Lógica da listagem de demandas
-│   ├── nova-demanda.js        # Lógica do formulário de nova demanda
-│   ├── mapa.js                 # Lógica do mapa interativo
-│   └── dashboard.js             # Lógica do dashboard
-└── imagens/
-    ├── bsb.jpg
-    └── favicon-verde.svg
+│   ├── data/             # Mocks: categorias, regiões e demandas de exemplo
+│   ├── core/             # util, storage, dominio (regras) e api (dados)
+│   ├── ui/               # layout, componentes, mapa-base, tema-inicial
+│   └── pages/            # Um script por página
+├── tests/                # Testes automatizados (node:test)
+├── imagens/              # Fotos das demandas de exemplo, fundo e favicon
+└── docs/                 # Backlog, caso de uso, relatório e Scrum
 ```
 
 ## Exemplos de Uso
 
-1. O cidadão acessa a página inicial e clica em **"Registrar demanda"**.
-2. Preenche o formulário com título, categoria, região administrativa, descrição e, opcionalmente, uma foto.
-3. Marca no mapa interativo o local exato do problema.
-4. Envia a demanda, que passa a aparecer nas páginas **Demandas**, **Mapa** e no **Dashboard**.
-5. O cidadão pode pesquisar e filtrar demandas por status na página **Demandas**.
-
-## API
-
-O projeto ainda não possui uma API própria. Os dados são manipulados localmente via `localStorage` (arquivo `js/store.js`). A integração com uma API REST está **a ser definida pela equipe**.
+1. Na página inicial, clique em **"Reporte um problema na sua região"**.
+2. Etapa 1: informe título, categoria e descrição.
+3. Etapa 2: escolha a região administrativa, o endereço e, se quiser, marque o ponto exato no mapa.
+4. Etapa 3: anexe uma foto (opcional), revise e envie.
+5. A demanda aparece na lista, no mapa e no dashboard. Outras pessoas podem apoiá-la.
+6. Com uma conta, acompanhe suas demandas e conquistas em **Meu perfil**.
 
 ## Capturas de Tela
 
-*Inserir as capturas de tela do sistema nesta seção (ex: em uma pasta `docs/screenshots/` ou `imagens/`), referenciando-as em Markdown, por exemplo:*
-
-```markdown
-![Página inicial](imagens/screenshot-home.png)
-![Mapa de demandas](imagens/screenshot-mapa.png)
-![Dashboard](imagens/screenshot-dashboard.png)
-```
+*Inserir as capturas de tela do sistema nesta seção (ex.: em `docs/screenshots/`).*
 
 ## Equipe do Projeto
 
@@ -167,11 +197,11 @@ O backlog do produto (50 itens, BL01–BL50), o cronograma de sprints (0 a 12), 
 
 ## Melhorias Futuras
 
-- Implementação de back-end em Java/Spring com API REST
-- Persistência dos dados em banco de dados
-- Autenticação real de usuários (atualmente os formulários de login/cadastro não possuem integração com back-end)
-- Gráficos dinâmicos no dashboard (atualmente com placeholders)
-- Notificações de atualização de status das demandas
+- Back-end em Java/Spring com API REST e banco de dados (substituindo `js/core/api.js`)
+- Autenticação real e integração com identidade do cidadão
+- Upload real de imagens
+- Integração com sistemas de ouvidoria (ex.: OuvDF) e notificações de mudança de status
+- Painel para servidores públicos atualizarem o status das demandas
 
 ## Licença
 
