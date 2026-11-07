@@ -1,186 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Meu Perfil | Brasília Participa</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Seu perfil no Brasília Participa: suas demandas, apoios e conquistas.">
+    <title>Meu perfil · Brasília Participa</title>
+    <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
+    <script src="js/ui/tema-inicial.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
 </head>
+<body data-pagina="perfil">
 
-<body>
-
-<div class="gov-topbar">
-    <div class="container gov-topbar-content">
-        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
-        <span>Portal de Participação Cidadã</span>
-    </div>
-</div>
-
-<header class="header">
-
-    <div class="container header-content">
-
-        <a href="index.html" class="logo">
-
-            <span class="logo-icon">
-                <i class="fa-solid fa-city"></i>
-            </span>
-
-            Brasília Participa
-
-        </a>
-
-        <nav class="nav">
-
-            <a href="index.html">
-                Início
-            </a>
-
-            <a href="demandas.html">
-                Demandas
-            </a>
-
-            <a href="mapa.html">
-                Mapa
-            </a>
-
-            <a href="dashboard.html">
-                Dashboard
-            </a>
-
-        </nav>
-
-        <form
-            class="header-search"
-            role="search"
-            action="demandas.html"
-            method="get"
-        >
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-                type="text"
-                name="q"
-                placeholder="Pesquisar demandas..."
-                aria-label="Pesquisar demandas"
-            >
-        </form>
-
-        <div class="header-actions">
-
-            <button
-                class="icon-btn"
-                id="themeButton"
-            >
-                <i class="fa-solid fa-moon"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<main class="section">
-
+<main id="conteudo" class="secao">
     <div class="container">
 
-        <div class="page-title">
-            Meu perfil
+        <section class="card perfil" aria-labelledby="nomeUsuario">
+            <span class="avatar avatar--lg" id="avatarUsuario" aria-hidden="true">—</span>
+            <div class="perfil__info">
+                <h1 id="nomeUsuario">Carregando…</h1>
+                <p id="emailUsuario"></p>
+                <p class="meta" id="desdeUsuario"></p>
+            </div>
+            <div class="perfil__acoes">
+                <a href="nova-demanda.html" class="btn btn--primario"><i class="fa-solid fa-plus" aria-hidden="true"></i>Nova demanda</a>
+                <button type="button" class="btn btn--secundario" id="sair"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>Sair</button>
+            </div>
+        </section>
+
+        <div class="grade-kpi grade-kpi--3" id="kpisPerfil">
+            <div class="kpi"><span class="kpi__icone" aria-hidden="true"><i class="fa-solid fa-flag"></i></span><span class="kpi__valor" data-kpi="relatos">—</span><span class="kpi__rotulo">Demandas registradas</span></div>
+            <div class="kpi"><span class="kpi__icone" aria-hidden="true"><i class="fa-solid fa-thumbs-up"></i></span><span class="kpi__valor" data-kpi="apoiosDados">—</span><span class="kpi__rotulo">Causas que você apoia</span></div>
+            <div class="kpi"><span class="kpi__icone kpi__icone--sucesso" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span><span class="kpi__valor" data-kpi="resolvidas">—</span><span class="kpi__rotulo">Suas demandas resolvidas</span></div>
         </div>
 
-        <p class="page-subtitle">
-            Gerencie suas informações e acompanhe
-            sua participação.
-        </p>
+        <section class="secao secao--compacta" aria-labelledby="tituloConquistas">
+            <header class="secao__cabecalho secao__cabecalho--esquerda">
+                <h2 id="tituloConquistas">Conquistas</h2>
+                <p>Ganhe selos participando: registrando problemas e apoiando causas da comunidade.</p>
+            </header>
+            <ul class="grade-conquistas" id="conquistas"></ul>
+        </section>
 
+        <section class="secao secao--compacta" aria-labelledby="tituloMinhas">
+            <header class="secao__cabecalho secao__cabecalho--esquerda">
+                <h2 id="tituloMinhas">Minhas demandas</h2>
+            </header>
+            <div class="grade-demandas" id="minhasDemandas"></div>
+        </section>
 
-        <div class="card profile-card">
-
-            <div class="profile-avatar">
-
-                MH
-
-            </div>
-
-
-            <div class="profile-info">
-
-                <h2>
-                    Matheus Henrique
-                </h2>
-
-                <p>
-                    matheus@email.com
-                </p>
-
-                <span class="badge badge-success">
-                    Cidadão verificado
-                </span>
-
-                <br><br>
-
-                <a
-                    href="demandas.html"
-                    class="btn btn-primary"
-                >
-
-                    <i class="fa-solid fa-list"></i>
-
-                    Minhas demandas
-
-                </a>
-
-            </div>
-
-        </div>
+        <section class="secao secao--compacta" aria-labelledby="tituloApoiadas">
+            <header class="secao__cabecalho secao__cabecalho--esquerda">
+                <h2 id="tituloApoiadas">Causas que você apoia</h2>
+            </header>
+            <div class="grade-demandas" id="demandasApoiadas"></div>
+        </section>
 
     </div>
-
 </main>
 
-
-<footer class="footer">
-
-    <div class="container footer-content">
-
-        <p>
-            © <span id="currentYear"></span>
-            Brasília Participa
-        </p>
-
-    </div>
-
-</footer>
-
-
-<script src="js/store.js"></script>
-<script src="js/toast.js"></script>
-<script src="js/main.js"></script>
-
+<script src="js/data/categorias.js"></script>
+<script src="js/data/regioes.js"></script>
+<script src="js/data/demandas-seed.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/storage.js"></script>
+<script src="js/core/dominio.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/ui/layout.js"></script>
+<script src="js/ui/componentes.js"></script>
+<script src="js/pages/perfil.js"></script>
 </body>
-
 </html>

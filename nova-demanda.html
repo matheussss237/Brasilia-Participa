@@ -1,207 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Nova Demanda | Brasília Participa</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- CSS do Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <!-- Favicon -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Registre um problema urbano na sua região administrativa.">
+    <title>Registrar demanda · Brasília Participa</title>
     <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
-
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/ui/tema-inicial.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
 </head>
+<body data-pagina="nova">
 
-<body>
+<main id="conteudo" class="secao">
+    <div class="container container--estreito">
 
-<div class="gov-topbar">
-    <div class="container gov-topbar-content">
-        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
-        <span>Portal de Participação Cidadã</span>
-    </div>
-</div>
+        <header class="titulo-pagina">
+            <div>
+                <h1>Registrar um problema</h1>
+                <p>Em três passos rápidos: conte o que está acontecendo, marque o local e, se puder, envie uma foto.</p>
+            </div>
+        </header>
 
-<header class="header">
-    <div class="container header-content">
-        <a href="index.html" class="logo">
-            <span class="logo-icon">
-                <i class="fa-solid fa-city"></i>
-            </span>
-            Brasília Participa
-        </a>
-
-        <nav class="nav">
-            <a href="index.html">Início</a>
-            <a href="demandas.html">Demandas</a>
-            <a href="mapa.html">Mapa</a>
-            <a href="dashboard.html">Dashboard</a>
-        </nav>
-
-        <form class="header-search" role="search" action="demandas.html" method="get">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" name="q" placeholder="Pesquisar demandas..." aria-label="Pesquisar demandas">
-        </form>
-
-        <div class="header-actions">
-            <button class="icon-btn" id="themeButton">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-        </div>
-    </div>
-</header>
-
-<main class="section">
-    <div class="container">
-        <div class="page-title">
-            Registrar um problema
+        <div class="aviso aviso--info" id="avisoAnonimo" hidden>
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <p>Você não está conectado. A demanda será registrada sem vínculo com uma conta.
+               <a href="login.html?proximo=nova-demanda.html">Entre</a> para acompanhá-la no seu perfil.</p>
         </div>
 
-        <p class="page-subtitle">
-            Encontrou algum problema na sua região? Preencha os dados abaixo para registrar a solicitação.
-        </p>
+        <section class="card assistente" id="assistente" aria-label="Formulário de nova demanda">
 
-        <div class="card form-card">
-            <form id="demandForm" data-custom-submit="true">
-                <div class="form-grid">
+            <ol class="progresso" id="progresso">
+                <li class="progresso__item" data-passo="1"><span class="progresso__numero">1</span><span class="progresso__rotulo">O problema</span></li>
+                <li class="progresso__item" data-passo="2"><span class="progresso__numero">2</span><span class="progresso__rotulo">Local</span></li>
+                <li class="progresso__item" data-passo="3"><span class="progresso__numero">3</span><span class="progresso__rotulo">Foto e revisão</span></li>
+            </ol>
 
-                    <div class="form-group">
-                        <label for="title">Título da demanda</label>
-                        <input id="title" class="form-control" type="text" placeholder="Ex: Buraco na avenida" required>
-                    </div>
+            <form id="formDemanda" novalidate>
 
-                    <div class="form-group">
-                        <label for="category">Categoria</label>
-                        <select id="category" class="form-control" required>
-                            <option value="">Selecione</option>
-                            <option>Infraestrutura</option>
-                            <option>Iluminação</option>
-                            <option>Limpeza</option>
-                            <option>Segurança</option>
-                            <option>Transporte</option>
-                            <option>Meio ambiente</option>
-                            <option>Educação</option>
-                            <option>Saúde</option>
-                            <option>Acessibilidade</option>
-                        </select>
-                    </div>
+                <!-- ETAPA 1 -->
+                <fieldset class="etapa-form" data-etapa="1">
+                    <legend class="etapa-form__titulo">O que está acontecendo?</legend>
 
-                    <div class="form-group">
-                        <label for="region">Região administrativa</label>
-                        <select id="region" class="form-control" required>
-                            <option value="">Selecione</option>
-                            <option>Plano Piloto</option>
-                            <option>Gama</option>
-                            <option>Taguatinga</option>
-                            <option>Brazlândia</option>
-                            <option>Sobradinho</option>
-                            <option>Sobradinho II</option>
-                            <option>Planaltina</option>
-                            <option>Paranoá</option>
-                            <option>Núcleo Bandeirante</option>
-                            <option>Ceilândia</option>
-                            <option>Guará</option>
-                            <option>Cruzeiro</option>
-                            <option>Samambaia</option>
-                            <option>Santa Maria</option>
-                            <option>São Sebastião</option>
-                            <option>Recanto das Emas</option>
-                            <option>Lago Sul</option>
-                            <option>Lago Norte</option>
-                            <option>Riacho Fundo</option>
-                            <option>Riacho Fundo II</option>
-                            <option>Candangolândia</option>
-                            <option>Águas Claras</option>
-                            <option>Sudoeste/Octogonal</option>
-                            <option>Varjão</option>
-                            <option>Park Way</option>
-                            <option>SCIA/Estrutural</option>
-                            <option>Jardim Botânico</option>
-                            <option>Itapoã</option>
-                            <option>SIA</option>
-                            <option>Vicente Pires</option>
-                            <option>Fercal</option>
-                            <option>Sol Nascente/Pôr do Sol</option>
-                            <option>Arniqueira</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="location">Localização (Endereço)</label>
-                        <input id="location" class="form-control" type="text" placeholder="Rua, avenida ou referência" required>
-                    </div>
-
-                    <div class="form-group form-full">
-                        <label for="description">Descrição</label>
-                        <textarea id="description" class="form-control" rows="5" placeholder="Descreva detalhadamente o problema..." required></textarea>
-                    </div>
-
-                    <div class="form-group form-full">
-                        <label for="photo">Foto da situação</label>
-                        <div class="photo-actions">
-                            <label for="photo" class="btn btn-secondary">
-                                <i class="fa-solid fa-camera"></i>
-                                Tirar foto / anexar
-                            </label>
+                    <div class="campo">
+                        <label for="titulo">Título da demanda <span class="obrigatorio" aria-hidden="true">*</span></label>
+                        <input id="titulo" name="titulo" class="controle" type="text" maxlength="100" required
+                               placeholder="Ex.: Buraco na avenida em frente à escola" aria-describedby="tituloAjuda tituloErro">
+                        <div class="campo__rodape">
+                            <span id="tituloAjuda" class="ajuda">Resuma o problema em uma frase.</span>
+                            <span class="contador" data-contador-de="titulo">0/100</span>
                         </div>
-                        <input id="photo" type="file" accept="image/*" capture="environment" style="display:none;">
+                        <p class="erro" id="tituloErro" data-erro="titulo"></p>
+                    </div>
 
-                        <div class="photo-preview" id="photoPreview">
-                            <img id="photoPreviewImg" src="" alt="Pré-visualização da foto enviada">
-                            <button type="button" id="photoRemove" title="Remover foto">
-                                <i class="fa-solid fa-xmark"></i>
+                    <fieldset class="campo">
+                        <legend>Categoria <span class="obrigatorio" aria-hidden="true">*</span></legend>
+                        <div class="opcoes-categoria" id="opcoesCategoria"></div>
+                        <p class="erro" data-erro="categoria"></p>
+                    </fieldset>
+
+                    <div class="campo">
+                        <label for="descricao">Descrição <span class="obrigatorio" aria-hidden="true">*</span></label>
+                        <textarea id="descricao" name="descricao" class="controle" rows="5" maxlength="1000" required
+                                  placeholder="Há quanto tempo acontece? Quem é afetado? Algum risco?" aria-describedby="descricaoErro"></textarea>
+                        <div class="campo__rodape">
+                            <span class="ajuda">Detalhes ajudam o órgão responsável a agir mais rápido.</span>
+                            <span class="contador" data-contador-de="descricao">0/1000</span>
+                        </div>
+                        <p class="erro" id="descricaoErro" data-erro="descricao"></p>
+                    </div>
+                </fieldset>
+
+                <!-- ETAPA 2 -->
+                <fieldset class="etapa-form" data-etapa="2" hidden>
+                    <legend class="etapa-form__titulo">Onde fica?</legend>
+
+                    <div class="grade-campos">
+                        <div class="campo">
+                            <label for="regiao">Região administrativa <span class="obrigatorio" aria-hidden="true">*</span></label>
+                            <select id="regiao" name="regiao" class="controle" required aria-describedby="regiaoErro">
+                                <option value="">Selecione</option>
+                            </select>
+                            <p class="erro" id="regiaoErro" data-erro="regiao"></p>
+                        </div>
+                        <div class="campo">
+                            <label for="localizacao">Endereço ou referência <span class="obrigatorio" aria-hidden="true">*</span></label>
+                            <input id="localizacao" name="localizacao" class="controle" type="text" maxlength="160" required
+                                   placeholder="Rua, quadra ou ponto de referência" aria-describedby="localizacaoErro">
+                            <p class="erro" id="localizacaoErro" data-erro="localizacao"></p>
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <span class="rotulo">Ponto exato no mapa <span class="opcional">(opcional)</span></span>
+                        <p class="ajuda" id="dicaMapa">Escolha a região para centralizar o mapa e clique no local exato do problema. Sem um ponto, usaremos o centro da região.</p>
+                        <div id="mapaSelecao" class="mapa mapa--selecao" role="region" aria-label="Mapa para marcar o local"></div>
+                        <div class="campo__rodape">
+                            <span class="ajuda" id="pontoSelecionado" aria-live="polite">Nenhum ponto marcado.</span>
+                            <button type="button" class="btn btn--texto btn--sm" id="limparPonto" hidden>Remover ponto</button>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- ETAPA 3 -->
+                <fieldset class="etapa-form" data-etapa="3" hidden>
+                    <legend class="etapa-form__titulo">Foto e revisão</legend>
+
+                    <div class="campo">
+                        <span class="rotulo">Foto da situação <span class="opcional">(opcional)</span></span>
+                        <label class="upload" for="foto" id="areaUpload">
+                            <i class="fa-solid fa-camera" aria-hidden="true"></i>
+                            <strong>Tirar foto ou escolher imagem</strong>
+                            <span class="ajuda">JPG, PNG ou WebP · até 10 MB</span>
+                        </label>
+                        <input id="foto" name="foto" type="file" accept="image/*" capture="environment" class="sr-only">
+                        <div class="previa" id="previaFoto" hidden>
+                            <img id="previaImagem" alt="Pré-visualização da foto escolhida">
+                            <button type="button" class="icone-btn previa__remover" id="removerFoto" aria-label="Remover foto">
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>
+                        <p class="erro" data-erro="foto"></p>
                     </div>
 
-                    <!-- MAPA INTERATIVO (Leaflet) -->
-                    <div class="form-group form-full">
-                        <label>Local no mapa</label>
-                        <p id="pickerMapHint" style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 10px;">
-                            Selecione a Região Administrativa acima para centralizar o mapa, depois clique no ponto exato do problema.
-                        </p>
-
-                        <div id="pickerMap" style="width: 100%; height: 350px; border-radius: 8px; z-index: 1;"></div>
+                    <div class="resumo">
+                        <h3>Confira antes de enviar</h3>
+                        <dl id="resumo"></dl>
                     </div>
+                </fieldset>
 
-                    <div class="form-full">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Enviar demanda
-                        </button>
-                    </div>
-
+                <div class="assistente__navegacao">
+                    <button type="button" class="btn btn--secundario" id="voltar" hidden>
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Voltar
+                    </button>
+                    <span class="espaco"></span>
+                    <button type="button" class="btn btn--primario" id="avancar">
+                        Próximo<i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                    <button type="submit" class="btn btn--primario" id="enviar" hidden>
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Enviar demanda
+                    </button>
                 </div>
             </form>
-        </div>
+        </section>
+
+        <section class="card sucesso" id="sucesso" hidden tabindex="-1" aria-labelledby="tituloSucesso">
+            <span class="sucesso__icone" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+            <h2 id="tituloSucesso">Demanda registrada!</h2>
+            <p id="textoSucesso"></p>
+            <div class="sucesso__acoes">
+                <a class="btn btn--primario" id="verNoMapa" href="mapa.html"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>Ver no mapa</a>
+                <a class="btn btn--secundario" id="verNaLista" href="demandas.html"><i class="fa-solid fa-list-ul" aria-hidden="true"></i>Ver detalhes</a>
+                <a class="btn btn--texto" href="nova-demanda.html">Registrar outra</a>
+            </div>
+        </section>
+
     </div>
 </main>
 
-<footer class="footer">
-    <div class="container footer-content">
-        <p>
-            © <span id="currentYear"></span> Brasília Participa
-        </p>
-    </div>
-</footer>
-
-<!-- JS do Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/store.js"></script>
-<script src="js/toast.js"></script>
-<script src="js/main.js"></script>
-<script src="js/demandas.js"></script>
-<script src="js/nova-demanda.js"></script>
-
+<script src="js/data/categorias.js"></script>
+<script src="js/data/regioes.js"></script>
+<script src="js/data/demandas-seed.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/storage.js"></script>
+<script src="js/core/dominio.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/ui/layout.js"></script>
+<script src="js/ui/componentes.js"></script>
+<script src="js/ui/mapa-base.js"></script>
+<script src="js/pages/nova-demanda.js"></script>
 </body>
 </html>

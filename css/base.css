@@ -1,0 +1,269 @@
+/* =========================================================
+   BASE — tokens de design, reset, tipografia e utilitários.
+   Tema: atributo data-theme="light|dark" no <html>
+   (definido por js/ui/tema-inicial.js).
+========================================================= */
+
+:root {
+    color-scheme: light;
+
+    /* Marca (linha gov.br) */
+    --primaria: #1351b4;
+    --primaria-forte: #0c326f;
+    --primaria-suave: #e8effa;
+    --destaque: #ffcd07;
+    --destaque-texto: #1b1b1b;
+
+    /* Estados */
+    --sucesso: #168821;
+    --sucesso-suave: #e3f5e1;
+    --alerta: #8a5a00;
+    --alerta-suave: #fff3d6;
+    --perigo: #c4281c;
+    --perigo-suave: #fde8e6;
+    --info: #1351b4;
+    --info-suave: #e8effa;
+
+    /* Superfícies e texto */
+    --fundo: #f5f7fa;
+    --superficie: #ffffff;
+    --superficie-2: #eef1f6;
+    --superficie-3: #e2e7ef;
+    --texto: #1b1b1b;
+    --texto-2: #4a4f57;
+    --texto-3: #6b7280;
+    --borda: #d9dee7;
+    --borda-forte: #b8c0cc;
+
+    /* Gráficos */
+    --serie: #1351b4;
+    --serie-trilho: #e8ecf2;
+    --grade: #e3e7ee;
+
+    --sombra-1: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+    --sombra-2: 0 8px 24px rgba(16, 24, 40, 0.12);
+    --sombra-3: 0 20px 48px rgba(16, 24, 40, 0.24);
+
+    --raio-sm: 6px;
+    --raio: 10px;
+    --raio-lg: 16px;
+    --raio-pilula: 999px;
+
+    --fonte: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --transicao: 160ms ease;
+    --largura: 1200px;
+    --altura-cabecalho: 68px;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --primaria: #6d9cf0;
+    --primaria-forte: #9dbcf5;
+    --primaria-suave: #1b2a44;
+    --destaque: #ffcd07;
+    --destaque-texto: #1b1b1b;
+
+    --sucesso: #5cc06a;
+    --sucesso-suave: #16301b;
+    --alerta: #f0b542;
+    --alerta-suave: #3a2c0c;
+    --perigo: #f2756a;
+    --perigo-suave: #3d1715;
+    --info: #6d9cf0;
+    --info-suave: #1b2a44;
+
+    --fundo: #0f1218;
+    --superficie: #171b23;
+    --superficie-2: #1f2430;
+    --superficie-3: #2a3140;
+    --texto: #eef0f4;
+    --texto-2: #c3c8d2;
+    --texto-3: #959cab;
+    --borda: #2d3443;
+    --borda-forte: #444d60;
+
+    --serie: #5b8def;
+    --serie-trilho: #232a37;
+    --grade: #262d3a;
+
+    --sombra-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --sombra-2: 0 8px 24px rgba(0, 0, 0, 0.45);
+    --sombra-3: 0 20px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------------- Reset ---------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--altura-cabecalho) + 16px);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fonte);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--texto);
+    background: var(--fundo);
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    flex: 1;
+}
+
+img,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--primaria);
+    text-underline-offset: 3px;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+
+fieldset {
+    border: 0;
+    padding: 0;
+    min-width: 0;
+}
+
+legend {
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: 3px solid var(--destaque);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ---------------- Tipografia ---------------- */
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--texto);
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.4rem);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.65rem);
+    font-weight: 800;
+}
+
+h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+/* ---------------- Utilitários ---------------- */
+
+.container {
+    width: 100%;
+    max-width: var(--largura);
+    margin-inline: auto;
+    padding-inline: 16px;
+}
+
+@media (min-width: 640px) {
+    .container {
+        padding-inline: 24px;
+    }
+}
+
+.container--estreito {
+    max-width: 860px;
+}
+
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.centro {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--texto-3);
+    font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

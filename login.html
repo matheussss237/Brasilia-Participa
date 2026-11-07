@@ -1,191 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Login | Brasília Participa</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-    <!-- Favicon -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Entre na sua conta do Brasília Participa.">
+    <title>Entrar · Brasília Participa</title>
     <link rel="icon" type="image/svg+xml" href="imagens/favicon-verde.svg">
-
-
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
+    <script src="js/ui/tema-inicial.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
 </head>
+<body data-pagina="auth" data-rodape="nao">
 
-<body>
+<main id="conteudo" class="auth">
+    <section class="card auth__cartao" aria-labelledby="tituloAuth">
+        <header class="auth__cabecalho">
+            <span class="auth__icone" aria-hidden="true"><i class="fa-solid fa-right-to-bracket"></i></span>
+            <h1 id="tituloAuth">Entrar no Brasília Participa</h1>
+            <p>Acesse sua conta para registrar e acompanhar suas demandas.</p>
+        </header>
 
-<div class="gov-topbar">
-    <div class="container gov-topbar-content">
-        <span><i class="fa-solid fa-landmark"></i> Governo de Brasília</span>
-        <span>Portal de Participação Cidadã</span>
-    </div>
-</div>
-
-<header class="header">
-
-    <div class="container header-content">
-
-        <a href="index.html" class="logo">
-
-            <span class="logo-icon">
-                <i class="fa-solid fa-city"></i>
-            </span>
-
-            Brasília Participa
-
-        </a>
-
-        <form
-            class="header-search"
-            role="search"
-            action="demandas.html"
-            method="get"
-        >
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-                type="text"
-                name="q"
-                placeholder="Pesquisar demandas..."
-                aria-label="Pesquisar demandas"
-            >
+        <form class="auth__form" id="formAuth" data-modo="entrar" novalidate>
+            <div class="campo">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" class="controle" autocomplete="email" placeholder="seu@email.com" required aria-describedby="emailErro">
+                <p class="erro" id="emailErro" data-erro="email"></p>
+            </div>
+            <div class="campo">
+                <label for="senha">Senha</label>
+                <div class="campo-senha">
+                    <input id="senha" name="senha" type="password" class="controle" autocomplete="current-password" placeholder="Sua senha" required aria-describedby="senhaErro">
+                    <button type="button" class="icone-btn icone-btn--sm" data-mostrar-senha="senha" aria-label="Mostrar senha"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                </div>
+                <p class="erro" id="senhaErro" data-erro="senha"></p>
+            </div>
+            <button type="submit" class="btn btn--primario btn--bloco">
+                <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Entrar
+            </button>
         </form>
 
-        <div class="header-actions">
-
-            <button
-                class="icon-btn"
-                id="themeButton"
-            >
-
-                <i class="fa-solid fa-moon"></i>
-
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<main class="auth-page">
-
-    <div class="auth-card scale-in">
-
-        <div class="auth-header">
-
-            <div class="logo-icon"
-                 style="margin: 0 auto 20px;">
-
-                <i class="fa-solid fa-lock"></i>
-
-            </div>
-
-            <h1>
-                Entrar no Brasília Participa
-            </h1>
-
-            <p>
-                Acesse sua conta para registrar e acompanhar demandas.
-            </p>
-
-        </div>
-
-        
-        <form
-            class="auth-form"
-            data-form="login"
-        >
-
-            <div class="form-group">
-
-                <label for="email">
-                    E-mail
-                </label>
-
-                <input
-                    id="email"
-                    type="email"
-                    class="form-control"
-                    placeholder="seu@email.com"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="password">
-                    Senha
-                </label>
-
-                <input
-                    id="password"
-                    type="password"
-                    class="form-control"
-                    placeholder="Digite sua senha"
-                    required
-                >
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-
-                <i class="fa-solid fa-right-to-bracket"></i>
-
-                Entrar
-
-            </button>
-
-        </form>
-
-
-        <div class="auth-footer">
-
-            Ainda não possui conta?
-
-            <a href="cadastro.html">
-                Criar conta
-            </a>
-
-        </div>
-
-    </div>
-
+        <p class="auth__rodape">Ainda não tem conta? <a href="cadastro.html" data-manter-proximo>Criar conta</a></p>
+        <p class="auth__aviso"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Protótipo: as contas ficam salvas apenas neste navegador.</p>
+    </section>
 </main>
 
-
-<script src="js/store.js"></script>
-<script src="js/toast.js"></script>
-<script src="js/main.js"></script>
-
+<script src="js/data/categorias.js"></script>
+<script src="js/data/regioes.js"></script>
+<script src="js/data/demandas-seed.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/storage.js"></script>
+<script src="js/core/dominio.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/ui/layout.js"></script>
+<script src="js/ui/componentes.js"></script>
+<script src="js/pages/auth.js"></script>
 </body>
-
 </html>
