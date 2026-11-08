@@ -133,7 +133,7 @@ Testes automatizados das regras de negócio e da camada de dados (filtros, estat
 npm test
 ```
 
-Os cenários T01–T03 e T05–T09 de [`docs/BACKLOG.md`](docs/BACKLOG.md) estão indicados nos nomes dos testes. O T04 (clique no pino do mapa) ainda não tem teste automatizado (item BL56 do backlog).
+Os cenários T01–T03 e T05–T09 de [`docs/BACKLOG.md`](docs/BACKLOG.md) estão indicados nos nomes dos testes. O T04 (clique no pino do mapa) ainda não tem teste automatizado; sua validação está registrada sob BL44 no [backlog oficial](docs/BACKLOG.md).
 
 ## Estrutura do Projeto
 
@@ -173,7 +173,7 @@ Brasilia-Participa/
 
 ## Capturas de Tela
 
-*Inserir as capturas de tela do sistema nesta seção (ex.: em `docs/screenshots/`).*
+As capturas finais da apresentação **ainda não foram anexadas/validadas**. Após o teste manual, a equipe pode inseri-las em `docs/screenshots/`.
 
 ## Equipe do Projeto
 
@@ -193,7 +193,7 @@ Brasilia-Participa/
 
 ## Backlog e Cronograma
 
-O backlog do produto (50 itens, BL01–BL50), o cronograma de sprints (0 a 12), os marcos, o escopo funcional, os cenários de teste e os entregáveis estão em [`docs/BACKLOG.md`](docs/BACKLOG.md). A planilha original está em [`docs/backlog_cronograma.xlsx`](docs/backlog_cronograma.xlsx).
+O backlog oficial do projeto contém **55 Issues (BL01–BL55)**, organizadas em sprints 0 a 12 e rastreáveis pelo GitHub. Consulte [`docs/BACKLOG.md`](docs/BACKLOG.md) para o cronograma, status das Issues, evidências e critérios de aceite. A planilha [`docs/backlog_cronograma.xlsx`](docs/backlog_cronograma.xlsx) é histórica e **não está reconciliada com os IDs atuais**.
 
 ## Melhorias Futuras
 
