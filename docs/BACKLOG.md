@@ -27,9 +27,13 @@
 
 **Importante:** o estado *Fechada* ou *Aberta* nesta tabela é o estado da **Issue no GitHub**, não o campo *Status* do GitHub Projects e não um teste de qualidade. Para colocar um cartão em **Feito** no Kanban, a equipe deve comprovar implementação + critério de aceite + teste. Quando existir implementação, mas faltar teste, preferir **Em andamento/Validação**, e não declarar *Feito* automaticamente.
 
-## 3. Backlog completo — rastreabilidade oficial
+## 3. Backlog completo — organizado por sprint
 
-Os dados de prioridade, dependência, papel e sprint foram preservados das Issues existentes. **Papel responsável** (Dev/Tester/Documentação) não significa que existe alguém atribuído no GitHub. Não foram inventadas datas, duração, estimativas ou story points ausentes das Issues.
+A referência oficial é **BL01–BL55**, preservando cada número de Issue. As colunas de responsável são papéis planejados, não atribuições individuais verificadas. **Fechada/Aberta** é o estado da Issue, não a conclusão de testes.
+
+### Sprint 0 — Planejamento e descoberta
+
+**4 tarefas:** 4 fechadas; 0 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
 
 | ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
 |---|---|---|---|---|---|---|---|---|
@@ -37,57 +41,154 @@ Os dados de prioridade, dependência, papel e sprint foram preservados das Issue
 | **BL02** [#6](https://github.com/matheussss237/Brasilia-Participa/issues/6) | Planejamento | Levantar requisitos e definir arquitetura de informação e fluxos de navegação das 8 páginas | Alta | BL01 (#5) | Documentação / UX | Sprint 0 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL03** [#7](https://github.com/matheussss237/Brasilia-Participa/issues/7) | Planejamento | Documentar o caso de uso 'Registrar Demanda Urbana' | Alta | BL02 (#6) | Documentação | Sprint 0 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL04** [#8](https://github.com/matheussss237/Brasilia-Participa/issues/8) | UI/UX | Criar wireframes das telas principais | Alta | BL01 (#5) | Documentação / UX | Sprint 0 | Fechada | Confirmar arquivo dos wireframes; não localizado na revisão. |
+
+### Sprint 1 — Fundação e identidade visual
+
+**6 tarefas:** 6 fechadas; 0 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL05** [#9](https://github.com/matheussss237/Brasilia-Participa/issues/9) | UI/UX | Criar protótipo de alta fidelidade e guia de estilos no Figma | Alta | BL04 (#8) | Documentação / UX | Sprint 1 | Fechada | Confirmar link do Figma, não localizado na revisão. |
 | **BL06** [#10](https://github.com/matheussss237/Brasilia-Participa/issues/10) | Fundação | Estruturar projeto multipágina (HTML/CSS/JS) com CSS modular: reset, style, components, pages, responsive | Alta | BL02 (#6), BL05 (#9) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL07** [#11](https://github.com/matheussss237/Brasilia-Participa/issues/11) | Fundação | Criar cabeçalho, navegação, rodapé e alternância de tema claro/escuro | Alta | BL06 (#10) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL08** [#12](https://github.com/matheussss237/Brasilia-Participa/issues/12) | Dados | Criar js/store.js como fonte única de dados no localStorage, com seed versionado | Alta | BL06 (#10) | Dev | Sprint 1 | Fechada | Nomenclatura antiga: hoje os dados estão em js/core/storage.js e js/core/api.js, não js/store.js. |
 | **BL09** [#13](https://github.com/matheussss237/Brasilia-Participa/issues/13) | Dados | Definir as 9 categorias com ícones e cores | Alta | BL08 (#12) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL10** [#14](https://github.com/matheussss237/Brasilia-Participa/issues/14) | Dados | Cadastrar as Regiões Administrativas do DF com coordenadas para o mapa | Alta | BL08 (#12) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+
+### Sprint 2 — Página inicial e feed
+
+**4 tarefas:** 4 fechadas; 0 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL11** [#15](https://github.com/matheussss237/Brasilia-Participa/issues/15) | Dados | Criar demandas de exemplo com fotos reais das RAs | Alta | BL09 (#13), BL10 (#14) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL12** [#16](https://github.com/matheussss237/Brasilia-Participa/issues/16) | Home/Demandas | Implementar hero com CTA 'Registrar demanda' e estatísticas gerais | Alta | BL05 (#9), BL06 (#10) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL13** [#17](https://github.com/matheussss237/Brasilia-Participa/issues/17) | Home/Demandas | Exibir demandas recentes na página inicial | Alta | BL08 (#12), BL12 (#16) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL14** [#18](https://github.com/matheussss237/Brasilia-Participa/issues/18) | Home/Demandas | Criar cards de demandas com foto, título, categoria, região, apoios e status | Alta | BL08 (#12), BL09 (#13) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+
+### Sprint 3 — Filtros
+
+**4 tarefas:** 3 fechadas; 1 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL15** [#19](https://github.com/matheussss237/Brasilia-Participa/issues/19) | Home/Demandas | Implementar busca por texto e filtro por status | Alta | BL14 (#18) | Dev | Sprint 3 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL16** [#20](https://github.com/matheussss237/Brasilia-Participa/issues/20) | Home/Demandas | Implementar filtro por Região Administrativa | Alta | BL10 (#14), BL14 (#18) | Dev | Sprint 3 | Aberta | Filtro por RA identificado em js/pages/demandas.js; validar interface. |
 | **BL17** [#21](https://github.com/matheussss237/Brasilia-Participa/issues/21) | Home/Demandas | Implementar filtro por categoria | Alta | BL09 (#13), BL14 (#18) | Dev | Sprint 3 | Fechada | Filtro por categoria identificado em js/pages/demandas.js; Issue fechada com descrição antiga. |
 | **BL18** [#22](https://github.com/matheussss237/Brasilia-Participa/issues/22) | Home/Demandas | Exibir status Recebida, Em análise, Pendente e Resolvida com cores | Alta | BL14 (#18) | Dev | Sprint 3 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+
+### Sprint 4 — Mapa e apoio
+
+**4 tarefas:** 3 fechadas; 1 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL19** [#23](https://github.com/matheussss237/Brasilia-Participa/issues/23) | Mapa | Criar mapa interativo com Leaflet e pins coloridos por status | Alta | BL10 (#14) | Dev | Sprint 4 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL20** [#24](https://github.com/matheussss237/Brasilia-Participa/issues/24) | Mapa | Exibir painel de detalhe ao clicar no pin | Alta | BL19 (#23) | Dev | Sprint 4 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL21** [#25](https://github.com/matheussss237/Brasilia-Participa/issues/25) | Engajamento | Permitir apoiar/remover apoio de uma demanda (upvote) com contagem salva localmente | Alta | BL14 (#18) | Dev | Sprint 4 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL22** [#26](https://github.com/matheussss237/Brasilia-Participa/issues/26) | Engajamento | Permitir apoiar a demanda também pelo detalhe do mapa | Média | BL20 (#24), BL21 (#25) | Dev | Sprint 4 | Aberta | Botão de apoio presente no painel de js/pages/mapa.js; teste manual pendente. |
+
+### Sprint 5 — Cadastro e formulário
+
+**4 tarefas:** 3 fechadas; 1 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL23** [#27](https://github.com/matheussss237/Brasilia-Participa/issues/27) | Acesso | Implementar cadastro de usuário com validação e bloqueio de e-mail duplicado | Alta | BL06 (#10) | Dev | Sprint 5 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL24** [#28](https://github.com/matheussss237/Brasilia-Participa/issues/28) | Acesso | Implementar login com bloqueio de credenciais inválidas | Alta | BL23 (#27) | Dev | Sprint 5 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL25** [#29](https://github.com/matheussss237/Brasilia-Participa/issues/29) | Acesso | Exigir login para registrar demanda (pré-condição do caso de uso) | Alta | BL24 (#28), BL26 (#30) | Dev | Sprint 5 | Aberta | O MVP aceita nova demanda sem login; requisito requer decisão da equipe. |
 | **BL26** [#30](https://github.com/matheussss237/Brasilia-Participa/issues/30) | Nova demanda | Formulário com título, categoria, região, localização e descrição, com validação dos obrigatórios | Alta | BL09 (#13), BL10 (#14) | Dev | Sprint 5 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+
+### Sprint 6 — Formulário e registro
+
+**4 tarefas:** 3 fechadas; 1 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL27** [#31](https://github.com/matheussss237/Brasilia-Participa/issues/31) | Nova demanda | Upload de foto com pré-visualização | Alta | BL26 (#30) | Dev | Sprint 6 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL28** [#32](https://github.com/matheussss237/Brasilia-Participa/issues/32) | Nova demanda | Marcação do ponto no mapa habilitada só após escolher a RA | Alta | BL19 (#23), BL26 (#30) | Dev | Sprint 6 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL29** [#33](https://github.com/matheussss237/Brasilia-Participa/issues/33) | Nova demanda | Tela de confirmação e gravação da demanda no store (aparece em Demandas, Mapa e Dashboard) | Alta | BL26 (#30)–BL28 (#32) | Dev | Sprint 6 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL30** [#34](https://github.com/matheussss237/Brasilia-Participa/issues/34) | Nova demanda | Dividir o formulário em Wizard de 3 etapas (dados → localização → foto/resumo) | Média | BL29 (#33) | Dev | Sprint 6 | Aberta | Wizard de 3 etapas presente em js/pages/nova-demanda.js; Issue ainda aberta. |
+
+### Sprint 7 — Perfil e indicadores
+
+**4 tarefas:** 1 fechadas; 3 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL31** [#35](https://github.com/matheussss237/Brasilia-Participa/issues/35) | Perfil | Exibir no perfil os dados do usuário logado | Alta | BL24 (#28) | Dev | Sprint 7 | Aberta | Perfil lê dados de usuário em js/pages/perfil.js; Issue aberta. |
 | **BL32** [#36](https://github.com/matheussss237/Brasilia-Participa/issues/36) | Perfil | Criar 'Minhas demandas' filtrando pelo autor | Média | BL29 (#33), BL31 (#35) | Dev | Sprint 7 | Aberta | Filtro de demandas por autor presente em js/pages/perfil.js; Issue aberta. |
 | **BL33** [#37](https://github.com/matheussss237/Brasilia-Participa/issues/37) | Dashboard | Indicadores (total, resolvidas, em andamento, regiões) calculados a partir do store | Alta | BL08 (#12) | Dev | Sprint 7 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
 | **BL34** [#38](https://github.com/matheussss237/Brasilia-Participa/issues/38) | Dashboard | Criar ranking das Regiões Administrativas mais ativas | Alta | BL10 (#14), BL33 (#37) | Dev | Sprint 7 | Aberta | Ranking implementado em js/pages/dashboard.js; Issue aberta. |
+
+### Sprint 8 — Dashboard e conquistas
+
+**3 tarefas:** 0 fechadas; 3 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL35** [#39](https://github.com/matheussss237/Brasilia-Participa/issues/39) | Dashboard | Substituir os placeholders por gráficos dinâmicos (status, categoria, evolução no tempo) | Alta | BL33 (#37) | Dev | Sprint 8 | Aberta | Gráficos dinâmicos presentes em js/pages/dashboard.js; Issue aberta. |
 | **BL36** [#40](https://github.com/matheussss237/Brasilia-Participa/issues/40) | Gamificação | Definir regras de badges por apoios e relatos | Média | BL21 (#25), BL29 (#33) | Documentação | Sprint 8 | Aberta | Regras de conquistas presentes em js/core/dominio.js; Issue aberta. |
 | **BL37** [#41](https://github.com/matheussss237/Brasilia-Participa/issues/41) | Gamificação | Exibir badges no perfil e no dashboard | Média | BL31 (#35), BL36 (#40) | Dev | Sprint 8 | Aberta | Badges presentes no perfil; exibição também no dashboard não comprovada. |
+
+### Sprint 9 — UX e acessibilidade
+
+**6 tarefas:** 3 fechadas; 3 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL38** [#42](https://github.com/matheussss237/Brasilia-Participa/issues/42) | UX | Implementar estados de vazio, carregamento e erro em todas as listas | Média | Fluxos principais | Dev | Sprint 9 | Aberta | Estados de vazio presentes em partes do sistema; validar estados de carregamento/erro em todas as listas. |
 | **BL39** [#43](https://github.com/matheussss237/Brasilia-Participa/issues/43) | UX | Revisar responsividade mobile/tablet/desktop | Alta | Fluxos principais | Tester | Sprint 9 | Fechada | Issue fechada; conferir evidências da revisão de responsividade. |
 | **BL40** [#44](https://github.com/matheussss237/Brasilia-Participa/issues/44) | Acessibilidade | Revisar contraste, foco, labels, navegação por teclado e textos alternativos | Alta | Fluxos principais | Tester | Sprint 9 | Aberta | Revisão formal de acessibilidade pendente. |
 | **BL41** [#45](https://github.com/matheussss237/Brasilia-Participa/issues/45) | Qualidade | Otimizar o tamanho das imagens | Média | BL11 (#15) | Dev | Sprint 9 | Aberta | Otimização não comprovada; conferir peso das imagens. |
 | **BL42** [#46](https://github.com/matheussss237/Brasilia-Participa/issues/46) | QA | Testar login e cadastro | Alta | BL23 (#27), BL24 (#28) | Tester | Sprint 9 | Fechada | Há testes de autenticação em tests/api.test.js; teste visual ainda necessário. |
 | **BL43** [#47](https://github.com/matheussss237/Brasilia-Participa/issues/47) | QA | Testar nova demanda e validações | Alta | BL26 (#30)–BL29 (#33) | Tester | Sprint 9 | Fechada | Há testes de validação/criação; teste visual completo ainda necessário. |
+
+### Sprint 10 — Qualidade e contratos
+
+**4 tarefas:** 0 fechadas; 4 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL44** [#48](https://github.com/matheussss237/Brasilia-Participa/issues/48) | QA | Testar listagem, filtros, mapa e apoio | Alta | BL14 (#18)–BL22 (#26) | Tester | Sprint 10 | Aberta | Testes de regras de filtros/apoios presentes; T04 clique no pino não automatizado. |
 | **BL45** [#49](https://github.com/matheussss237/Brasilia-Participa/issues/49) | QA | Testar dashboard e gamificação | Alta | BL33 (#37)–BL37 (#41) | Tester | Sprint 10 | Aberta | Há testes de estatísticas/conquistas; QA de interface ainda pendente. |
 | **BL46** [#50](https://github.com/matheussss237/Brasilia-Participa/issues/50) | Integração futura | Documentar a API REST (Spring Boot): demandas, apoio, autenticação e usuários | Alta | Fluxos definidos | Documentação | Sprint 10 | Aberta | Backend REST não implementado, apenas previsto. |
 | **BL47** [#51](https://github.com/matheussss237/Brasilia-Participa/issues/51) | Integração futura | Modelar as coleções MongoDB (usuarios, demandas, categorias, regioes) | Alta | BL46 (#50) | Documentação | Sprint 10 | Aberta | MongoDB não implementado no MVP. |
+
+### Sprint 11 — Integrações planejadas
+
+**3 tarefas:** 0 fechadas; 3 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL48** [#52](https://github.com/matheussss237/Brasilia-Participa/issues/52) | Integração futura | Mapear a troca das funções do store.js por chamadas fetch() à API | Alta | BL46 (#50) | Dev | Sprint 11 | Aberta | O ponto de integração atual é js/core/api.js, não js/store.js. |
 | **BL49** [#53](https://github.com/matheussss237/Brasilia-Participa/issues/53) | Integração futura | Mapear autenticação gov.br, geolocalização por GPS e webhook para a Ouvidoria (OuvDF) | Média | BL46 (#50) | Documentação | Sprint 11 | Aberta | gov.br, GPS e OuvDF são integrações futuras, não funcionais hoje. |
 | **BL50** [#54](https://github.com/matheussss237/Brasilia-Participa/issues/54) | Documentação | Criar BACKEND_INTEGRATION.md com contratos, payloads e pontos de troca | Alta | BL46 (#50)–BL49 (#53) | Documentação | Sprint 11 | Aberta | Documento BACKEND_INTEGRATION.md ainda não localizado. |
+
+### Sprint 12 — Documentação e entrega
+
+**5 tarefas:** 1 fechadas; 4 abertas. Os status só devem ser declarados como entregues após comprovação de aceite.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
+|---|---|---|---|---|---|---|---|---|
 | **BL51** [#57](https://github.com/matheussss237/Brasilia-Participa/issues/57) | Documentação | Atualizar o README (URL de clone, estrutura, capturas de tela) | Alta | MVP funcional | Documentação | Sprint 12 | Aberta | README parcialmente atualizado; screenshots ainda não anexadas. |
 | **BL52** [#58](https://github.com/matheussss237/Brasilia-Participa/issues/58) | Entrega | Publicar no GitHub Pages | Alta | MVP funcional | Dev | Sprint 12 | Fechada | Issue fechada; validar link público do GitHub Pages antes da apresentação. |
 | **BL53** [#59](https://github.com/matheussss237/Brasilia-Participa/issues/59) | Qualidade | Corrigir defeitos encontrados pelo QA e refatorar código repetido | Alta | BL42 (#46)–BL45 (#49) | Dev | Sprint 12 | Aberta | Não concluir sem evidências de correções do QA. |
 | **BL54** [#60](https://github.com/matheussss237/Brasilia-Participa/issues/60) | Apresentação | Preparar roteiro de demonstração e divisão da apresentação | Alta | BL50 (#54)–BL53 (#59) | Scrum Master | Sprint 12 | Aberta | Roteiro e divisão dos integrantes a validar. |
 | **BL55** [#61](https://github.com/matheussss237/Brasilia-Participa/issues/61) | Entrega | Validação final do MVP e dos critérios de aceite | Alta | BL54 (#60) | Equipe | Sprint 12 | Aberta | Aceite final pendente dos testes e da equipe. |
+
+### Pendências mais importantes antes da apresentação
+
+| Prioridade | Ação | Critério para finalizar |
+|---|---|---|
+| 1 — Crítica | Atualizar a coluna Status do GitHub Projects conforme a evidência de cada Issue | Kanban e tarefas sem contradições |
+| 2 — Crítica | Executar `npm test` e validar os fluxos do sistema | Resultado real registrado, inclusive testes manuais T04/T10/T11 |
+| 3 — Alta | Atualizar descrições antigas de Issues (filtros, wizard, store.js) | Texto compatível com a arquitetura atual |
+| 4 — Alta | Confirmar Figma, personas, wireframes e capturas de tela | Links ou artefatos verificáveis nos slides |
+| 5 — Alta | Definir requisito BL25 de login e revisar BL37 (badges no dashboard) | Decisões de escopo explícitas e testadas |
+| 6 — Alta | Ensaiar a demonstração e dividir a fala da equipe | Roteiro, telas e responsáveis conferidos |
+
+**Atenção aos artefatos Scrum:** na pasta `docs/`, há um arquivo nomeado `Scrum_Daniel Machado.png`, mas Daniel não está na relação de 11 integrantes do README; também não existe um arquivo obviamente nomeado para João Paulo. Confirmar se são apenas convenções de nome, antes de atribuir autoria nos slides.
 
 ## 4. Cronograma por sprint
 
