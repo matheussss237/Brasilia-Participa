@@ -14,7 +14,7 @@ O MVP usa HTML, CSS, JavaScript, Leaflet/OpenStreetMap e `localStorage`. **Não 
 | Sprints | 0 a 12, agrupadas no `BACKLOG.md` | Usar essa numeração nos slides, não a planilha antiga de 57 IDs |
 | GitHub Projects | Estado visual não foi reconciliado nesta revisão | Conferir cartões e campo Status com o Scrum Master |
 | Código | Não há indicação de que refazer tudo seja necessário | Evitar mudanças sem defeito reproduzido |
-| Testes | 15 testes definidos no repositório; **não executados nesta revisão** | Rodar `npm test`, registrar resultado e testar UI |
+| Testes | **15 de 15 testes automatizados aprovados** no GitHub Actions em 08/11/2026 ([execução e logs](https://github.com/matheussss237/Brasilia-Participa/actions/runs/42452638703)) | Resultado de `npm test` registrado (15/15); concluir testes visuais, persistência após F5 e responsividade |
 | Design/documentação | Figma, personas, wireframes e screenshots sem links verificados | Localizar, conferir e anexar apenas artefatos reais |
 | MVP | Tem frontend e persistência local | Comunicar limitações de backend e autenticação simulada |
 
@@ -88,7 +88,7 @@ Se `py` não funcionar, tente `python -m http.server 8000`. Acesse `http://local
 | 1 | Revisar/aprovar PR #65 (documentação) | Scrum Master + equipe | PR incorporado à main após revisão |
 | 2 | Revisar 55 Issues e sincronizar cartões Projects | Scrum Master | Quadro coerente com status comprovados |
 | 3 | Corrigir descrições antigas BL16/17, BL22, BL30–37 e arquitetura store.js | Dev + Scrum Master | Issues atualizadas com critérios |
-| 4 | Executar `npm test` e registrar saída | Tester | Print ou log com data e commit |
+| 4 | Conferir evidência dos 15 testes aprovados no GitHub Actions | Tester | [Log oficial da execução](https://github.com/matheussss237/Brasilia-Participa/actions/runs/42452638703) |
 | 5 | Testes manuais do clique no pin, responsividade e acessibilidade | Tester + Dev | Checklist T04/T10/T11 registrado |
 | 6 | Validar requisito BL25 (login exigido ou não) e BL37 (dashboard) | Equipe | Decisões de escopo documentadas |
 | 7 | Conferir Figma, wireframes, personas, prints e link da implantação | Documentação | Evidências válidas nos slides |
