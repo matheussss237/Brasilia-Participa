@@ -1,219 +1,185 @@
-# Backlog e Cronograma — Brasília Participa
+# BACKLOG OFICIAL — BRASÍLIA-PARTICIPA
 
-> Gerado a partir da planilha [`backlog_cronograma.xlsx`](backlog_cronograma.xlsx). Atualize o status dos itens aqui ou na planilha conforme o projeto avança.
+> Revisão de 08/11/2026 para a apresentação acadêmica. **Fonte oficial dos IDs, títulos e estados:** [GitHub Issues](https://github.com/matheussss237/Brasilia-Participa/issues).
 >
-> **Revisão de 07/11/2026:** status, responsáveis, campos dos mocks, status das demandas, marcos, equipe e testes foram alinhados ao que existe no repositório. Itens que mudaram em relação ao plano original têm "Mudança:" na observação; itens feitos fora do plano entraram como BL51–BL57. "A confirmar" marca o que não dá para verificar pelo repositório (personas, wireframes, Figma, testes de usabilidade).
+> A antiga revisão deste documento, de 07/11/2026, usava 57 itens com uma numeração incompatível com as Issues. Esta edição usa **BL01–BL55**, exatamente como as 55 Issues do repositório, preservando seus links. A versão anterior permanece acessível pelo histórico do Git.
 
-## Sumário
+## 1. Contexto e escopo
 
-- [Resumo](#resumo)
-- [Marcos do projeto](#marcos-do-projeto)
-- [Backlog](#backlog)
-- [Cronograma](#cronograma)
-- [Escopo funcional](#escopo-funcional)
-- [Mocks e dados](#mocks-e-dados)
-- [Integrações futuras](#integrações-futuras)
-- [Equipe](#equipe)
-- [Testes e aceite](#testes-e-aceite)
-- [Entregáveis](#entregáveis)
-- [Fora do escopo atual](#fora-do-escopo-atual)
-
-## Resumo
-
-| Campo | Descrição |
+| Campo | Situação |
 |---|---|
-| Tipo | GovTech / Cidadania / Cidades Inteligentes |
-| Tema | Engajamento cidadão e melhorias urbanas na comunidade local. |
-| Visão | Plataforma web para mapear, relatar, apoiar e priorizar demandas urbanas nas Regiões Administrativas do DF, com transparência visual e gamificação. |
-| Equipe | 11 alunos (ver aba Equipe) |
-| Foco atual | Frontend estático com dados de exemplo em js/data/*.js e persistência no localStorage do navegador. |
-| Frontend | HTML, CSS e JavaScript puro (sem framework e sem build), Leaflet + OpenStreetMap. |
-| Backend atual | Não há. js/core/api.js é o ponto único de troca para a API REST futura (Java/Spring Boot + MongoDB, conforme o Relatório parcial). |
-| Dados | Mocks em JS: demandas (demandas-seed.js), categorias (categorias.js) e regiões administrativas (regioes.js). |
+| Sistema | Portal de participação cidadã e acompanhamento de demandas urbanas do DF |
+| Foco do MVP | Página inicial, demandas/filtros, mapa, registro em etapas, dashboard, perfil e conquistas |
+| Stack | HTML, CSS, JavaScript e Leaflet/OpenStreetMap |
+| Persistência | `localStorage` do navegador e dados de exemplo |
+| Backend/API e banco reais | **Não implementados**; planejamento futuro |
+| Organização | Scrum, GitHub Issues, GitHub Projects, sprints 0–12 |
+| Código | **Não alterado nesta revisão** |
 
-## Marcos do projeto
+## 2. Resumo e critério de status
 
-| Sprint | Marco | Resultado | Status | Observação |
-|---|---|---|---|---|
-| Sprint 2 | M1 | Landing e feed navegáveis. | Concluído | Os filtros (BL12–BL14) são da Sprint 3, depois do M1. BL01, BL03 e BL04 (Sprints 0–1) seguem a confirmar. |
-| Sprint 4 | M2 | Mapa interativo (Leaflet), detalhes da demanda e apoio. | Concluído | Mapa real em vez de simulado. |
-| Sprint 6 | M3 | Wizard de nova solicitação completo. | Concluído |  |
-| Sprint 8 | M4 | Dashboard e gamificação funcionando com mocks. | Concluído | Conquistas exibidas em perfil.html. |
-| Sprint 10 | M5 | Testes do frontend e contratos das APIs REST futuras. | Em andamento | Testes automatizados prontos; contratos só resumidos no README (falta BACKEND_INTEGRATION.md). |
-| Sprint 12 | M6 | MVP testado, documentado e pronto para apresentação. | Em andamento |  |
+| Métrica | Valor |
+|---|---:|
+| Issues com códigos BL01–BL55 | **55** |
+| Issues fechadas | **31** |
+| Issues abertas | **24** |
+| Issues atribuídas a contas individuais (Assignees) | **0** |
 
-## Backlog
+**Importante:** o estado *Fechada* ou *Aberta* nesta tabela é o estado da **Issue no GitHub**, não o campo *Status* do GitHub Projects e não um teste de qualidade. Para colocar um cartão em **Feito** no Kanban, a equipe deve comprovar implementação + critério de aceite + teste. Quando existir implementação, mas faltar teste, preferir **Em andamento/Validação**, e não declarar *Feito* automaticamente.
 
-Total de itens: **57** — Concluído: **36** · Em andamento: **9** · A confirmar: **4** · Não iniciado: **8**.
+## 3. Backlog completo — rastreabilidade oficial
 
-| ID | Épico | Item do backlog | Prioridade | Dependência | Responsável | Status | Sprint | Observação |
+Os dados de prioridade, dependência, papel e sprint foram preservados das Issues existentes. **Papel responsável** (Dev/Tester/Documentação) não significa que existe alguém atribuído no GitHub. Não foram inventadas datas, duração, estimativas ou story points ausentes das Issues.
+
+| ID / Issue | Épico | Entrega | Prioridade | Dependências | Papel | Sprint | Estado da Issue | Observações de revisão / aceite |
 |---|---|---|---|---|---|---|---|---|
-| BL01 | Planejamento | Definir personas e jornada principal do cidadão | Alta | — | Documentação | A confirmar | Sprint 0 | Não há artefato de personas no repositório. |
-| BL02 | Planejamento | Definir arquitetura de informação e fluxos de navegação | Alta | BL01 | Dev | Concluído | Sprint 0 | 8 páginas: início, demandas, mapa, nova demanda, dashboard, perfil, login e cadastro. |
-| BL03 | UI/UX | Criar wireframes das telas principais | Alta | BL01 | Documentação | A confirmar | Sprint 0 | Não há wireframes no repositório. |
-| BL04 | UI/UX | Criar protótipo de alta fidelidade e guia de estilos no Figma | Alta | BL03 | Documentação | A confirmar | Sprint 1 | Não há link do Figma no repositório. Tokens de design estão em css/base.css. |
-| BL05 | Frontend | Estruturar projeto, componentes e padrão responsivo | Alta | BL02, BL04 | Dev | Concluído | Sprint 1 | Camadas js/data, js/core, js/ui e js/pages; CSS em base, layout, componentes e páginas. |
-| BL06 | Mocks | Definir schema das demandas (js/data/demandas-seed.js) | Alta | BL02 | Dev | Concluído | Sprint 1 | Mudança: arquivo JS em vez de demands.json. Campos: id, titulo, descricao, categoria, regiao, localizacao, status, apoios, data, foto, lat, lng, pontoExato, autorId. |
-| BL07 | Mocks | Definir categorias com ícones e cores (js/data/categorias.js) | Alta | BL02 | Dev | Concluído | Sprint 1 | Mudança: arquivo JS em vez de categories.json. 9 categorias com ícone Font Awesome e cor. |
-| BL08 | Mocks | Definir regiões administrativas para filtros (js/data/regioes.js) | Alta | BL02 | Dev | Concluído | Sprint 1 | Mudança: arquivo JS em vez de regions.json. Cada RA tem lat/lng; não há bairros. |
-| BL09 | Landing/Feed | Implementar hero com CTA 'Reporte um problema na sua região' | Alta | BL04, BL05 | Dev | Concluído | Sprint 2 | index.html. |
-| BL10 | Landing/Feed | Criar cards de demandas com imagem, título, categoria, votos e status | Alta | BL05, BL06, BL07 | Dev | Concluído | Sprint 2 | js/ui/componentes.js. |
-| BL11 | Landing/Feed | Carregar feed a partir dos mocks pela camada BP.api | Alta | BL06, BL10 | Dev | Concluído | Sprint 2 | Mudança: o seed é copiado para o localStorage na 1ª visita e lido via js/core/api.js. |
-| BL12 | Landing/Feed | Implementar filtro por Região Administrativa | Alta | BL08, BL11 | Dev | Concluído | Sprint 3 | Mudança: filtro por bairro não implementado (regiões não têm bairros). |
-| BL13 | Landing/Feed | Implementar filtro por categoria | Alta | BL07, BL11 | Dev | Concluído | Sprint 3 |  |
-| BL14 | Landing/Feed | Implementar status Recebida, Em análise, Pendente e Resolvida | Alta | BL10 | Dev | Concluído | Sprint 3 | Mudança: 4 status em vez de 3. 'Pendente' não aparece no fluxo Recebida → Em análise → Resolvida (ver BL57). |
-| BL15 | Mapa | Criar mapa interativo com Leaflet + OpenStreetMap | Alta | BL04, BL05 | Dev | Concluído | Sprint 4 | Mudança: mapa real em vez de simulado. |
-| BL16 | Mapa | Renderizar pins interativos com as coordenadas dos mocks | Alta | BL06, BL15 | Dev | Concluído | Sprint 4 | Pinos coloridos por status, com ícone da categoria. |
-| BL17 | Mapa | Abrir resumo da demanda ao clicar no pin | Alta | BL16 | Dev | Concluído | Sprint 4 | Painel de detalhes; mapa.html?id=<id> abre focado. Sem teste automatizado (ver BL56). |
-| BL18 | Engajamento | Implementar botão 'Apoiaria esta causa' (1 apoio por pessoa, pode ser retirado) | Alta | BL17 | Dev | Concluído | Sprint 4 | Mudança: apoio salvo no localStorage, não só em memória. |
-| BL19 | Solicitação | Criar estrutura do Wizard em 3 etapas | Alta | BL04, BL05 | Dev | Concluído | Sprint 5 | nova-demanda.html. |
-| BL20 | Solicitação | Etapa 1: título, categoria e descrição | Alta | BL19 | Dev | Concluído | Sprint 5 |  |
-| BL21 | Solicitação | Etapa 2: região, endereço e ponto exato no mapa | Alta | BL08, BL19 | Dev | Concluído | Sprint 5 | Pino arrastável no mapa. |
-| BL22 | Solicitação | Etapa 3: foto (comprimida e salva no navegador) | Alta | BL19 | Dev | Concluído | Sprint 6 | Mudança: foto real em base64 no localStorage, não simulada. |
-| BL23 | Solicitação | Adicionar validação, navegação anterior/próximo e resumo final | Alta | BL20, BL21, BL22 | Dev | Concluído | Sprint 6 |  |
-| BL24 | Solicitação | Criar nova demanda (salva no localStorage) | Alta | BL23 | Dev | Concluído | Sprint 6 | Mudança: persistida no navegador, não só em memória. |
-| BL25 | Dashboard | Criar indicador de total de demandas resolvidas | Alta | BL06 | Dev | Concluído | Sprint 7 |  |
-| BL26 | Dashboard | Criar ranking visual das regiões mais ativas | Alta | BL06, BL08 | Dev | Concluído | Sprint 7 |  |
-| BL27 | Gamificação | Definir regras simuladas de badges por votos/relatos | Alta | BL06 | Dev | Concluído | Sprint 7 | Prioridade corrigida de Média para Alta (escopo diz Obrigatório). Regras em js/core/dominio.js. |
-| BL28 | Gamificação | Criar badges 'Colaborador Bronze' e 'Guardião do Bairro' | Alta | BL27 | Dev | Concluído | Sprint 8 | Prioridade corrigida para Alta. 'Guardião do Bairro' conta relatos na mesma RA. Extras: Primeiro relato, Colaborador Prata, Voz da Cidade. |
-| BL29 | Dashboard | Criar gráficos calculados a partir dos dados | Alta | BL25, BL26 | Dev | Concluído | Sprint 8 | Gráficos em HTML/CSS, com tabela de dados e filtro por região. |
-| BL30 | Dashboard | Integrar indicadores, ranking, gráficos e badges | Alta | BL25–BL29 | Dev | Concluído | Sprint 8 | Badges ficam em perfil.html. |
-| BL31 | UX | Implementar feedbacks de vazio, carregamento e erro | Alta | BL11, BL24, BL30 | Dev | Em andamento | Sprint 9 | Estados de vazio e erro existem; conferir o de carregamento. |
-| BL32 | UX | Revisar responsividade mobile/tablet/desktop | Alta | BL09–BL30 | Dev | Em andamento | Sprint 9 | Layout responsivo implementado; falta a revisão formal (T10). |
-| BL33 | Acessibilidade | Revisar contraste, foco, labels, teclado e textos alternativos | Alta | BL09–BL30 | Dev | Em andamento | Sprint 9 | Foco visível, rótulos, teclado e 'pular para o conteúdo' implementados; falta a revisão formal (T11). |
-| BL34 | QA | Executar testes de usabilidade do fluxo de feed e filtros | Alta | BL09–BL14 | Tester | A confirmar | Sprint 9 | T01–T03 automatizados e passando; teste de usabilidade com pessoas não registrado. |
-| BL35 | QA | Executar testes de mapa, modal e upvote | Alta | BL15–BL18 | Tester | Em andamento | Sprint 9 | T05 automatizado; T04 (clique no pino) sem teste. |
-| BL36 | QA | Executar testes do Wizard e validações | Alta | BL19–BL24 | Tester | Concluído | Sprint 10 | T06 e T07 automatizados (npm test). |
-| BL37 | QA | Executar testes do dashboard e gamificação | Alta | BL25–BL30 | Tester | Concluído | Sprint 10 | T08 e T09 automatizados (npm test). |
-| BL38 | Integração futura | Documentar GET /api/v1/demands | Alta | BL11 | Documentação | Em andamento | Sprint 10 | Rota listada no README; falta o contrato (parâmetros, paginação, resposta). |
-| BL39 | Integração futura | Documentar POST /api/v1/demands com multipart/form-data | Alta | BL19–BL24 | Documentação | Em andamento | Sprint 10 | Rota listada no README; falta o payload. |
-| BL40 | Integração futura | Documentar PATCH /api/v1/demands/{id}/vote | Alta | BL18 | Documentação | Em andamento | Sprint 10 | Rota listada no README. Atenção: o apoio alterna (dar/retirar), não só incrementa. |
-| BL41 | Integração futura | Mapear substituição dos mocks pela API REST futura | Alta | BL38–BL40 | Documentação | Em andamento | Sprint 11 | README relaciona as funções de js/core/api.js às rotas. |
-| BL42 | Integração futura | Mapear integração futura de identidade do cidadão | Média | BL51 | Documentação | Não iniciado | Sprint 11 | Provavelmente gov.br; confirmar a especificação. |
-| BL43 | Integração futura | Mapear geolocalização por GPS (mapa Leaflet já em uso) | Média | BL15, BL16 | Documentação | Em andamento | Sprint 11 | Leaflet foi adiantado para a Sprint 4; falta só o GPS real. |
-| BL44 | Integração futura | Mapear webhook para sistemas de ouvidoria pública, como OuvDF | Média | — | Documentação | Não iniciado | Sprint 11 |  |
-| BL45 | Documentação | Criar BACKEND_INTEGRATION.md com contratos, payloads e pontos de troca | Alta | BL38–BL44 | Documentação | Não iniciado | Sprint 11 | Arquivo ainda não existe; bloqueia o T12. |
-| BL46 | Qualidade | Refatorar componentes reutilizáveis e organização do código | Alta | BL05–BL30 | Dev | Concluído | Sprint 12 | Reescrita em camadas (commit c4152ff). |
-| BL47 | Qualidade | Corrigir defeitos identificados pelo QA e testes de usabilidade | Alta | BL34–BL37 | Dev | Não iniciado | Sprint 12 |  |
-| BL48 | Documentação | Criar README com execução, arquitetura de mocks e estrutura do projeto | Alta | BL05–BL30 | Documentação | Concluído | Sprint 12 | Falta a seção de capturas de tela. |
-| BL49 | Apresentação | Preparar roteiro de demonstração e divisão da apresentação | Alta | BL45–BL48 | Equipe | Não iniciado | Sprint 12 |  |
-| BL50 | Entrega | Validação final do MVP e critérios de aceite | Alta | BL46–BL49 | Equipe | Não iniciado | Sprint 12 |  |
-| BL51 | Autenticação | Cadastro e login simulados (senha guardada como hash) | Média | BL05 | Dev | Concluído | Não planejado | Item novo: feito sem estar no backlog. cadastro.html e login.html. |
-| BL52 | Perfil | Página de perfil com minhas demandas, causas apoiadas e conquistas | Média | BL28, BL51 | Dev | Concluído | Não planejado | Item novo: feito sem estar no backlog. perfil.html. |
-| BL53 | Landing/Feed | Busca sem acento, filtro por status, ordenação, paginação e filtros na URL | Média | BL11 | Dev | Concluído | Não planejado | Item novo: feito sem estar no backlog. demandas.html. |
-| BL54 | UX | Tema claro/escuro seguindo o sistema | Baixa | BL05 | Dev | Concluído | Não planejado | Item novo: feito sem estar no backlog. |
-| BL55 | QA | Testes automatizados com node:test (npm test) | Alta | BL46 | Tester | Concluído | Não planejado | Item novo: 15 testes passando, cobrindo T01–T03 e T05–T09. |
-| BL56 | QA | Criar teste do clique no pino (T04) | Alta | BL17, BL55 | Tester | Não iniciado | Sprint 12 | Item novo: o README diz que T01–T09 estão cobertos, mas falta o T04. |
-| BL57 | Qualidade | Definir onde o status 'Pendente' entra no fluxo de andamento | Média | BL14 | Dev | Não iniciado | Sprint 12 | Item novo: o fluxo exibido é Recebida → Em análise → Resolvida. |
+| **BL01** [#5](https://github.com/matheussss237/Brasilia-Participa/issues/5) | Planejamento | Definir personas (morador, líder comunitário, cidadão interessado) e jornada principal | Alta | — | Documentação / UX | Sprint 0 | Fechada | Solicitar link das personas/jornada (não localizado no repositório). |
+| **BL02** [#6](https://github.com/matheussss237/Brasilia-Participa/issues/6) | Planejamento | Levantar requisitos e definir arquitetura de informação e fluxos de navegação das 8 páginas | Alta | BL01 (#5) | Documentação / UX | Sprint 0 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL03** [#7](https://github.com/matheussss237/Brasilia-Participa/issues/7) | Planejamento | Documentar o caso de uso 'Registrar Demanda Urbana' | Alta | BL02 (#6) | Documentação | Sprint 0 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL04** [#8](https://github.com/matheussss237/Brasilia-Participa/issues/8) | UI/UX | Criar wireframes das telas principais | Alta | BL01 (#5) | Documentação / UX | Sprint 0 | Fechada | Confirmar arquivo dos wireframes; não localizado na revisão. |
+| **BL05** [#9](https://github.com/matheussss237/Brasilia-Participa/issues/9) | UI/UX | Criar protótipo de alta fidelidade e guia de estilos no Figma | Alta | BL04 (#8) | Documentação / UX | Sprint 1 | Fechada | Confirmar link do Figma, não localizado na revisão. |
+| **BL06** [#10](https://github.com/matheussss237/Brasilia-Participa/issues/10) | Fundação | Estruturar projeto multipágina (HTML/CSS/JS) com CSS modular: reset, style, components, pages, responsive | Alta | BL02 (#6), BL05 (#9) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL07** [#11](https://github.com/matheussss237/Brasilia-Participa/issues/11) | Fundação | Criar cabeçalho, navegação, rodapé e alternância de tema claro/escuro | Alta | BL06 (#10) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL08** [#12](https://github.com/matheussss237/Brasilia-Participa/issues/12) | Dados | Criar js/store.js como fonte única de dados no localStorage, com seed versionado | Alta | BL06 (#10) | Dev | Sprint 1 | Fechada | Nomenclatura antiga: hoje os dados estão em js/core/storage.js e js/core/api.js, não js/store.js. |
+| **BL09** [#13](https://github.com/matheussss237/Brasilia-Participa/issues/13) | Dados | Definir as 9 categorias com ícones e cores | Alta | BL08 (#12) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL10** [#14](https://github.com/matheussss237/Brasilia-Participa/issues/14) | Dados | Cadastrar as Regiões Administrativas do DF com coordenadas para o mapa | Alta | BL08 (#12) | Dev | Sprint 1 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL11** [#15](https://github.com/matheussss237/Brasilia-Participa/issues/15) | Dados | Criar demandas de exemplo com fotos reais das RAs | Alta | BL09 (#13), BL10 (#14) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL12** [#16](https://github.com/matheussss237/Brasilia-Participa/issues/16) | Home/Demandas | Implementar hero com CTA 'Registrar demanda' e estatísticas gerais | Alta | BL05 (#9), BL06 (#10) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL13** [#17](https://github.com/matheussss237/Brasilia-Participa/issues/17) | Home/Demandas | Exibir demandas recentes na página inicial | Alta | BL08 (#12), BL12 (#16) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL14** [#18](https://github.com/matheussss237/Brasilia-Participa/issues/18) | Home/Demandas | Criar cards de demandas com foto, título, categoria, região, apoios e status | Alta | BL08 (#12), BL09 (#13) | Dev | Sprint 2 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL15** [#19](https://github.com/matheussss237/Brasilia-Participa/issues/19) | Home/Demandas | Implementar busca por texto e filtro por status | Alta | BL14 (#18) | Dev | Sprint 3 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL16** [#20](https://github.com/matheussss237/Brasilia-Participa/issues/20) | Home/Demandas | Implementar filtro por Região Administrativa | Alta | BL10 (#14), BL14 (#18) | Dev | Sprint 3 | Aberta | Filtro por RA identificado em js/pages/demandas.js; validar interface. |
+| **BL17** [#21](https://github.com/matheussss237/Brasilia-Participa/issues/21) | Home/Demandas | Implementar filtro por categoria | Alta | BL09 (#13), BL14 (#18) | Dev | Sprint 3 | Fechada | Filtro por categoria identificado em js/pages/demandas.js; Issue fechada com descrição antiga. |
+| **BL18** [#22](https://github.com/matheussss237/Brasilia-Participa/issues/22) | Home/Demandas | Exibir status Recebida, Em análise, Pendente e Resolvida com cores | Alta | BL14 (#18) | Dev | Sprint 3 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL19** [#23](https://github.com/matheussss237/Brasilia-Participa/issues/23) | Mapa | Criar mapa interativo com Leaflet e pins coloridos por status | Alta | BL10 (#14) | Dev | Sprint 4 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL20** [#24](https://github.com/matheussss237/Brasilia-Participa/issues/24) | Mapa | Exibir painel de detalhe ao clicar no pin | Alta | BL19 (#23) | Dev | Sprint 4 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL21** [#25](https://github.com/matheussss237/Brasilia-Participa/issues/25) | Engajamento | Permitir apoiar/remover apoio de uma demanda (upvote) com contagem salva localmente | Alta | BL14 (#18) | Dev | Sprint 4 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL22** [#26](https://github.com/matheussss237/Brasilia-Participa/issues/26) | Engajamento | Permitir apoiar a demanda também pelo detalhe do mapa | Média | BL20 (#24), BL21 (#25) | Dev | Sprint 4 | Aberta | Botão de apoio presente no painel de js/pages/mapa.js; teste manual pendente. |
+| **BL23** [#27](https://github.com/matheussss237/Brasilia-Participa/issues/27) | Acesso | Implementar cadastro de usuário com validação e bloqueio de e-mail duplicado | Alta | BL06 (#10) | Dev | Sprint 5 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL24** [#28](https://github.com/matheussss237/Brasilia-Participa/issues/28) | Acesso | Implementar login com bloqueio de credenciais inválidas | Alta | BL23 (#27) | Dev | Sprint 5 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL25** [#29](https://github.com/matheussss237/Brasilia-Participa/issues/29) | Acesso | Exigir login para registrar demanda (pré-condição do caso de uso) | Alta | BL24 (#28), BL26 (#30) | Dev | Sprint 5 | Aberta | O MVP aceita nova demanda sem login; requisito requer decisão da equipe. |
+| **BL26** [#30](https://github.com/matheussss237/Brasilia-Participa/issues/30) | Nova demanda | Formulário com título, categoria, região, localização e descrição, com validação dos obrigatórios | Alta | BL09 (#13), BL10 (#14) | Dev | Sprint 5 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL27** [#31](https://github.com/matheussss237/Brasilia-Participa/issues/31) | Nova demanda | Upload de foto com pré-visualização | Alta | BL26 (#30) | Dev | Sprint 6 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL28** [#32](https://github.com/matheussss237/Brasilia-Participa/issues/32) | Nova demanda | Marcação do ponto no mapa habilitada só após escolher a RA | Alta | BL19 (#23), BL26 (#30) | Dev | Sprint 6 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL29** [#33](https://github.com/matheussss237/Brasilia-Participa/issues/33) | Nova demanda | Tela de confirmação e gravação da demanda no store (aparece em Demandas, Mapa e Dashboard) | Alta | BL26 (#30)–BL28 (#32) | Dev | Sprint 6 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL30** [#34](https://github.com/matheussss237/Brasilia-Participa/issues/34) | Nova demanda | Dividir o formulário em Wizard de 3 etapas (dados → localização → foto/resumo) | Média | BL29 (#33) | Dev | Sprint 6 | Aberta | Wizard de 3 etapas presente em js/pages/nova-demanda.js; Issue ainda aberta. |
+| **BL31** [#35](https://github.com/matheussss237/Brasilia-Participa/issues/35) | Perfil | Exibir no perfil os dados do usuário logado | Alta | BL24 (#28) | Dev | Sprint 7 | Aberta | Perfil lê dados de usuário em js/pages/perfil.js; Issue aberta. |
+| **BL32** [#36](https://github.com/matheussss237/Brasilia-Participa/issues/36) | Perfil | Criar 'Minhas demandas' filtrando pelo autor | Média | BL29 (#33), BL31 (#35) | Dev | Sprint 7 | Aberta | Filtro de demandas por autor presente em js/pages/perfil.js; Issue aberta. |
+| **BL33** [#37](https://github.com/matheussss237/Brasilia-Participa/issues/37) | Dashboard | Indicadores (total, resolvidas, em andamento, regiões) calculados a partir do store | Alta | BL08 (#12) | Dev | Sprint 7 | Fechada | Validação da entrega conforme critérios de aceite da Issue. |
+| **BL34** [#38](https://github.com/matheussss237/Brasilia-Participa/issues/38) | Dashboard | Criar ranking das Regiões Administrativas mais ativas | Alta | BL10 (#14), BL33 (#37) | Dev | Sprint 7 | Aberta | Ranking implementado em js/pages/dashboard.js; Issue aberta. |
+| **BL35** [#39](https://github.com/matheussss237/Brasilia-Participa/issues/39) | Dashboard | Substituir os placeholders por gráficos dinâmicos (status, categoria, evolução no tempo) | Alta | BL33 (#37) | Dev | Sprint 8 | Aberta | Gráficos dinâmicos presentes em js/pages/dashboard.js; Issue aberta. |
+| **BL36** [#40](https://github.com/matheussss237/Brasilia-Participa/issues/40) | Gamificação | Definir regras de badges por apoios e relatos | Média | BL21 (#25), BL29 (#33) | Documentação | Sprint 8 | Aberta | Regras de conquistas presentes em js/core/dominio.js; Issue aberta. |
+| **BL37** [#41](https://github.com/matheussss237/Brasilia-Participa/issues/41) | Gamificação | Exibir badges no perfil e no dashboard | Média | BL31 (#35), BL36 (#40) | Dev | Sprint 8 | Aberta | Badges presentes no perfil; exibição também no dashboard não comprovada. |
+| **BL38** [#42](https://github.com/matheussss237/Brasilia-Participa/issues/42) | UX | Implementar estados de vazio, carregamento e erro em todas as listas | Média | Fluxos principais | Dev | Sprint 9 | Aberta | Estados de vazio presentes em partes do sistema; validar estados de carregamento/erro em todas as listas. |
+| **BL39** [#43](https://github.com/matheussss237/Brasilia-Participa/issues/43) | UX | Revisar responsividade mobile/tablet/desktop | Alta | Fluxos principais | Tester | Sprint 9 | Fechada | Issue fechada; conferir evidências da revisão de responsividade. |
+| **BL40** [#44](https://github.com/matheussss237/Brasilia-Participa/issues/44) | Acessibilidade | Revisar contraste, foco, labels, navegação por teclado e textos alternativos | Alta | Fluxos principais | Tester | Sprint 9 | Aberta | Revisão formal de acessibilidade pendente. |
+| **BL41** [#45](https://github.com/matheussss237/Brasilia-Participa/issues/45) | Qualidade | Otimizar o tamanho das imagens | Média | BL11 (#15) | Dev | Sprint 9 | Aberta | Otimização não comprovada; conferir peso das imagens. |
+| **BL42** [#46](https://github.com/matheussss237/Brasilia-Participa/issues/46) | QA | Testar login e cadastro | Alta | BL23 (#27), BL24 (#28) | Tester | Sprint 9 | Fechada | Há testes de autenticação em tests/api.test.js; teste visual ainda necessário. |
+| **BL43** [#47](https://github.com/matheussss237/Brasilia-Participa/issues/47) | QA | Testar nova demanda e validações | Alta | BL26 (#30)–BL29 (#33) | Tester | Sprint 9 | Fechada | Há testes de validação/criação; teste visual completo ainda necessário. |
+| **BL44** [#48](https://github.com/matheussss237/Brasilia-Participa/issues/48) | QA | Testar listagem, filtros, mapa e apoio | Alta | BL14 (#18)–BL22 (#26) | Tester | Sprint 10 | Aberta | Testes de regras de filtros/apoios presentes; T04 clique no pino não automatizado. |
+| **BL45** [#49](https://github.com/matheussss237/Brasilia-Participa/issues/49) | QA | Testar dashboard e gamificação | Alta | BL33 (#37)–BL37 (#41) | Tester | Sprint 10 | Aberta | Há testes de estatísticas/conquistas; QA de interface ainda pendente. |
+| **BL46** [#50](https://github.com/matheussss237/Brasilia-Participa/issues/50) | Integração futura | Documentar a API REST (Spring Boot): demandas, apoio, autenticação e usuários | Alta | Fluxos definidos | Documentação | Sprint 10 | Aberta | Backend REST não implementado, apenas previsto. |
+| **BL47** [#51](https://github.com/matheussss237/Brasilia-Participa/issues/51) | Integração futura | Modelar as coleções MongoDB (usuarios, demandas, categorias, regioes) | Alta | BL46 (#50) | Documentação | Sprint 10 | Aberta | MongoDB não implementado no MVP. |
+| **BL48** [#52](https://github.com/matheussss237/Brasilia-Participa/issues/52) | Integração futura | Mapear a troca das funções do store.js por chamadas fetch() à API | Alta | BL46 (#50) | Dev | Sprint 11 | Aberta | O ponto de integração atual é js/core/api.js, não js/store.js. |
+| **BL49** [#53](https://github.com/matheussss237/Brasilia-Participa/issues/53) | Integração futura | Mapear autenticação gov.br, geolocalização por GPS e webhook para a Ouvidoria (OuvDF) | Média | BL46 (#50) | Documentação | Sprint 11 | Aberta | gov.br, GPS e OuvDF são integrações futuras, não funcionais hoje. |
+| **BL50** [#54](https://github.com/matheussss237/Brasilia-Participa/issues/54) | Documentação | Criar BACKEND_INTEGRATION.md com contratos, payloads e pontos de troca | Alta | BL46 (#50)–BL49 (#53) | Documentação | Sprint 11 | Aberta | Documento BACKEND_INTEGRATION.md ainda não localizado. |
+| **BL51** [#57](https://github.com/matheussss237/Brasilia-Participa/issues/57) | Documentação | Atualizar o README (URL de clone, estrutura, capturas de tela) | Alta | MVP funcional | Documentação | Sprint 12 | Aberta | README parcialmente atualizado; screenshots ainda não anexadas. |
+| **BL52** [#58](https://github.com/matheussss237/Brasilia-Participa/issues/58) | Entrega | Publicar no GitHub Pages | Alta | MVP funcional | Dev | Sprint 12 | Fechada | Issue fechada; validar link público do GitHub Pages antes da apresentação. |
+| **BL53** [#59](https://github.com/matheussss237/Brasilia-Participa/issues/59) | Qualidade | Corrigir defeitos encontrados pelo QA e refatorar código repetido | Alta | BL42 (#46)–BL45 (#49) | Dev | Sprint 12 | Aberta | Não concluir sem evidências de correções do QA. |
+| **BL54** [#60](https://github.com/matheussss237/Brasilia-Participa/issues/60) | Apresentação | Preparar roteiro de demonstração e divisão da apresentação | Alta | BL50 (#54)–BL53 (#59) | Scrum Master | Sprint 12 | Aberta | Roteiro e divisão dos integrantes a validar. |
+| **BL55** [#61](https://github.com/matheussss237/Brasilia-Participa/issues/61) | Entrega | Validação final do MVP e dos critérios de aceite | Alta | BL54 (#60) | Equipe | Sprint 12 | Aberta | Aceite final pendente dos testes e da equipe. |
 
-## Cronograma
+## 4. Cronograma por sprint
 
-| Sprint | Fase | Frontend % | Integração futura % | QA/UX/Docs % | Entregas principais | Marco |
-|---|---|---|---|---|---|---|
-| Sprint 0 | Descoberta/Planejamento | 10 | 0 | 90 | Personas, jornada, arquitetura da informação e wireframes |  |
-| Sprint 1 | Design + Fundação | 50 | 10 | 40 | Figma, guia de estilos, estrutura do frontend e schemas JSON |  |
-| Sprint 2 | Frontend | 85 | 10 | 5 | Hero, cards e feed carregado dos mocks | M1 — Feed navegável |
-| Sprint 3 | Frontend | 85 | 10 | 5 | Filtros de região/categoria e status visuais |  |
-| Sprint 4 | Frontend/Interação | 80 | 10 | 10 | Mapa simulado, pins, modal e upvote em memória | M2 — Mapa e apoio |
-| Sprint 5 | Frontend | 85 | 10 | 5 | Wizard: etapas 1 e 2 |  |
-| Sprint 6 | Frontend | 80 | 10 | 10 | Evidência simulada, validações e criação em memória | M3 — Nova solicitação |
-| Sprint 7 | Frontend/Dados | 75 | 15 | 10 | Indicadores, ranking e regras de gamificação |  |
-| Sprint 8 | Frontend/Dashboard | 75 | 15 | 10 | Gráficos e badges integrados | M4 — Dashboard completo |
-| Sprint 9 | UX/QA | 50 | 10 | 40 | Estados de interface, responsividade, acessibilidade e testes |  |
-| Sprint 10 | QA/Integração futura | 35 | 30 | 35 | Testes e documentação das três APIs REST futuras | M5 — Contratos de API |
-| Sprint 11 | Transição futura | 25 | 45 | 30 | Mapeamento de substituição dos mocks e integrações externas |  |
-| Sprint 12 | Estabilização | 25 | 20 | 55 | Refatoração, correções, README, documentação e apresentação | M6 — MVP concluído |
+Os agrupamentos são do planejamento por sprint; sem datas de início/fim ou estimativas verificadas, **não** inventar prazos durante a apresentação.
 
-## Escopo funcional
+| Sprint | Total | Fechadas | Abertas |
+|---|---:|---:|---:|
+| Sprint 0 | 4 | 4 | 0 |
+| Sprint 1 | 6 | 6 | 0 |
+| Sprint 2 | 4 | 4 | 0 |
+| Sprint 3 | 4 | 3 | 1 |
+| Sprint 4 | 4 | 3 | 1 |
+| Sprint 5 | 4 | 3 | 1 |
+| Sprint 6 | 4 | 3 | 1 |
+| Sprint 7 | 4 | 1 | 3 |
+| Sprint 8 | 3 | 0 | 3 |
+| Sprint 9 | 6 | 3 | 3 |
+| Sprint 10 | 4 | 0 | 4 |
+| Sprint 11 | 3 | 0 | 3 |
+| Sprint 12 | 5 | 1 | 4 |
+| **Total** | **55** | **31** | **24** |
 
-| Grupo | Área | Funcionalidade | Prioridade | Backlog | Status |
-|---|---|---|---|---|---|
-| A | Landing Page & Feed | Hero com CTA. | Obrigatório | BL09 | Concluído |
-| A | Landing Page & Feed | Cards com imagem, título, categoria, votos e status. | Obrigatório | BL10–BL11 | Concluído |
-| A | Landing Page & Feed | Filtros por Região Administrativa e Categoria. | Obrigatório | BL12–BL13 | Concluído (sem bairro) |
-| A | Landing Page & Feed | Status das demandas. | Obrigatório | BL14 | Concluído |
-| B | Mapa | Mapa interativo (Leaflet) com pins. | Obrigatório | BL15–BL16 | Concluído |
-| B | Mapa | Detalhes da demanda e botão de apoio. | Obrigatório | BL17–BL18 | Concluído |
-| C | Nova Solicitação | Wizard: título, categoria e descrição. | Obrigatório | BL19–BL20 | Concluído |
-| C | Nova Solicitação | Wizard: região, endereço e ponto no mapa. | Obrigatório | BL21 | Concluído |
-| C | Nova Solicitação | Wizard: foto, validação, revisão e envio. | Obrigatório | BL22–BL24 | Concluído |
-| D | Dashboard | Total de demandas resolvidas. | Obrigatório | BL25 | Concluído |
-| D | Dashboard | Ranking das regiões mais ativas. | Obrigatório | BL26 | Concluído |
-| D | Gamificação | Badges conforme votos/relatos. | Obrigatório | BL27–BL30 | Concluído |
+**Marcos planejados:** M1/Sprint 2 — início e feed; M2/Sprint 4 — mapa e apoios; M3/Sprint 6 — nova demanda; M4/Sprint 8 — dashboard e gamificação; M5/Sprint 10 — QA/contratos futuros; M6/Sprint 12 — entrega e apresentação. Marco planejado não equivale a aprovado.
 
-## Mocks e dados
+## 5. Revisão técnica sem alterar o código
 
-| Arquivo | Objetivo | Campos | Consumidores | Observação |
-|---|---|---|---|---|
-| js/data/demandas-seed.js | Demandas de exemplo (equivale a demands.json). | id, titulo, descricao, categoria, regiao, localizacao, status, apoios, data, foto, lat, lng (+ pontoExato e autorId nas criadas pelo usuário) | Feed, mapa, dashboard, perfil | Copiado para o localStorage (bp:v2:demandas); atualizado quando versaoSeed muda, sem apagar as do usuário. |
-| js/data/categorias.js | Categorias de demandas (equivale a categories.json). | id, nome, icone, cor | Feed, filtros, formulário, mapa, dashboard | 9 categorias: Infraestrutura, Iluminação, Limpeza, Segurança, Transporte, Meio ambiente, Educação, Saúde, Acessibilidade. |
-| js/data/regioes.js | Regiões administrativas do DF (equivale a regions.json). | id, nome, lat, lng | Filtros, formulário, mapa, dashboard | Sem bairros. lat/lng centralizam o mapa e são a posição padrão quando não há ponto exato. |
+| Itens | Evidência inspecionada | Leitura correta |
+|---|---|---|
+| BL08 | [`js/core/storage.js`](../js/core/storage.js), [`js/core/api.js`](../js/core/api.js) | Arquitetura atual em camadas; a referência antiga a `js/store.js` está desatualizada |
+| BL16/BL17 | [`js/pages/demandas.js`](../js/pages/demandas.js), [`js/core/dominio.js`](../js/core/dominio.js) | Filtros de região e categoria presentes; testar na interface |
+| BL19/BL20/BL22 | [`js/pages/mapa.js`](../js/pages/mapa.js) | Pinos, painel e apoio identificados no código; testar clique e atualização |
+| BL25 | [`js/core/api.js`](../js/core/api.js) | O MVP admite nova demanda sem login; requisito precisa de decisão |
+| BL30 | [`js/pages/nova-demanda.js`](../js/pages/nova-demanda.js) | Formulário em três etapas presente; validar fluxo completo |
+| BL31/BL32 | [`js/pages/perfil.js`](../js/pages/perfil.js) | Dados de usuário e filtragem por autor presentes; conferir sessão e dados |
+| BL34/BL35 | [`js/pages/dashboard.js`](../js/pages/dashboard.js) | Ranking e gráficos dinâmicos presentes; validar resultados |
+| BL36/BL37 | [`js/core/dominio.js`](../js/core/dominio.js), [`js/pages/perfil.js`](../js/pages/perfil.js) | Badges calculados/exibidos no perfil; dashboard não comprovado |
+| BL42–BL45 | [`tests/api.test.js`](../tests/api.test.js), [`tests/dominio.test.js`](../tests/dominio.test.js) | Testes de regra presentes; cobertura de interação visual não comprovada |
+| BL46–BL50 | [`js/core/api.js`](../js/core/api.js) | Interfaces assíncronas locais; nenhuma API real, banco MongoDB, gov.br ou OuvDF no MVP |
 
-## Integrações futuras
+**Pontos críticos para corrigir no quadro/Issues:** alguns textos antigos dizem que não existe filtro ou wizard, embora os arquivos atuais os implementem. Atualizar a descrição e documentar o aceite antes de fechar tarefas. A coluna Status do GitHub Projects deve ser verificada separadamente: os seus cartões não são atualizados por este documento. Não transferir automaticamente os 31 fechamentos de Issue para *Feito* sem revisão da equipe.
 
-| Tipo | Método | Rota/Integração | Finalidade | Nota de transição |
-|---|---|---|---|---|
-| REST | GET | /api/v1/demands | Listar demandas (paginado). | Substitui BP.api.demandas.listar(). |
-| REST | GET | /api/v1/demands/{id} | Obter uma demanda. | Substitui BP.api.demandas.obter(id). |
-| REST | POST | /api/v1/demands | Criar demanda com dados e imagem. | Usar multipart/form-data. Substitui BP.api.demandas.criar(dados). |
-| REST | PATCH | /api/v1/demands/{id}/vote | Dar ou retirar apoio. | Substitui BP.api.demandas.alternarApoio(id), hoje no localStorage. |
-| REST | POST | /api/v1/auth/login · /register · /logout | Autenticação. | Substitui BP.api.auth (login simulado). |
-| Externa | — | Identidade do cidadão | Validação futura de identidade. | Provavelmente gov.br; especificação a definir. |
-| Externa | — | Geolocalização (GPS) | Posição exata do cidadão. | Leaflet + OpenStreetMap já em uso; falta só o GPS. |
-| Webhook | — | Ouvidoria pública / OuvDF | Integração futura com sistema de ouvidoria. | Mapear eventos, payloads e autenticação. |
+## 6. Testes e critérios de aceite
 
-## Equipe
+> Existem testes automatizados no repositório, mas **não foram executados nesta revisão**. A existência do teste não comprova que passou nesta data.
 
-Papéis conforme o Relatório parcial (`docs/Relatorio_parcial.pdf`).
+| Cenário | Verificação | Evidência / ação necessária |
+|---|---|---|
+| T01 — seed/feed | Automatizada em código | `tests/api.test.js`, executar `npm test` e revisar UI |
+| T02 — filtro região | Automatizada em código | `tests/dominio.test.js` + testar UI |
+| T03 — filtro categoria | Automatizada em código | `tests/dominio.test.js` + testar UI |
+| T04 — clique no pino | **Teste automatizado não localizado** | Abrir mapa, clicar no pin e registrar evidência; BL44 |
+| T05 — apoio e retirada | Automatizada em código | `tests/api.test.js` + conferir contagem visual |
+| T06 — validação formulário | Automatizada em código | `tests/dominio.test.js` + teste visual do wizard |
+| T07 — criação de demanda | Automatizada em código | `tests/api.test.js` + conferir feed/mapa/dashboard |
+| T08 — estatísticas/dashboard | Automatizada em código | `tests/dominio.test.js` + conferir gráficos |
+| T09 — conquistas | Automatizada em código | `tests/dominio.test.js` + conferir perfil |
+| T10 — responsividade | **Revisão manual pendente de evidência** | Ver mobile, tablet e desktop; BL39 |
+| T11 — acessibilidade | **Revisão manual pendente de evidência** | Navegação por teclado, foco, rótulos, contraste; BL40 |
+| T12 — contratos REST | **Documento ainda não localizado** | `docs/BACKEND_INTEGRATION.md`; BL46–BL50 |
 
-| Papel | Pessoas | Integrantes | Responsabilidades | Backlog predominante |
-|---|---|---|---|---|
-| Scrum Master | 1 | Matheus Henrique Madeira Amorim | Facilitar cerimônias, remover impedimentos e manter o backlog atualizado. | Acompanhamento; coordena BL49–BL50 (feitos pela equipe toda) |
-| Dev | 4 | Iago Camilo Soares Pedroso, Igor Gabriel da Costa Souza, Luiz Felipe Rodrigues Gusmão, Oto Pereira Bonfim | Interface responsiva, componentes, mocks, feed, mapa, wizard, dashboard e correções. | BL02, BL05–BL33, BL46–BL47, BL51–BL54, BL57 |
-| Tester | 1 | Gabriel Alves da Cunha de Souza | Testes automatizados, testes de usabilidade e critérios de aceite. | BL34–BL37, BL55–BL56 |
-| Documentação | 5 | Gabriel Andrade de Melo, Gabriel Mendes Siqueira, Igor Gabriel Ildefonso Costa, João Paulo Messias Dos Santos, João Vitor de Souza Guedes | Personas, protótipos, documentação das integrações futuras e README. | BL01, BL03–BL04, BL38–BL45, BL48 |
+**Aceite de uma tarefa:** escopo implementado, critério atendido, teste registrado e responsável validado. Até lá, a evidência de código pode justificar *Em validação*, mas não aprovação irrestrita.
 
-## Testes e aceite
+## 7. Responsabilidades da equipe
 
-Execute com `npm test`.
+Os papéis abaixo constam na documentação acadêmica anterior. As Issues atuais não têm contas atribuídas no campo Assignees; atribuir responsáveis reais quando a equipe confirmar.
 
-| ID | Cenário | Resultado esperado | Status | Observação |
-|---|---|---|---|---|
-| T01 | Feed carrega dados mockados | Cards exibem dados essenciais e status corretamente. | Aprovado | tests/api.test.js |
-| T02 | Filtro por região | Feed mostra somente demandas da região selecionada. | Aprovado | tests/dominio.test.js |
-| T03 | Filtro por categoria | Feed mostra somente a categoria selecionada. | Aprovado | tests/dominio.test.js |
-| T04 | Clique em pin | Painel abre com resumo da demanda correspondente. | Não executado | Sem teste automatizado (BL56). |
-| T05 | Apoio | Contagem aumenta (e diminui ao retirar) sem recarregar a página. | Aprovado | tests/api.test.js |
-| T06 | Wizard incompleto | Usuário não avança sem campos obrigatórios da etapa. | Aprovado | tests/dominio.test.js (validação) |
-| T07 | Wizard completo | Resumo é exibido e a nova demanda é salva. | Aprovado | tests/api.test.js |
-| T08 | Dashboard | Indicadores refletem os dados. | Aprovado | tests/dominio.test.js |
-| T09 | Gamificação | Badge exibido corresponde às regras definidas. | Aprovado | tests/dominio.test.js |
-| T10 | Responsividade | Fluxos principais funcionam em mobile, tablet e desktop. | Não executado | Revisão manual pendente (BL32). |
-| T11 | Acessibilidade | Fluxos críticos possuem foco visível, labels e navegação por teclado. | Não executado | Revisão manual pendente (BL33). |
-| T12 | Documentação futura | BACKEND_INTEGRATION.md descreve rotas e pontos de substituição dos mocks. | Bloqueado | Arquivo não existe (BL45). |
+| Papel | Integrantes | Entregas |
+|---|---|---|
+| Scrum Master | Matheus Henrique Madeira Amorim | Cerimônias, alinhamento do backlog, sprints e aceite final |
+| Dev | Iago Camilo Soares Pedroso; Igor Gabriel da Costa Souza; Luiz Felipe Rodrigues Gusmão; Oto Pereira Bonfim | Frontend, dados, componentes e correções |
+| Tester | Gabriel Alves da Cunha de Souza | QA, evidências e critérios de aceite |
+| Documentação | Gabriel Andrade de Melo; Gabriel Mendes Siqueira; Igor Gabriel Ildefonso Costa; João Paulo Messias Dos Santos; João Vitor de Souza Guedes | Requisitos, Figma, documentação e apresentação |
 
-## Entregáveis
+## 8. Checklist de preparo para a apresentação
 
-| Entregável | Conteúdo | Responsável | Status |
-|---|---|---|---|
-| Protótipo Figma | Personas, telas de alta fidelidade e guia visual. | Documentação | A confirmar |
-| Frontend | Landing/feed, filtros, mapa, wizard, dashboard, perfil e login. | Dev | Concluído |
-| Mocks | Demandas, categorias e regiões (em js/data/*.js). | Dev | Concluído |
-| Testes automatizados | npm test com 15 testes (T01–T03, T05–T09). | Tester | Concluído |
-| Testes de usabilidade | Resultados e ajustes priorizados. | Tester + Documentação | A confirmar |
-| BACKEND_INTEGRATION.md | APIs REST futuras, integrações externas e pontos de troca dos mocks. | Documentação | Não iniciado |
-| README | Execução, estrutura, mocks e arquitetura do frontend. | Documentação | Concluído |
-| Kanban/Backlog | Acompanhamento das tarefas e responsáveis. | Scrum Master | Em andamento |
-| Demonstração | Roteiro e apresentação do fluxo completo. | Equipe | Não iniciado |
+- [ ] Confirmar que os códigos oficiais exibidos nos slides são BL01–BL55 das Issues.
+- [ ] Reconciliar o status dos cartões do GitHub Projects após a equipe validar os critérios.
+- [ ] Corrigir descrições antigas de Issues e atribuir responsáveis individuais.
+- [ ] Executar `npm test` e registrar saída com data/commit.
+- [ ] Testar T04 (clique no pino), T10 (responsividade) e T11 (acessibilidade).
+- [ ] Validar home, filtros, mapa, apoios, wizard, dashboard e perfil na versão apresentada.
+- [ ] Anexar ou conferir links de personas, Figma, wireframes e capturas de tela, se forem citados.
+- [ ] Conferir acesso ao GitHub Pages (BL52) antes de mostrar link ao professor.
+- [ ] Explicar que o MVP usa localStorage e não tem backend/banco reais.
+- [ ] Realizar ensaio, divisão de falas e aceite final (BL54/BL55).
 
-## Fora do escopo atual
+## 9. Fontes e controle de mudanças
 
-| Não implementar nesta etapa | Situação atual |
-|---|---|
-| Banco de dados real | Não há. Os dados ficam no localStorage do navegador (prefixo bp:v2:). |
-| Backend/API real | js/core/api.js já retorna Promise e é o ponto de troca; contratos vão para o BACKEND_INTEGRATION.md. |
-| Persistência real de votos | Os apoios ficam só no navegador de cada pessoa (localStorage). |
-| Upload real de imagens | A foto é comprimida e guardada no navegador em base64; não vai para servidor. |
-| GPS/geolocalização real | O mapa é real (Leaflet), mas o ponto é marcado manualmente; não usa GPS. |
-| Autenticação real | Login e cadastro são simulados no navegador (senha guardada como hash). |
-| Integração real com identidade/ouvidoria | Somente mapear no BACKEND_INTEGRATION.md. |
+- [GitHub Issues — identificação oficial](https://github.com/matheussss237/Brasilia-Participa/issues)
+- [GitHub Projects — quadro visual a reconciliar](https://github.com/matheussss237/Brasilia-Participa/projects)
+- [README](../README.md): execução e tecnologias.
+- `docs/backlog_cronograma.xlsx`: planilha **histórica** do planejamento; IDs e estados podem estar divergentes e não são fonte oficial desta versão.
+- Histórico de commits: mantém a versão antiga de 57 IDs para auditoria, mas **não** a use para referenciar Issues ou apresentar o quadro.
+
+**Escopo da revisão:** somente arquivos Markdown de documentação. Nenhum HTML, CSS, JS, test ou estrutura do programa foi alterado. A inspeção foi estática, sem executar o site nem os testes.
