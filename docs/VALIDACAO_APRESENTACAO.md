@@ -1,5 +1,19 @@
 # Validação da apresentação — Brasília-Participa
 
+## Resultado automatizado verificado em 08/11/2026
+
+**Fonte:** [GitHub Actions — execução #42452638703](https://github.com/matheussss237/Brasilia-Participa/actions/runs/42452638703) na branch `qa/validacao-apresentacao-2026-11-08`, commit `3e2bb45783fa62086cb679f963072071c9374a32`, derivado de `main`.
+
+| Verificação realmente executada | Resultado |
+|---|---|
+| `node --check` nos arquivos de `js/` e `tests/` | **Aprovado** |
+| `npm test` com Node.js 22 | **15 testes passaram, 0 falharam** |
+| Integridade de referências locais dos HTML | **8 páginas verificadas, nenhuma referência ausente** |
+| Resultado global do workflow | **Sucesso** |
+
+**Limitações da evidência:** os testes automatizados cobrem lógica e dados, mas **não substituem** validação visual/manual da interface, cliques em pinos (T04), responsividade (T10), acessibilidade (T11), conexão de bibliotecas externas, nem um teste de ponta a ponta no navegador. A revisão foi executada sobre o código da `main` no momento da criação da branch de QA; nenhuma alteração funcional foi feita. O log de setup registra avisos de depreciação das GitHub Actions utilizadas, sem provocar falha nos testes.
+
+
 > Documento de verificação **a executar**, não relatório de testes realizados. IDs oficiais e status das Issues: [BACKLOG.md](BACKLOG.md).
 
 ## Preparação
