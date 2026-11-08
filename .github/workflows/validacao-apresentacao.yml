@@ -1,0 +1,51 @@
+name: Validacao tecnica do Brasilia-Participa
+on:
+  push:
+    branches:
+      - qa/validacao-apresentacao-2026-11-08
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testar:
+    name: Sintaxe, testes e arquivos
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obter arquivos
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar sintaxe JavaScript
+        run: find js tests -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Executar testes automatizados
+        run: npm test
+      - name: Verificar referencias locais dos HTML
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path('.')
+          pages = list(root.glob('*.html'))
+          missing = []
+          for page in pages:
+              text = page.read_text(encoding='utf-8')
+              for ref in re.findall(r'(?:src|href)=["\']([^"\']+)["\']', text):
+                  if ref.startswith(('http://','https://','#','mailto:','tel:','data:','//')):
+                      continue
+                  path = ref.split('?',1)[0].split('#',1)[0]
+                  if path and not (root/path).exists():
+                      missing.append(f"{page}: {ref}")
+          print(f"Paginas HTML verificadas: {len(pages)}")
+          if missing:
+              print('Referencias locais ausentes:\n'+'\n'.join(missing))
+              sys.exit(1)
+          if len(pages)!=8:
+              print(f'Atencao: esperava 8 paginas, encontrei {len(pages)}')
+              sys.exit(1)
+          print('Todas as referencias locais foram encontradas.')
+          PY
