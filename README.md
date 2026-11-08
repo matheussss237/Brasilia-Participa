@@ -193,7 +193,7 @@ Brasilia-Participa/
 
 ## Backlog e Cronograma
 
-O backlog do produto (50 itens, BL01–BL50), o cronograma de sprints (0 a 12), os marcos, o escopo funcional, os cenários de teste e os entregáveis estão em [`docs/BACKLOG.md`](docs/BACKLOG.md). A planilha original está em [`docs/backlog_cronograma.xlsx`](docs/backlog_cronograma.xlsx).
+O backlog operacional do GitHub contém **55 issues (BL01–BL55)**, listadas em [`docs/BACKLOG.md`](docs/BACKLOG.md). O planejamento acadêmico revisado de 07/11/2026, com 57 atividades e numeração diferente, foi preservado em [`docs/BACKLOG_PLANEJAMENTO_20261107.md`](docs/BACKLOG_PLANEJAMENTO_20261107.md), incluindo cronograma, marcos, escopo, testes e entregáveis. A planilha original está em [`docs/backlog_cronograma.xlsx`](docs/backlog_cronograma.xlsx).
 
 ## Melhorias Futuras
 
