@@ -21,7 +21,7 @@ Portal de participação cidadã para registro e acompanhamento de demandas urba
 
 **Brasília Participa** é um portal web de participação cidadã que permite aos moradores do Distrito Federal registrar problemas urbanos (infraestrutura, iluminação, limpeza, segurança, transporte, meio ambiente, educação, saúde e acessibilidade), acompanhar o andamento das solicitações em um mapa interativo e visualizar indicadores de participação em um dashboard.
 
-Atualmente o projeto é um **front-end estático**, com os dados persistidos no `localStorage` do navegador e uma camada de dados única (`js/core/api.js`) já preparada para a integração com um back-end via API REST.
+O projeto tem um **front-end em HTML, CSS e JavaScript** e um **servidor Node.js (Express) conectado ao MongoDB Atlas**, que guarda demandas, usuários, sessões e apoios. A camada única de dados (`js/core/api.js`) fala com a API REST do servidor; se o site for aberto sem o servidor, ele continua funcionando com o `localStorage` do navegador.
 
 ## Objetivos
 
@@ -55,7 +55,9 @@ Cidadãos e moradores do Distrito Federal (Brasília) que desejam relatar proble
 - HTML5, CSS3 e JavaScript puro (sem frameworks e sem etapa de build)
 - [Leaflet](https://leafletjs.com/) 1.9.4 + OpenStreetMap (mapas)
 - Font Awesome 6.5.2 (ícones) e fonte Inter (Google Fonts)
-- `localStorage` do navegador para persistência local
+- Node.js + Express (servidor e API REST)
+- **MongoDB Atlas** (banco de dados, via driver oficial `mongodb`)
+- `localStorage` do navegador (reserva quando o servidor não está rodando)
 - `node:test` (Node.js 18+) para os testes automatizados
 
 ## Arquitetura da Solução
@@ -76,21 +78,34 @@ Front-end estático multipágina, organizado em camadas. Os scripts são carrega
 
 Todo texto digitado pelo usuário é escapado antes de ir para o HTML (`BP.util.escapar`), evitando injeção de código.
 
-### Integração futura com o back-end
+### Back-end e banco de dados (MongoDB Atlas)
 
-Todas as funções de `js/core/api.js` já retornam `Promise`. Para conectar uma API REST (ex.: Java/Spring), basta trocar o corpo delas por `fetch()` — as páginas não mudam:
+`server.js` conecta no MongoDB Atlas e serve o site e a API REST (`server/app.js`). O servidor reaproveita as mesmas regras de negócio do front-end (`js/core/dominio.js`) e, na primeira execução, grava as demandas de exemplo no banco.
 
-| Função | Rota prevista |
+Ao abrir a página, `js/core/api.js` verifica se a API está no ar (`GET /api/v1/health`). Se estiver, todos os dados vão para o MongoDB; se não estiver (arquivo aberto direto, `python -m http.server`, testes), tudo continua funcionando com o `localStorage`. As páginas não mudam.
+
+| Função | Rota |
 |---|---|
 | `BP.api.demandas.listar()` | `GET /api/v1/demands` |
 | `BP.api.demandas.obter(id)` | `GET /api/v1/demands/{id}` |
-| `BP.api.demandas.criar(dados)` | `POST /api/v1/demands` (`multipart/form-data`) |
+| `BP.api.demandas.criar(dados)` | `POST /api/v1/demands` (JSON, foto em base64) |
+| `BP.api.demandas.apoiadas()` | `GET /api/v1/votes` |
 | `BP.api.demandas.alternarApoio(id)` | `PATCH /api/v1/demands/{id}/vote` |
+| `BP.api.auth.atual()` | `GET /api/v1/auth/me` |
 | `BP.api.auth.entrar()` / `cadastrar()` / `sair()` | `POST /api/v1/auth/login` · `/register` · `/logout` |
 
 ## Modelagem dos Dados
 
-Ainda não há banco de dados. Os dados ficam no `localStorage` com o prefixo `bp:v2:` (`demandas`, `usuarios`, `sessao`, `apoios`, `tema`).
+Banco **MongoDB Atlas** (nome padrão `brasilia_participa`), com as coleções:
+
+| Coleção | Conteúdo |
+|---|---|
+| `demandas` | As demandas (campos abaixo) |
+| `usuarios` | Contas — senha guardada com `scrypt` + sal |
+| `sessoes` | Tokens de login (`token`, `usuarioId`, `desde`) |
+| `apoios` | Quem apoiou o quê (`apoiador`, `demandas: [ids]`) |
+
+Sem o servidor, os dados ficam no `localStorage` com o prefixo `bp:v2:` (`demandas`, `usuarios`, `sessao`, `apoios`, `tema`).
 
 **Demanda:** `id`, `titulo`, `descricao`, `categoria` (id), `regiao` (id), `localizacao`, `status` (`recebida` · `em-analise` · `pendente` · `resolvida`), `apoios`, `data` (AAAA-MM-DD), `foto` (URL ou imagem em base64), `lat`, `lng`, `pontoExato`, `autorId`.
 
@@ -102,7 +117,8 @@ Quando as demandas de exemplo mudam (`BP.dados.versaoSeed`), elas são atualizad
 
 - Navegador moderno (Chrome, Edge, Firefox ou Safari atualizados)
 - Conexão com a internet para carregar mapa, ícones e fonte via CDN
-- Opcional: Python 3 (servidor local) e Node.js 18+ (testes)
+- Node.js 18+ (servidor e testes)
+- Uma conta no [MongoDB Atlas](https://www.mongodb.com/atlas) com um cluster (o gratuito M0 serve)
 
 ## Instalação
 
@@ -111,23 +127,32 @@ git clone https://github.com/matheussss237/Brasilia-Participa.git
 cd Brasilia-Participa
 ```
 
-Não há dependências para instalar.
+```bash
+npm install
+```
+
+### Configurar o MongoDB Atlas
+
+1. No Atlas, em **Database Access**, crie um usuário do banco (anote usuário e senha).
+2. Em **Network Access**, clique em **Add IP Address** e libere o seu IP (ou `0.0.0.0/0` para permitir qualquer IP durante a apresentação).
+3. Em **Database > Connect > Drivers**, copie a *connection string* (`mongodb+srv://...`).
+4. Copie `.env.example` para `.env` e cole a connection string em `MONGODB_URI`, trocando `<password>` pela senha. O `.env` não vai para o GitHub.
 
 ## Como Executar
 
-Abra o `index.html` no navegador **ou** sirva a pasta com um servidor local:
-
 ```bash
-python3 -m http.server 8000
+npm start
 ```
 
-e acesse `http://localhost:8000`. (Também funciona com `npm start`.)
+e acesse `http://localhost:3000`. O terminal mostra `Conectado ao banco "brasilia_participa"` quando a conexão dá certo; se não der, mostra o motivo e o que conferir.
 
-Para recomeçar com os dados de exemplo, limpe os dados do site no navegador (ou apague as chaves `bp:v2:*` do `localStorage`).
+Sem o servidor (apenas front-end, dados no navegador): abra o `index.html` ou rode `npm run start:local` e acesse `http://localhost:8000`.
+
+Para recomeçar com os dados de exemplo, apague a coleção `demandas` no Atlas (ela é recriada na próxima execução). No modo sem servidor, limpe os dados do site no navegador (ou apague as chaves `bp:v2:*` do `localStorage`).
 
 ## Testes
 
-Testes automatizados das regras de negócio e da camada de dados (filtros, estatísticas, ranking, conquistas, validação, apoio, cadastro/login, escape de HTML):
+Testes automatizados das regras de negócio, da camada de dados e da API do servidor (filtros, estatísticas, ranking, conquistas, validação, apoio, cadastro/login, escape de HTML, rotas REST). Os testes do servidor usam um MongoDB simulado em memória (`tests/fake-mongo.js`), então não precisam de internet nem do Atlas:
 
 ```bash
 npm test
@@ -146,6 +171,9 @@ Brasilia-Participa/
 ├── dashboard.html        # Indicadores e gráficos
 ├── perfil.html           # Perfil, conquistas e minhas demandas
 ├── login.html            # Entrar
+├── server.js             # Servidor: conecta no MongoDB Atlas e sobe o site + API
+├── server/app.js         # Rotas da API REST
+├── .env.example          # Modelo de configuração do MongoDB Atlas
 ├── cadastro.html         # Criar conta
 ├── css/
 │   ├── base.css          # Tokens de design (claro/escuro), reset, tipografia
@@ -197,7 +225,7 @@ O backlog do produto (50 itens, BL01–BL50), o cronograma de sprints (0 a 12), 
 
 ## Melhorias Futuras
 
-- Back-end em Java/Spring com API REST e banco de dados (substituindo `js/core/api.js`)
+- Migrar o back-end para Java/Spring, mantendo as mesmas rotas da API REST e o MongoDB
 - Autenticação real e integração com identidade do cidadão
 - Upload real de imagens
 - Integração com sistemas de ouvidoria (ex.: OuvDF) e notificações de mudança de status

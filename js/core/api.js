@@ -1,18 +1,19 @@
 /* =========================================================
    API — camada única de acesso a dados.
    ---------------------------------------------------------
-   Hoje os dados vivem no navegador (localStorage, via
-   BP.storage). Todas as funções já são assíncronas (Promise),
-   com a mesma "forma" que terá a API REST futura. Para
-   integrar um back-end basta trocar o corpo destas funções
-   por chamadas fetch() — as páginas não precisam mudar.
+   Com o servidor (npm start) os dados vão para o MongoDB
+   Atlas pela API REST abaixo. Sem o servidor, os dados ficam
+   no navegador (localStorage, via BP.storage), como antes.
+   As páginas usam sempre BP.api e não precisam mudar.
 
-   Mapeamento previsto:
+   Rotas da API (server/app.js):
      demandas.listar()          -> GET   /api/v1/demands
      demandas.obter(id)         -> GET   /api/v1/demands/{id}
-     demandas.criar(dados)      -> POST  /api/v1/demands  (multipart/form-data)
+     demandas.criar(dados)      -> POST  /api/v1/demands  (JSON, foto em base64)
      demandas.alternarApoio(id) -> PATCH /api/v1/demands/{id}/vote
+     demandas.apoiadas()        -> GET   /api/v1/votes
      auth.entrar / cadastrar    -> POST  /api/v1/auth/login | /api/v1/auth/register
+     auth.atual / sair          -> GET   /api/v1/auth/me    | POST /api/v1/auth/logout
 ========================================================= */
 (function (root) {
     "use strict";
@@ -281,5 +282,151 @@
         }
     };
 
-    BP.api = { demandas, auth };
+    /* ======================================================
+       MONGODB ATLAS (via API REST do servidor Node — server.js)
+       Quando o site é aberto pelo servidor (npm start), os dados
+       vão para o MongoDB Atlas. Se o site for aberto sem o
+       servidor (arquivo local, python http.server, testes), tudo
+       continua funcionando com o localStorage, como antes.
+    ====================================================== */
+
+    const URL_API = "/api/v1";
+    const CHAVE_SESSAO_API = "sessao-api";
+    let modoAtual = null;
+
+    /** "remoto" (MongoDB via servidor) ou "local" (localStorage). */
+    function modo() {
+        if (!modoAtual) {
+            modoAtual = (async () => {
+                const loc = root.location;
+                if (!loc || !/^https?:$/.test(loc.protocol) || typeof root.fetch !== "function") return "local";
+                try {
+                    const resposta = await root.fetch(`${URL_API}/health`, { cache: "no-store" });
+                    if (resposta.ok && (await resposta.json()).ok) return "remoto";
+                } catch (_) {
+                    /* servidor indisponível */
+                }
+                return "local";
+            })();
+        }
+        return modoAtual;
+    }
+
+    function idVisitante() {
+        let visitante = storage.ler(CHAVES.visitante);
+        if (!visitante) {
+            visitante = gerarId("visitante");
+            try {
+                storage.gravar(CHAVES.visitante, visitante);
+            } catch (_) {
+                /* ignora */
+            }
+        }
+        return visitante;
+    }
+
+    async function chamar(metodo, caminho, corpo) {
+        const cabecalhos = { "X-Visitante": idVisitante() };
+        const sessao = storage.ler(CHAVE_SESSAO_API);
+        if (sessao && sessao.token) cabecalhos.Authorization = `Bearer ${sessao.token}`;
+        if (corpo !== undefined) cabecalhos["Content-Type"] = "application/json";
+
+        let resposta;
+        try {
+            resposta = await root.fetch(URL_API + caminho, {
+                method: metodo,
+                headers: cabecalhos,
+                body: corpo === undefined ? undefined : JSON.stringify(corpo)
+            });
+        } catch (_) {
+            throw new Error("Não foi possível falar com o servidor. Verifique se ele está rodando.");
+        }
+
+        const dadosResposta = await resposta.json().catch(() => null);
+        if (!resposta.ok) {
+            const info = (dadosResposta && dadosResposta.erro) || {};
+            const erro = new Error(info.message || `Erro ${resposta.status} no servidor.`);
+            erro.name = info.name || "Error";
+            if (info.campos) erro.campos = info.campos;
+            if (info.campo) erro.campo = info.campo;
+            throw erro;
+        }
+        return dadosResposta;
+    }
+
+    function guardarSessaoApi(resultado) {
+        storage.gravar(CHAVE_SESSAO_API, { token: resultado.token, usuarioId: resultado.usuario.id, desde: new Date().toISOString() });
+        notificarMudanca("sessao", { usuarioId: resultado.usuario.id });
+        return resultado.usuario;
+    }
+
+    const remoto = {
+        demandas: {
+            listar: () => chamar("GET", "/demands"),
+            async obter(id) {
+                try {
+                    return await chamar("GET", `/demands/${encodeURIComponent(id)}`);
+                } catch (erro) {
+                    if (/não encontrada/i.test(erro.message)) return null;
+                    throw erro;
+                }
+            },
+            doUsuario: (usuarioId) => chamar("GET", `/demands?autor=${encodeURIComponent(usuarioId)}`),
+            async criar(entrada) {
+                const erros = BP.dominio.validarDemanda(entrada);
+                if (Object.keys(erros).length) {
+                    const erro = new Error("Dados da demanda inválidos.");
+                    erro.name = "ErroValidacao";
+                    erro.campos = erros;
+                    throw erro;
+                }
+                const nova = await chamar("POST", "/demands", entrada);
+                notificarMudanca("demanda-criada", { id: nova.id });
+                return nova;
+            },
+            async apoiadas() {
+                return new Set(await chamar("GET", "/votes"));
+            },
+            async alternarApoio(id) {
+                const resultado = await chamar("PATCH", `/demands/${encodeURIComponent(id)}/vote`);
+                notificarMudanca("apoio", { id, ...resultado });
+                return resultado;
+            }
+        },
+        auth: {
+            async atual() {
+                const sessao = storage.ler(CHAVE_SESSAO_API);
+                if (!sessao || !sessao.token) return null;
+                const usuario = await chamar("GET", "/auth/me");
+                if (!usuario) storage.remover(CHAVE_SESSAO_API);
+                return usuario;
+            },
+            async cadastrar(dados) {
+                return guardarSessaoApi(await chamar("POST", "/auth/register", dados));
+            },
+            async entrar(dados) {
+                return guardarSessaoApi(await chamar("POST", "/auth/login", dados));
+            },
+            async sair() {
+                try {
+                    await chamar("POST", "/auth/logout", {});
+                } finally {
+                    storage.remover(CHAVE_SESSAO_API);
+                    notificarMudanca("sessao", { usuarioId: null });
+                }
+            }
+        }
+    };
+
+    /* Mesmo formato de antes (BP.api.demandas.*, BP.api.auth.*): cada
+       função escolhe entre o MongoDB (servidor) e o localStorage. */
+    function escolher(local, remotoGrupo) {
+        const grupo = {};
+        Object.keys(local).forEach((nome) => {
+            grupo[nome] = async (...args) => ((await modo()) === "remoto" ? remotoGrupo[nome](...args) : local[nome](...args));
+        });
+        return grupo;
+    }
+
+    BP.api = { demandas: escolher(demandas, remoto.demandas), auth: escolher(auth, remoto.auth), modo };
 })(typeof window !== "undefined" ? window : globalThis);
