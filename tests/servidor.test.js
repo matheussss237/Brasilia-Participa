@@ -114,26 +114,3 @@ test("servidor: serve as páginas e não expõe arquivos internos", async (t) =>
         assert.equal((await fetch(base + caminho)).status, 404, caminho);
     }
 });
-
-test("servidor: nova versão do seed atualiza os exemplos e mantém as demandas dos usuários", async (t) => {
-    const db = criarBancoFalso();
-    await prepararBanco(db);
-    const app = criarApp(db).listen(0);
-    t.after(() => app.close());
-    await new Promise((r) => app.once("listening", r));
-    const base = `http://127.0.0.1:${app.address().port}`;
-    await fetch(base + "/api/v1/demands", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(valida) });
-
-    const BP = globalThis.BP;
-    const original = { versao: BP.dados.versaoSeed, data: BP.dados.demandas[0].data };
-    t.after(() => { BP.dados.versaoSeed = original.versao; BP.dados.demandas[0].data = original.data; });
-    BP.dados.versaoSeed = "teste";
-    BP.dados.demandas[0].data = "2030-01-01";
-    await prepararBanco(db);
-    await prepararBanco(db);
-
-    const lista = await (await fetch(base + "/api/v1/demands")).json();
-    assert.equal(lista.length, BP.dados.demandas.length + 1);
-    assert.equal(lista[0].titulo, valida.titulo);
-    assert.equal(lista.find((d) => d.id === BP.dados.demandas[0].id).data, "2030-01-01");
-});

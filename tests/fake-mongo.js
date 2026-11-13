@@ -42,7 +42,6 @@ function colecao() {
             if (d) Object.assign(d, copia($set));
             else if (opcoes.upsert) docs.push(copia({ _id: docs.length + 1, ...filtro, ...$set }));
         },
-        async deleteMany(filtro) { for (let i = docs.length - 1; i >= 0; i--) if (combina(docs[i], filtro)) docs.splice(i, 1); },
         async deleteOne(filtro) { const i = docs.findIndex((x) => combina(x, filtro)); if (i >= 0) docs.splice(i, 1); }
     };
 }

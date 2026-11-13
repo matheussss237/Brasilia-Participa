@@ -10,7 +10,6 @@
      usuarios  — contas (senha guardada com scrypt + sal)
      sessoes   — tokens de login
      apoios    — { apoiador, demandas: [ids] }
-     config    — versão das demandas de exemplo gravadas
 ========================================================= */
 "use strict";
 
@@ -67,22 +66,13 @@ function erroHttp(status, name, message, extras = {}) {
     return erro;
 }
 
-/**
- * Grava as demandas de exemplo e cria os índices. Quando a versão do seed
- * muda (BP.dados.versaoSeed), as demandas de exemplo são atualizadas, mas as
- * criadas pelos usuários são mantidas.
- */
+/** Cria as demandas de exemplo se a coleção estiver vazia, e os índices. */
 async function prepararBanco(db) {
     const demandas = db.collection("demandas");
-    const config = db.collection("config");
-    const seed = await config.findOne({ chave: "seed" });
-    const vazio = (await demandas.countDocuments({})) === 0;
-
-    if (vazio || !seed || seed.versao !== BP.dados.versaoSeed) {
-        await demandas.deleteMany({ criadaPeloUsuario: false });
+    if ((await demandas.countDocuments({})) === 0) {
+        const total = BP.dados.demandas.length;
         const docs = BP.dados.demandas.map((d, i) => ({ ...JSON.parse(JSON.stringify(d)), ordem: -(i + 1), criadaPeloUsuario: false }));
-        if (docs.length) await demandas.insertMany(docs);
-        await config.updateOne({ chave: "seed" }, { $set: { versao: BP.dados.versaoSeed } }, { upsert: true });
+        if (total) await demandas.insertMany(docs);
     }
     await demandas.createIndex({ id: 1 }, { unique: true });
     await db.collection("usuarios").createIndex({ email: 1 }, { unique: true });
